@@ -1761,6 +1761,7 @@ constant routing_table_bits_15: t_tata_long := (
 		79 => "0000"
  );
 
+
 --        organizaiton of the network:
 --     x --------------->
 --  y         ----       ----       ----       ----
