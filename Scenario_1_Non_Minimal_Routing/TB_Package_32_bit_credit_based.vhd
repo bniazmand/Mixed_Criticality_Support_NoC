@@ -155,6 +155,9 @@ package body TB_Package is
       --------------------------------------
       uniform(seed1, seed2, rand);
       valid_dest:= False;
+      if source = 3 then 
+      	wait;
+      end if;
       while (not valid_dest) loop
           uniform(seed1, seed2, rand);
           valid_dest:= True;
