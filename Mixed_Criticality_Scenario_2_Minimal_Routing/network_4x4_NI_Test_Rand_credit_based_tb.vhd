@@ -203,39 +203,22 @@ end component;
 	  --L2S <= Rxy(18);
 	  --S2L <= Rxy(19);
 
-	signal Rxy_reconf_0:  std_logic_vector(19 downto 0) := "00001100000000000000"; --0
-	signal Rxy_reconf_1:  std_logic_vector(19 downto 0) := "11000000110000000000"; --0
-	signal Rxy_reconf_2:  std_logic_vector(19 downto 0) := "11000000110000000000"; --0
-	signal Rxy_reconf_3:  std_logic_vector(19 downto 0) := "00000000000000001010"; --10
-	signal Rxy_reconf_4:  std_logic_vector(19 downto 0) := "11001100000000100000"; --32
-	signal Rxy_reconf_5:  std_logic_vector(19 downto 0) := "11111111111100111100"; --252
-	signal Rxy_reconf_6:  std_logic_vector(19 downto 0) := "11111111111100111100"; --252
-	signal Rxy_reconf_7:  std_logic_vector(19 downto 0) := "00110000001100000000"; --0
-	signal Rxy_reconf_8:  std_logic_vector(19 downto 0) := "11001111001100110000"; --112
-	signal Rxy_reconf_9:  std_logic_vector(19 downto 0) := "11111111111100111100"; --252
-	signal Rxy_reconf_10: std_logic_vector(19 downto 0) := "11111111111100111100"; --252
-	signal Rxy_reconf_11: std_logic_vector(19 downto 0) := "00110000001100000000"; --0
-	signal Rxy_reconf_12: std_logic_vector(19 downto 0) := "00001111000000010000"; --80
-	signal Rxy_reconf_13: std_logic_vector(19 downto 0) := "00111111110000010100"; --212
-	signal Rxy_reconf_14: std_logic_vector(19 downto 0) := "00110011000000000100"; --132
-	signal Rxy_reconf_15: std_logic_vector(19 downto 0) := "00000011000000000000"; --0
-
-	--signal Rxy_reconf_0:  std_logic_vector(19 downto 0) := "11111111111100111100";
-	--signal Rxy_reconf_1:  std_logic_vector(19 downto 0) := "11111111111100111100";
-	--signal Rxy_reconf_2:  std_logic_vector(19 downto 0) := "11111111111100111100";
-	--signal Rxy_reconf_3:  std_logic_vector(19 downto 0) := "11111111111100111100";
-	--signal Rxy_reconf_4:  std_logic_vector(19 downto 0) := "11111111111100111100";
-	--signal Rxy_reconf_5:  std_logic_vector(19 downto 0) := "11111111111100111100";
-	--signal Rxy_reconf_6:  std_logic_vector(19 downto 0) := "11111111111100111100";
-	--signal Rxy_reconf_7:  std_logic_vector(19 downto 0) := "11111111111100111100";
-	--signal Rxy_reconf_8:  std_logic_vector(19 downto 0) := "11111111111100111100";
-	--signal Rxy_reconf_9:  std_logic_vector(19 downto 0) := "11111111111100111100";
-	--signal Rxy_reconf_10: std_logic_vector(19 downto 0) := "11111111111100111100";
-	--signal Rxy_reconf_11: std_logic_vector(19 downto 0) := "11111111111100111100";
-	--signal Rxy_reconf_12: std_logic_vector(19 downto 0) := "11111111111100111100";
-	--signal Rxy_reconf_13: std_logic_vector(19 downto 0) := "11111111111100111100";
-	--signal Rxy_reconf_14: std_logic_vector(19 downto 0) := "11111111111100111100";
-	--signal Rxy_reconf_15: std_logic_vector(19 downto 0) := "11111111111100111100";
+	signal Rxy_reconf_0:  std_logic_vector(19 downto 0) := "00001100000000000000";--0
+	signal Rxy_reconf_1:  std_logic_vector(19 downto 0) := "00001100000000001010";--10
+	signal Rxy_reconf_2:  std_logic_vector(19 downto 0) := "11111100110000101011";--43
+	signal Rxy_reconf_3:  std_logic_vector(19 downto 0) := "11110000000000001010";--10
+	signal Rxy_reconf_4:  std_logic_vector(19 downto 0) := "11001100000000100001";--33
+	signal Rxy_reconf_5:  std_logic_vector(19 downto 0) := "00111100111100000000";--0
+	signal Rxy_reconf_6:  std_logic_vector(19 downto 0) := "11111111111111101011";--235
+	signal Rxy_reconf_7:  std_logic_vector(19 downto 0) := "11110011001110001010";--138
+	signal Rxy_reconf_8:  std_logic_vector(19 downto 0) := "11001111001101100001";--97
+	signal Rxy_reconf_9:  std_logic_vector(19 downto 0) := "11110000000001011010";--90
+	signal Rxy_reconf_10: std_logic_vector(19 downto 0) := "00001111000001001010";--74
+	signal Rxy_reconf_11: std_logic_vector(19 downto 0) := "00110011000010000000";--128
+	signal Rxy_reconf_12: std_logic_vector(19 downto 0) := "00001111000001000000";--64
+	signal Rxy_reconf_13: std_logic_vector(19 downto 0) := "00111111110011000000";--192
+	signal Rxy_reconf_14: std_logic_vector(19 downto 0) := "00110000000001010000";--80
+	signal Rxy_reconf_15: std_logic_vector(19 downto 0) := "00110000000000000000";--0
 
 	signal Reconfig: std_logic := '0';
 	--------------
