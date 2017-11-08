@@ -149,7 +149,7 @@ process(N_prime, E_prime, W_prime, S_prime, dir_in, N2E, E2N, S2E, E2S, N2W, W2N
         --Req_W_in <= Cw and ((W1 and W_prime and not N_prime and not S_prime) or (W_prime and not N_prime and not S_prime and E2W) or (W_prime and N_prime and E2N) or (W_prime and S_prime and E2W));
         --Req_S_in <= Cs and ((S1 and S_prime and not E_prime and not W_prime) or (S_prime and not E_prime and not W_prime and N2S) or (S_prime and E_prime and N2E) or (S_prime and W_prime and N2W));
         --Req_L_in <= Cl and (not N_prime and not E_prime and not W_prime and not S_prime and ( (not dir_in(2) and not dir_in(1) and not dir_in(0) and N2L) or (not dir_in(2) and not dir_in(1) and dir_in(0) and E2L) or (not dir_in(2) and dir_in(1) and not dir_in(0) and W2L) or (not dir_in(2) and dir_in(1) and dir_in(0) and S2L) ));
-        if (cur_addr_rst /= 15 and cur_addr_rst /= 11 and cur_addr_rst /= 7 and cur_addr_rst /= 3) then
+        if (cur_addr_rst /= 15 and cur_addr_rst /= 14 and cur_addr_rst /= 9 and cur_addr_rst /= 10 and cur_addr_rst /= 5 and cur_addr_rst /= 1) then
 
             if (dir_in = East and E2N = '1') and Cn = '1' and N_prime = '1' and E_prime = '0' and W_prime = '0' then
                 Req_N_in <= '1';
@@ -163,29 +163,6 @@ process(N_prime, E_prime, W_prime, S_prime, dir_in, N2E, E2N, S2E, E2S, N2W, W2N
                 Req_N_in <= '0';          
             end if;
 
-            if (dir_in = North and N2E = '1') and Ce = '1' and E_prime = '1' then
-                Req_E_in <= '1';           
-            elsif (dir_in = West and W2E = '1') and Ce = '1' and E_prime = '1' then
-                Req_E_in <= '1';           
-            elsif (dir_in = South and S2E = '1') and Ce = '1' and E_prime = '1' then
-                Req_E_in <= '1';           
-            elsif (dir_in = Local and L2E = '1') and Ce = '1' and E_prime = '1' then 
-                Req_E_in <= '1';
-            else
-                Req_E_in <= '0';          
-            end if;
-     
-            if (dir_in = North and N2W = '1') and Cw = '1' and W_prime = '1' then
-                Req_W_in <= '1';
-            elsif (dir_in = East and E2W = '1') and Cw = '1' and W_prime = '1' then
-                Req_W_in <= '1';
-            elsif (dir_in = South and S2W = '1') and Cw = '1' and W_prime = '1' then
-                Req_W_in <= '1';
-            elsif (dir_in = Local and L2W = '1') and Cw = '1' and W_prime = '1' then
-                Req_W_in <= '1';
-            else
-                Req_W_in <= '0';          
-            end if;
 
             if (dir_in = North and N2S = '1') and Cs = '1' and S_prime = '1' and E_prime = '0' and W_prime = '0' then
                 Req_S_in <= '1';
@@ -199,11 +176,31 @@ process(N_prime, E_prime, W_prime, S_prime, dir_in, N2E, E2N, S2E, E2S, N2W, W2N
                 Req_S_in <= '0';          
             end if;
 
-            if ( ( (dir_in = North and N2L = '1') or (dir_in = East and E2L = '1') or (dir_in = West and W2L = '1') or 
-            (dir_in = South and S2L = '1') ) and Cl = '1' and (N_prime = '0' and E_prime = '0' and W_prime = '0' and S_prime = '0') ) then -- Any LBDR (Except Local itself), Request to Local
-              Req_L_in <= '1';
+        elsif (cur_addr_rst = 10 ) then
+
+            if (dir_in = East and E2N = '1') and Cn = '1' and N_prime = '1' and E_prime = '0' and W_prime = '0' then
+                Req_N_in <= '1';
+            elsif (dir_in = West and W2N = '1') and Cn = '1' and N_prime = '1' and E_prime = '0' and W_prime = '0' then
+                Req_N_in <= '1';
+            elsif (dir_in = South and S2N = '1') and Cn = '1' and N_prime = '1' and E_prime = '0' and W_prime = '0' then
+                Req_N_in <= '1';
+            elsif (dir_in = Local and L2N = '1') and Cn = '1' and N_prime = '1' and E_prime = '0' and W_prime = '0' then
+                Req_N_in <= '1';
             else 
-              Req_L_in <= '0';
+                Req_N_in <= '0';          
+            end if;
+
+
+            if (dir_in = North and N2S = '1') and Cs = '1' and S_prime = '1' and E_prime = '0' and W_prime = '0' then
+                Req_S_in <= '1';
+            elsif (dir_in = East and E2S = '1') and Cs = '1' and S_prime = '1' and E_prime = '0' and W_prime = '0' then
+                Req_S_in <= '1';
+            elsif (dir_in = West and W2S = '1') and Cs = '1' and S_prime = '1' then
+                Req_S_in <= '1';
+            elsif (dir_in = Local and L2S = '1') and Cs = '1' and S_prime = '1' and E_prime = '0' and W_prime = '0' then
+                Req_S_in <= '1';
+            else
+                Req_S_in <= '0';          
             end if;
 
         else
@@ -219,7 +216,23 @@ process(N_prime, E_prime, W_prime, S_prime, dir_in, N2E, E2N, S2E, E2S, N2W, W2N
                 Req_N_in <= '0';          
             end if;
 
-            if (dir_in = North and N2E = '1') and Ce = '1' and E_prime = '1' then
+            
+
+            if (dir_in = North and N2S = '1') and Cs = '1' and S_prime = '1' then
+                Req_S_in <= '1';
+            elsif (dir_in = East and E2S = '1') and Cs = '1' and S_prime = '1' then
+                Req_S_in <= '1';
+            elsif (dir_in = West and W2S = '1') and Cs = '1' and S_prime = '1' then
+                Req_S_in <= '1';
+            elsif (dir_in = Local and L2S = '1') and Cs = '1' and S_prime = '1' then
+                Req_S_in <= '1';
+            else
+                Req_S_in <= '0';          
+            end if;
+
+        end if;
+
+        if (dir_in = North and N2E = '1') and Ce = '1' and E_prime = '1' then
                 Req_E_in <= '1';           
             elsif (dir_in = West and W2E = '1') and Ce = '1' and E_prime = '1' then
                 Req_E_in <= '1';           
@@ -241,29 +254,14 @@ process(N_prime, E_prime, W_prime, S_prime, dir_in, N2E, E2N, S2E, E2S, N2W, W2N
                 Req_W_in <= '1';
             else
                 Req_W_in <= '0';          
-            end if;
+            end if; 
 
-            if (dir_in = North and N2S = '1') and Cs = '1' and S_prime = '1' then
-                Req_S_in <= '1';
-            elsif (dir_in = East and E2S = '1') and Cs = '1' and S_prime = '1' then
-                Req_S_in <= '1';
-            elsif (dir_in = West and W2S = '1') and Cs = '1' and S_prime = '1' then
-                Req_S_in <= '1';
-            elsif (dir_in = Local and L2S = '1') and Cs = '1' and S_prime = '1' then
-                Req_S_in <= '1';
-            else
-                Req_S_in <= '0';          
-            end if;
-
-            if ( ( (dir_in = North and N2L = '1') or (dir_in = East and E2L = '1') or (dir_in = West and W2L = '1') or 
+      if ( ( (dir_in = North and N2L = '1') or (dir_in = East and E2L = '1') or (dir_in = West and W2L = '1') or 
             (dir_in = South and S2L = '1') ) and Cl = '1' and (N_prime = '0' and E_prime = '0' and W_prime = '0' and S_prime = '0') ) then -- Any LBDR (Except Local itself), Request to Local
               Req_L_in <= '1';
             else 
               Req_L_in <= '0';
             end if;
-
-        end if;
-
 
   elsif flit_type = "100" and empty = '0' and grants = '1' then
         Req_N_in <= '0';

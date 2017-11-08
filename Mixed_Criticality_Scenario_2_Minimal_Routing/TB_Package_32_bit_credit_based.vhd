@@ -153,9 +153,6 @@ package body TB_Package is
           Packet_length:=max_packet_size;
       end if;
 
-      if source = 3 then
-        wait;
-      end if;
       --------------------------------------
       uniform(seed1, seed2, rand);
       valid_dest:= False;
