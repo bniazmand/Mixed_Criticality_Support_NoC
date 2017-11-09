@@ -232,7 +232,7 @@ end component;
 	signal TX_N_14, TX_E_14, TX_W_14, TX_S_14 : std_logic_vector (DATA_WIDTH-1 downto 0);
 	signal TX_N_15, TX_E_15, TX_W_15, TX_S_15 : std_logic_vector (DATA_WIDTH-1 downto 0);
 
-	signal Rxy_reconf: std_logic_vector (7 downto 0) := "00111100";
+	signal Rxy_reconf: std_logic_vector (7 downto 0) := "11111100"; -- North-Last turn model
 	signal Reconfig: std_logic := '0';
 
 --        organizaiton of the network:
@@ -255,9 +255,8 @@ end component;
 --                                               
 begin
 
-
 -- instantiating the routers
-R_0: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>0, Cx_rst => 10, NoC_size=>4)
+R_0: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>0, Cx_rst => 2, NoC_size=>4) -- Node 0 is only connected to 1 (critical region)
 PORT MAP (reset, clk, 
     Rxy_reconf, Reconfig,
 	RX_N_0, RX_E_0, RX_W_0, RX_S_0, RX_L_0,
@@ -267,7 +266,7 @@ PORT MAP (reset, clk,
 	credit_out_N_0, credit_out_E_0, credit_out_W_0, credit_out_S_0, credit_out_L_0,
 	TX_N_0, TX_E_0, TX_W_0, TX_S_0, TX_L_0); 
 
-R_1: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>1, Cx_rst => 14, NoC_size=>4)
+R_1: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>1, Cx_rst => 4, NoC_size=>4) -- Node 1 is only connected to 0 (critical region)
 PORT MAP (reset, clk, 
     Rxy_reconf, Reconfig,
 	RX_N_1, RX_E_1, RX_W_1, RX_S_1, RX_L_1,
@@ -277,7 +276,7 @@ PORT MAP (reset, clk,
 	credit_out_N_1, credit_out_E_1, credit_out_W_1, credit_out_S_1, credit_out_L_1,
 	TX_N_1, TX_E_1, TX_W_1, TX_S_1, TX_L_1); 
 
-R_2: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>2, Cx_rst => 14, NoC_size=>4)
+R_2: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>2, Cx_rst => 10, NoC_size=>4) -- Non-critical region
 PORT MAP (reset, clk, 
     Rxy_reconf, Reconfig,
 	RX_N_2, RX_E_2, RX_W_2, RX_S_2, RX_L_2,
@@ -297,7 +296,7 @@ PORT MAP (reset, clk,
 	credit_out_N_3, credit_out_E_3, credit_out_W_3, credit_out_S_3, credit_out_L_3,
 	TX_N_3, TX_E_3, TX_W_3, TX_S_3, TX_L_3); 
 
-R_4: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>4, Cx_rst => 11, NoC_size=>4)
+R_4: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>4, Cx_rst => 10, NoC_size=>4) -- Non-critical region
 PORT MAP (reset, clk, 
     Rxy_reconf, Reconfig,
 	RX_N_4, RX_E_4, RX_W_4, RX_S_4, RX_L_4,
@@ -307,7 +306,7 @@ PORT MAP (reset, clk,
 	credit_out_N_4, credit_out_E_4, credit_out_W_4, credit_out_S_4, credit_out_L_4,
 	TX_N_4, TX_E_4, TX_W_4, TX_S_4, TX_L_4); 
 
-R_5: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>5, Cx_rst => 15, NoC_size=>4)
+R_5: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>5, Cx_rst => 14, NoC_size=>4) -- Non-critical region
 PORT MAP (reset, clk, 
     Rxy_reconf, Reconfig,
 	RX_N_5, RX_E_5, RX_W_5, RX_S_5, RX_L_5,

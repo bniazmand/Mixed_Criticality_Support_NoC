@@ -38,9 +38,9 @@ package body TB_Package is
 
   function Header_gen(source, destination: integer)
               return std_logic_vector is
-      variable Header_flit: std_logic_vector (31 downto 0);
-      begin
-      Header_flit := Header_type &  std_logic_vector(to_unsigned(source, 14)) &
+    	variable Header_flit: std_logic_vector (31 downto 0);
+    	begin
+    	Header_flit := Header_type &  std_logic_vector(to_unsigned(source, 14)) &
                      std_logic_vector(to_unsigned(destination, 14))  & XOR_REDUCE(Header_type &  std_logic_vector(to_unsigned(source, 14)) &
                      std_logic_vector(to_unsigned(destination, 14)));
     return Header_flit;
@@ -106,7 +106,6 @@ package body TB_Package is
     variable LINEVARIABLE : line;
     file VEC_FILE : text is out "sent.txt";
     variable rand : real ;
-    variable valid_dest: boolean;
     variable destination_id: integer;
     variable id_counter, frame_starting_delay, Packet_length, frame_ending_delay : integer:= 0;
     variable credit_counter: std_logic_vector (1 downto 0);
@@ -154,119 +153,19 @@ package body TB_Package is
       end if;
       --------------------------------------
       uniform(seed1, seed2, rand);
-      valid_dest:= False;
-      while (not valid_dest) loop
+      destination_id := integer(rand*real((network_size**2)-1));
+      while (destination_id = source or destination_id = 0 or destination_id = 1) loop -- Behrad: did this to make the region contaning nodes 0 and 1 critical region!
           uniform(seed1, seed2, rand);
-          valid_dest:= True;
           destination_id := integer(rand*real((network_size**2)-1));
-
-          if source = destination_id then
-              valid_dest:= False;
-          end if;
-
-          if source = 0 then
-            destination_id := 15;
-            valid_dest:= True;
-          end if;
-          if source = 15 then
-            destination_id := 0;
-            valid_dest:= True;
-          end if;
-
-          if source /= 0 and destination_id = 15 then
-            valid_dest:= False;
-          end if;
-
-          if source /= 15 and destination_id = 0 then
-            valid_dest:= False;
-          end if;
-
-if source = 4 and destination_id = 1 then 
-  valid_dest:= False;
-elsif source = 4 and destination_id = 2 then 
-  valid_dest:= False;
-elsif source = 4 and destination_id = 3 then 
-  valid_dest:= False;
-elsif source = 5 and destination_id = 1 then 
-  valid_dest:= False;
-elsif source = 5 and destination_id = 2 then 
-  valid_dest:= False;
-elsif source = 5 and destination_id = 3 then 
-  valid_dest:= False;
-elsif source = 8 and destination_id = 1 then 
-  valid_dest:= False;
-elsif source = 8 and destination_id = 2 then 
-  valid_dest:= False;
-elsif source = 8 and destination_id = 3 then 
-  valid_dest:= False;
-elsif source = 9 and destination_id = 1 then 
-  valid_dest:= False;
-elsif source = 9 and destination_id = 2 then 
-  valid_dest:= False;
-elsif source = 9 and destination_id = 3 then 
-  valid_dest:= False;
-elsif source = 9 and destination_id = 4 then 
-  valid_dest:= False;
-elsif source = 9 and destination_id = 5 then 
-  valid_dest:= False;
-elsif source = 9 and destination_id = 6 then 
-  valid_dest:= False;
-elsif source = 9 and destination_id = 7 then 
-  valid_dest:= False;
-elsif source = 9 and destination_id = 10 then 
-  valid_dest:= False;
-elsif source = 9 and destination_id = 11 then 
-  valid_dest:= False;
-elsif source = 12 and destination_id = 1 then 
-  valid_dest:= False;
-elsif source = 12 and destination_id = 2 then 
-  valid_dest:= False;
-elsif source = 12 and destination_id = 3 then 
-  valid_dest:= False;
-elsif source = 13 and destination_id = 1 then 
-  valid_dest:= False;
-elsif source = 13 and destination_id = 2 then 
-  valid_dest:= False;
-elsif source = 13 and destination_id = 3 then 
-  valid_dest:= False;
-elsif source = 13 and destination_id = 4 then 
-  valid_dest:= False;
-elsif source = 13 and destination_id = 5 then 
-  valid_dest:= False;
-elsif source = 13 and destination_id = 6 then 
-  valid_dest:= False;
-elsif source = 13 and destination_id = 7 then 
-  valid_dest:= False;
-elsif source = 13 and destination_id = 10 then 
-  valid_dest:= False;
-elsif source = 13 and destination_id = 11 then 
-  valid_dest:= False;
-elsif source = 14 and destination_id = 1 then 
-  valid_dest:= False;
-elsif source = 14 and destination_id = 2 then 
-  valid_dest:= False;
-elsif source = 14 and destination_id = 3 then 
-  valid_dest:= False;
-elsif source = 14 and destination_id = 4 then 
-  valid_dest:= False;
-elsif source = 14 and destination_id = 5 then 
-  valid_dest:= False;
-elsif source = 14 and destination_id = 6 then 
-  valid_dest:= False;
-elsif source = 14 and destination_id = 7 then 
-  valid_dest:= False;
-elsif source = 14 and destination_id = 8 then 
-  valid_dest:= False;
-elsif source = 14 and destination_id = 9 then 
-  valid_dest:= False;
-elsif source = 14 and destination_id = 10 then 
-  valid_dest:= False;
-elsif source = 14 and destination_id = 11 then 
-  valid_dest:= False;
-
-
-          end if;
       end loop;
+
+      -- Added by behrad (to make the critical part, 0 always sends to 1 and 1 always sends to 0)
+      if source = 0 then
+        destination_id := 1;
+      elsif source = 1 then
+        destination_id := 0;
+      end if;
+
       --------------------------------------
       write(LINEVARIABLE, "Packet generated at " & time'image(now) & " From " & integer'image(source) & " to " & integer'image(destination_id) & " with length: " & integer'image(Packet_length) & " id: " & integer'image(id_counter));
       writeline(VEC_FILE, LINEVARIABLE);
@@ -384,6 +283,13 @@ procedure gen_bit_reversed_packet(network_size, frame_length, source, initial_de
       if destination_id = source then
         wait;
       end if;
+
+      if source = 0 then
+        destination_id := 1;
+      elsif source = 1 then
+        destination_id := 0;
+      end if;
+
       --------------------------------------
       write(LINEVARIABLE, "Packet generated at " & time'image(now) & " From " & integer'image(source) & " to " & integer'image(destination_id) & " with length: " & integer'image(Packet_length) & " id: " & integer'image(id_counter));
       writeline(VEC_FILE, LINEVARIABLE);
