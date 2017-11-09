@@ -11,14 +11,10 @@ use ieee.std_logic_1164.all;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 use work.TB_Package.all;
-use work.type_def_pack.all;
 
 USE ieee.numeric_std.ALL; 
 use IEEE.math_real."ceil";
 use IEEE.math_real."log2";
-
-library work;
-use work.type_def_pack.all;
 
 entity tb_network_4x4 is
 end tb_network_4x4; 

@@ -85,7 +85,7 @@ end COMPONENT;
     port (  reset: in  std_logic;
             clk: in  std_logic;
 
-            Rxy_reconf: in  std_logic_vector(7 downto 0);
+            Rxy_reconf: in  std_logic_vector(19 downto 0);
             Reconfig : in std_logic;
 
             empty: in  std_logic;
@@ -167,7 +167,7 @@ FIFO_L: FIFO_credit_based
 ------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------
 
--- all the LBDRs
+ all the LBDRs
 LBDR_N: LBDR generic map (cur_addr_rst => current_address, Cx_rst => Cx_rst, NoC_size => NoC_size)
        PORT MAP (reset => reset, clk => clk, empty => empty_N, Rxy_reconf => Rxy_reconf, Reconfig => Reconfig,
              flit_type => FIFO_D_out_N(DATA_WIDTH-1 downto DATA_WIDTH-3), dst_addr=> FIFO_D_out_N(NoC_size  downto 1) ,
