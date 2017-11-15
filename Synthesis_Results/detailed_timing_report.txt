@@ -1,0 +1,697 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 10
+Design : network_4x4_DATA_WIDTH32_DATA_WIDTH_LV11
+Version: M-2016.12
+Date   : Wed Nov 15 11:41:16 2017
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: c18_CORELIB_TYP
+Wire Load Model Mode: enclosed
+
+  Startpoint: R_10/allocator_unit/arb_L_X/state_reg[1]
+              (rising edge-triggered flip-flop clocked by my_clock)
+  Endpoint: R_14/FIFO_N/FIFO_MEM_1_reg[9]
+            (rising edge-triggered flip-flop clocked by my_clock)
+  Path Group: my_clock
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  network_4x4_DATA_WIDTH32_DATA_WIDTH_LV11
+                     c18_wl_30k            c18_CORELIB_TYP
+  arbiter_in_25      c18_wl_30k            c18_CORELIB_TYP
+  allocator_5        c18_wl_30k            c18_CORELIB_TYP
+  arbiter_out_26     c18_wl_30k            c18_CORELIB_TYP
+  router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4
+                     c18_wl_30k            c18_CORELIB_TYP
+  FIFO_credit_based_DATA_WIDTH32_9
+                     c18_wl_30k            c18_CORELIB_TYP
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock my_clock (rise edge)                           0.00000    0.00000
+  clock network delay (ideal)                          0.00000    0.00000
+  R_10/allocator_unit/arb_L_X/state_reg[1]/CP (DFCX1)  0.00000 #  0.00000 r
+  R_10/allocator_unit/arb_L_X/state_reg[1]/QN (DFCX1)  0.30012    0.30012 f
+  R_10/allocator_unit/arb_L_X/U11/Q (NOR2XL)           0.72893    1.02905 r
+  R_10/allocator_unit/arb_L_X/U4/Q (OAI21X1)           0.36577    1.39482 f
+  R_10/allocator_unit/arb_L_X/U14/Q (AOI21X1)          0.30128    1.69610 r
+  R_10/allocator_unit/arb_L_X/U15/Q (NOR2XL)           0.12612    1.82222 f
+  R_10/allocator_unit/arb_L_X/U9/Q (NOR2XL)            0.92766    2.74989 r
+  R_10/allocator_unit/arb_L_X/X_S (arbiter_in_25)      0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/X_L_Y (arbiter_out_26)   0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/U9/Q (NAND2XL)           0.29411    3.04400 f
+  R_10/allocator_unit/arb_X_S/U22/Q (AOI211X1)         0.38909    3.43309 r
+  R_10/allocator_unit/arb_X_S/grant_Y_L (arbiter_out_26)
+                                                       0.00000    3.43309 r
+  R_10/allocator_unit/U46/Q (INVXL)                    0.12261    3.55569 f
+  R_10/allocator_unit/U14/Q (NOR2XL)                   1.14885    4.70455 r
+  R_10/allocator_unit/U28/Q (NOR3X1)                   0.10251    4.80706 f
+  R_10/allocator_unit/U11/Q (NAND2XL)                  0.57699    5.38405 r
+  R_10/allocator_unit/valid_S (allocator_5)            0.00000    5.38405 r
+  R_10/valid_out_S (router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/valid_in_N (router_credit_based_DATA_WIDTH32_current_address14_Cx_rst23_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/valid_in (FIFO_credit_based_DATA_WIDTH32_9)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/U8/Q (NAND2X1)                           0.55795    5.94200 f
+  R_14/FIFO_N/U248/Q (NOR2XL)                          0.58368    6.52569 r
+  R_14/FIFO_N/U6/Q (AND3X2)                            1.07357    7.59926 r
+  R_14/FIFO_N/U7/Q (CLKINVX2)                          0.80419    8.40345 f
+  R_14/FIFO_N/U79/Q (AO22X1)                           0.36465    8.76810 f
+  R_14/FIFO_N/FIFO_MEM_1_reg[9]/D (DFCX1)              0.00005    8.76815 f
+  data arrival time                                               8.76815
+
+  clock my_clock (rise edge)                          10.00000   10.00000
+  clock network delay (ideal)                          0.00000   10.00000
+  clock uncertainty                                   -0.01500    9.98500
+  R_14/FIFO_N/FIFO_MEM_1_reg[9]/CP (DFCX1)             0.00000    9.98500 r
+  library setup time                                  -0.12728    9.85772
+  data required time                                              9.85772
+  --------------------------------------------------------------------------
+  data required time                                              9.85772
+  data arrival time                                              -8.76815
+  --------------------------------------------------------------------------
+  slack (MET)                                                     1.08957
+
+
+  Startpoint: R_10/allocator_unit/arb_L_X/state_reg[1]
+              (rising edge-triggered flip-flop clocked by my_clock)
+  Endpoint: R_14/FIFO_N/FIFO_MEM_1_reg[8]
+            (rising edge-triggered flip-flop clocked by my_clock)
+  Path Group: my_clock
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  network_4x4_DATA_WIDTH32_DATA_WIDTH_LV11
+                     c18_wl_30k            c18_CORELIB_TYP
+  arbiter_in_25      c18_wl_30k            c18_CORELIB_TYP
+  allocator_5        c18_wl_30k            c18_CORELIB_TYP
+  arbiter_out_26     c18_wl_30k            c18_CORELIB_TYP
+  router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4
+                     c18_wl_30k            c18_CORELIB_TYP
+  FIFO_credit_based_DATA_WIDTH32_9
+                     c18_wl_30k            c18_CORELIB_TYP
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock my_clock (rise edge)                           0.00000    0.00000
+  clock network delay (ideal)                          0.00000    0.00000
+  R_10/allocator_unit/arb_L_X/state_reg[1]/CP (DFCX1)  0.00000 #  0.00000 r
+  R_10/allocator_unit/arb_L_X/state_reg[1]/QN (DFCX1)  0.30012    0.30012 f
+  R_10/allocator_unit/arb_L_X/U11/Q (NOR2XL)           0.72893    1.02905 r
+  R_10/allocator_unit/arb_L_X/U4/Q (OAI21X1)           0.36577    1.39482 f
+  R_10/allocator_unit/arb_L_X/U14/Q (AOI21X1)          0.30128    1.69610 r
+  R_10/allocator_unit/arb_L_X/U15/Q (NOR2XL)           0.12612    1.82222 f
+  R_10/allocator_unit/arb_L_X/U9/Q (NOR2XL)            0.92766    2.74989 r
+  R_10/allocator_unit/arb_L_X/X_S (arbiter_in_25)      0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/X_L_Y (arbiter_out_26)   0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/U9/Q (NAND2XL)           0.29411    3.04400 f
+  R_10/allocator_unit/arb_X_S/U22/Q (AOI211X1)         0.38909    3.43309 r
+  R_10/allocator_unit/arb_X_S/grant_Y_L (arbiter_out_26)
+                                                       0.00000    3.43309 r
+  R_10/allocator_unit/U46/Q (INVXL)                    0.12261    3.55569 f
+  R_10/allocator_unit/U14/Q (NOR2XL)                   1.14885    4.70455 r
+  R_10/allocator_unit/U28/Q (NOR3X1)                   0.10251    4.80706 f
+  R_10/allocator_unit/U11/Q (NAND2XL)                  0.57699    5.38405 r
+  R_10/allocator_unit/valid_S (allocator_5)            0.00000    5.38405 r
+  R_10/valid_out_S (router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/valid_in_N (router_credit_based_DATA_WIDTH32_current_address14_Cx_rst23_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/valid_in (FIFO_credit_based_DATA_WIDTH32_9)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/U8/Q (NAND2X1)                           0.55795    5.94200 f
+  R_14/FIFO_N/U248/Q (NOR2XL)                          0.58368    6.52569 r
+  R_14/FIFO_N/U6/Q (AND3X2)                            1.07357    7.59926 r
+  R_14/FIFO_N/U7/Q (CLKINVX2)                          0.80419    8.40345 f
+  R_14/FIFO_N/U93/Q (AO22X1)                           0.36465    8.76810 f
+  R_14/FIFO_N/FIFO_MEM_1_reg[8]/D (DFCX1)              0.00005    8.76815 f
+  data arrival time                                               8.76815
+
+  clock my_clock (rise edge)                          10.00000   10.00000
+  clock network delay (ideal)                          0.00000   10.00000
+  clock uncertainty                                   -0.01500    9.98500
+  R_14/FIFO_N/FIFO_MEM_1_reg[8]/CP (DFCX1)             0.00000    9.98500 r
+  library setup time                                  -0.12728    9.85772
+  data required time                                              9.85772
+  --------------------------------------------------------------------------
+  data required time                                              9.85772
+  data arrival time                                              -8.76815
+  --------------------------------------------------------------------------
+  slack (MET)                                                     1.08957
+
+
+  Startpoint: R_10/allocator_unit/arb_L_X/state_reg[1]
+              (rising edge-triggered flip-flop clocked by my_clock)
+  Endpoint: R_14/FIFO_N/FIFO_MEM_1_reg[7]
+            (rising edge-triggered flip-flop clocked by my_clock)
+  Path Group: my_clock
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  network_4x4_DATA_WIDTH32_DATA_WIDTH_LV11
+                     c18_wl_30k            c18_CORELIB_TYP
+  arbiter_in_25      c18_wl_30k            c18_CORELIB_TYP
+  allocator_5        c18_wl_30k            c18_CORELIB_TYP
+  arbiter_out_26     c18_wl_30k            c18_CORELIB_TYP
+  router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4
+                     c18_wl_30k            c18_CORELIB_TYP
+  FIFO_credit_based_DATA_WIDTH32_9
+                     c18_wl_30k            c18_CORELIB_TYP
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock my_clock (rise edge)                           0.00000    0.00000
+  clock network delay (ideal)                          0.00000    0.00000
+  R_10/allocator_unit/arb_L_X/state_reg[1]/CP (DFCX1)  0.00000 #  0.00000 r
+  R_10/allocator_unit/arb_L_X/state_reg[1]/QN (DFCX1)  0.30012    0.30012 f
+  R_10/allocator_unit/arb_L_X/U11/Q (NOR2XL)           0.72893    1.02905 r
+  R_10/allocator_unit/arb_L_X/U4/Q (OAI21X1)           0.36577    1.39482 f
+  R_10/allocator_unit/arb_L_X/U14/Q (AOI21X1)          0.30128    1.69610 r
+  R_10/allocator_unit/arb_L_X/U15/Q (NOR2XL)           0.12612    1.82222 f
+  R_10/allocator_unit/arb_L_X/U9/Q (NOR2XL)            0.92766    2.74989 r
+  R_10/allocator_unit/arb_L_X/X_S (arbiter_in_25)      0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/X_L_Y (arbiter_out_26)   0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/U9/Q (NAND2XL)           0.29411    3.04400 f
+  R_10/allocator_unit/arb_X_S/U22/Q (AOI211X1)         0.38909    3.43309 r
+  R_10/allocator_unit/arb_X_S/grant_Y_L (arbiter_out_26)
+                                                       0.00000    3.43309 r
+  R_10/allocator_unit/U46/Q (INVXL)                    0.12261    3.55569 f
+  R_10/allocator_unit/U14/Q (NOR2XL)                   1.14885    4.70455 r
+  R_10/allocator_unit/U28/Q (NOR3X1)                   0.10251    4.80706 f
+  R_10/allocator_unit/U11/Q (NAND2XL)                  0.57699    5.38405 r
+  R_10/allocator_unit/valid_S (allocator_5)            0.00000    5.38405 r
+  R_10/valid_out_S (router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/valid_in_N (router_credit_based_DATA_WIDTH32_current_address14_Cx_rst23_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/valid_in (FIFO_credit_based_DATA_WIDTH32_9)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/U8/Q (NAND2X1)                           0.55795    5.94200 f
+  R_14/FIFO_N/U248/Q (NOR2XL)                          0.58368    6.52569 r
+  R_14/FIFO_N/U6/Q (AND3X2)                            1.07357    7.59926 r
+  R_14/FIFO_N/U7/Q (CLKINVX2)                          0.80419    8.40345 f
+  R_14/FIFO_N/U89/Q (AO22X1)                           0.36465    8.76810 f
+  R_14/FIFO_N/FIFO_MEM_1_reg[7]/D (DFCX1)              0.00005    8.76815 f
+  data arrival time                                               8.76815
+
+  clock my_clock (rise edge)                          10.00000   10.00000
+  clock network delay (ideal)                          0.00000   10.00000
+  clock uncertainty                                   -0.01500    9.98500
+  R_14/FIFO_N/FIFO_MEM_1_reg[7]/CP (DFCX1)             0.00000    9.98500 r
+  library setup time                                  -0.12728    9.85772
+  data required time                                              9.85772
+  --------------------------------------------------------------------------
+  data required time                                              9.85772
+  data arrival time                                              -8.76815
+  --------------------------------------------------------------------------
+  slack (MET)                                                     1.08957
+
+
+  Startpoint: R_10/allocator_unit/arb_L_X/state_reg[1]
+              (rising edge-triggered flip-flop clocked by my_clock)
+  Endpoint: R_14/FIFO_N/FIFO_MEM_1_reg[6]
+            (rising edge-triggered flip-flop clocked by my_clock)
+  Path Group: my_clock
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  network_4x4_DATA_WIDTH32_DATA_WIDTH_LV11
+                     c18_wl_30k            c18_CORELIB_TYP
+  arbiter_in_25      c18_wl_30k            c18_CORELIB_TYP
+  allocator_5        c18_wl_30k            c18_CORELIB_TYP
+  arbiter_out_26     c18_wl_30k            c18_CORELIB_TYP
+  router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4
+                     c18_wl_30k            c18_CORELIB_TYP
+  FIFO_credit_based_DATA_WIDTH32_9
+                     c18_wl_30k            c18_CORELIB_TYP
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock my_clock (rise edge)                           0.00000    0.00000
+  clock network delay (ideal)                          0.00000    0.00000
+  R_10/allocator_unit/arb_L_X/state_reg[1]/CP (DFCX1)  0.00000 #  0.00000 r
+  R_10/allocator_unit/arb_L_X/state_reg[1]/QN (DFCX1)  0.30012    0.30012 f
+  R_10/allocator_unit/arb_L_X/U11/Q (NOR2XL)           0.72893    1.02905 r
+  R_10/allocator_unit/arb_L_X/U4/Q (OAI21X1)           0.36577    1.39482 f
+  R_10/allocator_unit/arb_L_X/U14/Q (AOI21X1)          0.30128    1.69610 r
+  R_10/allocator_unit/arb_L_X/U15/Q (NOR2XL)           0.12612    1.82222 f
+  R_10/allocator_unit/arb_L_X/U9/Q (NOR2XL)            0.92766    2.74989 r
+  R_10/allocator_unit/arb_L_X/X_S (arbiter_in_25)      0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/X_L_Y (arbiter_out_26)   0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/U9/Q (NAND2XL)           0.29411    3.04400 f
+  R_10/allocator_unit/arb_X_S/U22/Q (AOI211X1)         0.38909    3.43309 r
+  R_10/allocator_unit/arb_X_S/grant_Y_L (arbiter_out_26)
+                                                       0.00000    3.43309 r
+  R_10/allocator_unit/U46/Q (INVXL)                    0.12261    3.55569 f
+  R_10/allocator_unit/U14/Q (NOR2XL)                   1.14885    4.70455 r
+  R_10/allocator_unit/U28/Q (NOR3X1)                   0.10251    4.80706 f
+  R_10/allocator_unit/U11/Q (NAND2XL)                  0.57699    5.38405 r
+  R_10/allocator_unit/valid_S (allocator_5)            0.00000    5.38405 r
+  R_10/valid_out_S (router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/valid_in_N (router_credit_based_DATA_WIDTH32_current_address14_Cx_rst23_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/valid_in (FIFO_credit_based_DATA_WIDTH32_9)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/U8/Q (NAND2X1)                           0.55795    5.94200 f
+  R_14/FIFO_N/U248/Q (NOR2XL)                          0.58368    6.52569 r
+  R_14/FIFO_N/U6/Q (AND3X2)                            1.07357    7.59926 r
+  R_14/FIFO_N/U7/Q (CLKINVX2)                          0.80419    8.40345 f
+  R_14/FIFO_N/U92/Q (AO22X1)                           0.36465    8.76810 f
+  R_14/FIFO_N/FIFO_MEM_1_reg[6]/D (DFCX1)              0.00005    8.76815 f
+  data arrival time                                               8.76815
+
+  clock my_clock (rise edge)                          10.00000   10.00000
+  clock network delay (ideal)                          0.00000   10.00000
+  clock uncertainty                                   -0.01500    9.98500
+  R_14/FIFO_N/FIFO_MEM_1_reg[6]/CP (DFCX1)             0.00000    9.98500 r
+  library setup time                                  -0.12728    9.85772
+  data required time                                              9.85772
+  --------------------------------------------------------------------------
+  data required time                                              9.85772
+  data arrival time                                              -8.76815
+  --------------------------------------------------------------------------
+  slack (MET)                                                     1.08957
+
+
+  Startpoint: R_10/allocator_unit/arb_L_X/state_reg[1]
+              (rising edge-triggered flip-flop clocked by my_clock)
+  Endpoint: R_14/FIFO_N/FIFO_MEM_1_reg[5]
+            (rising edge-triggered flip-flop clocked by my_clock)
+  Path Group: my_clock
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  network_4x4_DATA_WIDTH32_DATA_WIDTH_LV11
+                     c18_wl_30k            c18_CORELIB_TYP
+  arbiter_in_25      c18_wl_30k            c18_CORELIB_TYP
+  allocator_5        c18_wl_30k            c18_CORELIB_TYP
+  arbiter_out_26     c18_wl_30k            c18_CORELIB_TYP
+  router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4
+                     c18_wl_30k            c18_CORELIB_TYP
+  FIFO_credit_based_DATA_WIDTH32_9
+                     c18_wl_30k            c18_CORELIB_TYP
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock my_clock (rise edge)                           0.00000    0.00000
+  clock network delay (ideal)                          0.00000    0.00000
+  R_10/allocator_unit/arb_L_X/state_reg[1]/CP (DFCX1)  0.00000 #  0.00000 r
+  R_10/allocator_unit/arb_L_X/state_reg[1]/QN (DFCX1)  0.30012    0.30012 f
+  R_10/allocator_unit/arb_L_X/U11/Q (NOR2XL)           0.72893    1.02905 r
+  R_10/allocator_unit/arb_L_X/U4/Q (OAI21X1)           0.36577    1.39482 f
+  R_10/allocator_unit/arb_L_X/U14/Q (AOI21X1)          0.30128    1.69610 r
+  R_10/allocator_unit/arb_L_X/U15/Q (NOR2XL)           0.12612    1.82222 f
+  R_10/allocator_unit/arb_L_X/U9/Q (NOR2XL)            0.92766    2.74989 r
+  R_10/allocator_unit/arb_L_X/X_S (arbiter_in_25)      0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/X_L_Y (arbiter_out_26)   0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/U9/Q (NAND2XL)           0.29411    3.04400 f
+  R_10/allocator_unit/arb_X_S/U22/Q (AOI211X1)         0.38909    3.43309 r
+  R_10/allocator_unit/arb_X_S/grant_Y_L (arbiter_out_26)
+                                                       0.00000    3.43309 r
+  R_10/allocator_unit/U46/Q (INVXL)                    0.12261    3.55569 f
+  R_10/allocator_unit/U14/Q (NOR2XL)                   1.14885    4.70455 r
+  R_10/allocator_unit/U28/Q (NOR3X1)                   0.10251    4.80706 f
+  R_10/allocator_unit/U11/Q (NAND2XL)                  0.57699    5.38405 r
+  R_10/allocator_unit/valid_S (allocator_5)            0.00000    5.38405 r
+  R_10/valid_out_S (router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/valid_in_N (router_credit_based_DATA_WIDTH32_current_address14_Cx_rst23_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/valid_in (FIFO_credit_based_DATA_WIDTH32_9)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/U8/Q (NAND2X1)                           0.55795    5.94200 f
+  R_14/FIFO_N/U248/Q (NOR2XL)                          0.58368    6.52569 r
+  R_14/FIFO_N/U6/Q (AND3X2)                            1.07357    7.59926 r
+  R_14/FIFO_N/U7/Q (CLKINVX2)                          0.80419    8.40345 f
+  R_14/FIFO_N/U94/Q (AO22X1)                           0.36465    8.76810 f
+  R_14/FIFO_N/FIFO_MEM_1_reg[5]/D (DFCX1)              0.00005    8.76815 f
+  data arrival time                                               8.76815
+
+  clock my_clock (rise edge)                          10.00000   10.00000
+  clock network delay (ideal)                          0.00000   10.00000
+  clock uncertainty                                   -0.01500    9.98500
+  R_14/FIFO_N/FIFO_MEM_1_reg[5]/CP (DFCX1)             0.00000    9.98500 r
+  library setup time                                  -0.12728    9.85772
+  data required time                                              9.85772
+  --------------------------------------------------------------------------
+  data required time                                              9.85772
+  data arrival time                                              -8.76815
+  --------------------------------------------------------------------------
+  slack (MET)                                                     1.08957
+
+
+  Startpoint: R_10/allocator_unit/arb_L_X/state_reg[1]
+              (rising edge-triggered flip-flop clocked by my_clock)
+  Endpoint: R_14/FIFO_N/FIFO_MEM_1_reg[4]
+            (rising edge-triggered flip-flop clocked by my_clock)
+  Path Group: my_clock
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  network_4x4_DATA_WIDTH32_DATA_WIDTH_LV11
+                     c18_wl_30k            c18_CORELIB_TYP
+  arbiter_in_25      c18_wl_30k            c18_CORELIB_TYP
+  allocator_5        c18_wl_30k            c18_CORELIB_TYP
+  arbiter_out_26     c18_wl_30k            c18_CORELIB_TYP
+  router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4
+                     c18_wl_30k            c18_CORELIB_TYP
+  FIFO_credit_based_DATA_WIDTH32_9
+                     c18_wl_30k            c18_CORELIB_TYP
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock my_clock (rise edge)                           0.00000    0.00000
+  clock network delay (ideal)                          0.00000    0.00000
+  R_10/allocator_unit/arb_L_X/state_reg[1]/CP (DFCX1)  0.00000 #  0.00000 r
+  R_10/allocator_unit/arb_L_X/state_reg[1]/QN (DFCX1)  0.30012    0.30012 f
+  R_10/allocator_unit/arb_L_X/U11/Q (NOR2XL)           0.72893    1.02905 r
+  R_10/allocator_unit/arb_L_X/U4/Q (OAI21X1)           0.36577    1.39482 f
+  R_10/allocator_unit/arb_L_X/U14/Q (AOI21X1)          0.30128    1.69610 r
+  R_10/allocator_unit/arb_L_X/U15/Q (NOR2XL)           0.12612    1.82222 f
+  R_10/allocator_unit/arb_L_X/U9/Q (NOR2XL)            0.92766    2.74989 r
+  R_10/allocator_unit/arb_L_X/X_S (arbiter_in_25)      0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/X_L_Y (arbiter_out_26)   0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/U9/Q (NAND2XL)           0.29411    3.04400 f
+  R_10/allocator_unit/arb_X_S/U22/Q (AOI211X1)         0.38909    3.43309 r
+  R_10/allocator_unit/arb_X_S/grant_Y_L (arbiter_out_26)
+                                                       0.00000    3.43309 r
+  R_10/allocator_unit/U46/Q (INVXL)                    0.12261    3.55569 f
+  R_10/allocator_unit/U14/Q (NOR2XL)                   1.14885    4.70455 r
+  R_10/allocator_unit/U28/Q (NOR3X1)                   0.10251    4.80706 f
+  R_10/allocator_unit/U11/Q (NAND2XL)                  0.57699    5.38405 r
+  R_10/allocator_unit/valid_S (allocator_5)            0.00000    5.38405 r
+  R_10/valid_out_S (router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/valid_in_N (router_credit_based_DATA_WIDTH32_current_address14_Cx_rst23_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/valid_in (FIFO_credit_based_DATA_WIDTH32_9)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/U8/Q (NAND2X1)                           0.55795    5.94200 f
+  R_14/FIFO_N/U248/Q (NOR2XL)                          0.58368    6.52569 r
+  R_14/FIFO_N/U6/Q (AND3X2)                            1.07357    7.59926 r
+  R_14/FIFO_N/U7/Q (CLKINVX2)                          0.80419    8.40345 f
+  R_14/FIFO_N/U96/Q (AO22X1)                           0.36465    8.76810 f
+  R_14/FIFO_N/FIFO_MEM_1_reg[4]/D (DFCX1)              0.00005    8.76815 f
+  data arrival time                                               8.76815
+
+  clock my_clock (rise edge)                          10.00000   10.00000
+  clock network delay (ideal)                          0.00000   10.00000
+  clock uncertainty                                   -0.01500    9.98500
+  R_14/FIFO_N/FIFO_MEM_1_reg[4]/CP (DFCX1)             0.00000    9.98500 r
+  library setup time                                  -0.12728    9.85772
+  data required time                                              9.85772
+  --------------------------------------------------------------------------
+  data required time                                              9.85772
+  data arrival time                                              -8.76815
+  --------------------------------------------------------------------------
+  slack (MET)                                                     1.08957
+
+
+  Startpoint: R_10/allocator_unit/arb_L_X/state_reg[1]
+              (rising edge-triggered flip-flop clocked by my_clock)
+  Endpoint: R_14/FIFO_N/FIFO_MEM_1_reg[3]
+            (rising edge-triggered flip-flop clocked by my_clock)
+  Path Group: my_clock
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  network_4x4_DATA_WIDTH32_DATA_WIDTH_LV11
+                     c18_wl_30k            c18_CORELIB_TYP
+  arbiter_in_25      c18_wl_30k            c18_CORELIB_TYP
+  allocator_5        c18_wl_30k            c18_CORELIB_TYP
+  arbiter_out_26     c18_wl_30k            c18_CORELIB_TYP
+  router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4
+                     c18_wl_30k            c18_CORELIB_TYP
+  FIFO_credit_based_DATA_WIDTH32_9
+                     c18_wl_30k            c18_CORELIB_TYP
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock my_clock (rise edge)                           0.00000    0.00000
+  clock network delay (ideal)                          0.00000    0.00000
+  R_10/allocator_unit/arb_L_X/state_reg[1]/CP (DFCX1)  0.00000 #  0.00000 r
+  R_10/allocator_unit/arb_L_X/state_reg[1]/QN (DFCX1)  0.30012    0.30012 f
+  R_10/allocator_unit/arb_L_X/U11/Q (NOR2XL)           0.72893    1.02905 r
+  R_10/allocator_unit/arb_L_X/U4/Q (OAI21X1)           0.36577    1.39482 f
+  R_10/allocator_unit/arb_L_X/U14/Q (AOI21X1)          0.30128    1.69610 r
+  R_10/allocator_unit/arb_L_X/U15/Q (NOR2XL)           0.12612    1.82222 f
+  R_10/allocator_unit/arb_L_X/U9/Q (NOR2XL)            0.92766    2.74989 r
+  R_10/allocator_unit/arb_L_X/X_S (arbiter_in_25)      0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/X_L_Y (arbiter_out_26)   0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/U9/Q (NAND2XL)           0.29411    3.04400 f
+  R_10/allocator_unit/arb_X_S/U22/Q (AOI211X1)         0.38909    3.43309 r
+  R_10/allocator_unit/arb_X_S/grant_Y_L (arbiter_out_26)
+                                                       0.00000    3.43309 r
+  R_10/allocator_unit/U46/Q (INVXL)                    0.12261    3.55569 f
+  R_10/allocator_unit/U14/Q (NOR2XL)                   1.14885    4.70455 r
+  R_10/allocator_unit/U28/Q (NOR3X1)                   0.10251    4.80706 f
+  R_10/allocator_unit/U11/Q (NAND2XL)                  0.57699    5.38405 r
+  R_10/allocator_unit/valid_S (allocator_5)            0.00000    5.38405 r
+  R_10/valid_out_S (router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/valid_in_N (router_credit_based_DATA_WIDTH32_current_address14_Cx_rst23_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/valid_in (FIFO_credit_based_DATA_WIDTH32_9)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/U8/Q (NAND2X1)                           0.55795    5.94200 f
+  R_14/FIFO_N/U248/Q (NOR2XL)                          0.58368    6.52569 r
+  R_14/FIFO_N/U6/Q (AND3X2)                            1.07357    7.59926 r
+  R_14/FIFO_N/U7/Q (CLKINVX2)                          0.80419    8.40345 f
+  R_14/FIFO_N/U77/Q (AO22X1)                           0.36465    8.76810 f
+  R_14/FIFO_N/FIFO_MEM_1_reg[3]/D (DFCX1)              0.00005    8.76815 f
+  data arrival time                                               8.76815
+
+  clock my_clock (rise edge)                          10.00000   10.00000
+  clock network delay (ideal)                          0.00000   10.00000
+  clock uncertainty                                   -0.01500    9.98500
+  R_14/FIFO_N/FIFO_MEM_1_reg[3]/CP (DFCX1)             0.00000    9.98500 r
+  library setup time                                  -0.12728    9.85772
+  data required time                                              9.85772
+  --------------------------------------------------------------------------
+  data required time                                              9.85772
+  data arrival time                                              -8.76815
+  --------------------------------------------------------------------------
+  slack (MET)                                                     1.08957
+
+
+  Startpoint: R_10/allocator_unit/arb_L_X/state_reg[1]
+              (rising edge-triggered flip-flop clocked by my_clock)
+  Endpoint: R_14/FIFO_N/FIFO_MEM_1_reg[2]
+            (rising edge-triggered flip-flop clocked by my_clock)
+  Path Group: my_clock
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  network_4x4_DATA_WIDTH32_DATA_WIDTH_LV11
+                     c18_wl_30k            c18_CORELIB_TYP
+  arbiter_in_25      c18_wl_30k            c18_CORELIB_TYP
+  allocator_5        c18_wl_30k            c18_CORELIB_TYP
+  arbiter_out_26     c18_wl_30k            c18_CORELIB_TYP
+  router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4
+                     c18_wl_30k            c18_CORELIB_TYP
+  FIFO_credit_based_DATA_WIDTH32_9
+                     c18_wl_30k            c18_CORELIB_TYP
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock my_clock (rise edge)                           0.00000    0.00000
+  clock network delay (ideal)                          0.00000    0.00000
+  R_10/allocator_unit/arb_L_X/state_reg[1]/CP (DFCX1)  0.00000 #  0.00000 r
+  R_10/allocator_unit/arb_L_X/state_reg[1]/QN (DFCX1)  0.30012    0.30012 f
+  R_10/allocator_unit/arb_L_X/U11/Q (NOR2XL)           0.72893    1.02905 r
+  R_10/allocator_unit/arb_L_X/U4/Q (OAI21X1)           0.36577    1.39482 f
+  R_10/allocator_unit/arb_L_X/U14/Q (AOI21X1)          0.30128    1.69610 r
+  R_10/allocator_unit/arb_L_X/U15/Q (NOR2XL)           0.12612    1.82222 f
+  R_10/allocator_unit/arb_L_X/U9/Q (NOR2XL)            0.92766    2.74989 r
+  R_10/allocator_unit/arb_L_X/X_S (arbiter_in_25)      0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/X_L_Y (arbiter_out_26)   0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/U9/Q (NAND2XL)           0.29411    3.04400 f
+  R_10/allocator_unit/arb_X_S/U22/Q (AOI211X1)         0.38909    3.43309 r
+  R_10/allocator_unit/arb_X_S/grant_Y_L (arbiter_out_26)
+                                                       0.00000    3.43309 r
+  R_10/allocator_unit/U46/Q (INVXL)                    0.12261    3.55569 f
+  R_10/allocator_unit/U14/Q (NOR2XL)                   1.14885    4.70455 r
+  R_10/allocator_unit/U28/Q (NOR3X1)                   0.10251    4.80706 f
+  R_10/allocator_unit/U11/Q (NAND2XL)                  0.57699    5.38405 r
+  R_10/allocator_unit/valid_S (allocator_5)            0.00000    5.38405 r
+  R_10/valid_out_S (router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/valid_in_N (router_credit_based_DATA_WIDTH32_current_address14_Cx_rst23_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/valid_in (FIFO_credit_based_DATA_WIDTH32_9)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/U8/Q (NAND2X1)                           0.55795    5.94200 f
+  R_14/FIFO_N/U248/Q (NOR2XL)                          0.58368    6.52569 r
+  R_14/FIFO_N/U6/Q (AND3X2)                            1.07357    7.59926 r
+  R_14/FIFO_N/U7/Q (CLKINVX2)                          0.80419    8.40345 f
+  R_14/FIFO_N/U80/Q (AO22X1)                           0.36465    8.76810 f
+  R_14/FIFO_N/FIFO_MEM_1_reg[2]/D (DFCX1)              0.00005    8.76815 f
+  data arrival time                                               8.76815
+
+  clock my_clock (rise edge)                          10.00000   10.00000
+  clock network delay (ideal)                          0.00000   10.00000
+  clock uncertainty                                   -0.01500    9.98500
+  R_14/FIFO_N/FIFO_MEM_1_reg[2]/CP (DFCX1)             0.00000    9.98500 r
+  library setup time                                  -0.12728    9.85772
+  data required time                                              9.85772
+  --------------------------------------------------------------------------
+  data required time                                              9.85772
+  data arrival time                                              -8.76815
+  --------------------------------------------------------------------------
+  slack (MET)                                                     1.08957
+
+
+  Startpoint: R_10/allocator_unit/arb_L_X/state_reg[1]
+              (rising edge-triggered flip-flop clocked by my_clock)
+  Endpoint: R_14/FIFO_N/FIFO_MEM_1_reg[1]
+            (rising edge-triggered flip-flop clocked by my_clock)
+  Path Group: my_clock
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  network_4x4_DATA_WIDTH32_DATA_WIDTH_LV11
+                     c18_wl_30k            c18_CORELIB_TYP
+  arbiter_in_25      c18_wl_30k            c18_CORELIB_TYP
+  allocator_5        c18_wl_30k            c18_CORELIB_TYP
+  arbiter_out_26     c18_wl_30k            c18_CORELIB_TYP
+  router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4
+                     c18_wl_30k            c18_CORELIB_TYP
+  FIFO_credit_based_DATA_WIDTH32_9
+                     c18_wl_30k            c18_CORELIB_TYP
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock my_clock (rise edge)                           0.00000    0.00000
+  clock network delay (ideal)                          0.00000    0.00000
+  R_10/allocator_unit/arb_L_X/state_reg[1]/CP (DFCX1)  0.00000 #  0.00000 r
+  R_10/allocator_unit/arb_L_X/state_reg[1]/QN (DFCX1)  0.30012    0.30012 f
+  R_10/allocator_unit/arb_L_X/U11/Q (NOR2XL)           0.72893    1.02905 r
+  R_10/allocator_unit/arb_L_X/U4/Q (OAI21X1)           0.36577    1.39482 f
+  R_10/allocator_unit/arb_L_X/U14/Q (AOI21X1)          0.30128    1.69610 r
+  R_10/allocator_unit/arb_L_X/U15/Q (NOR2XL)           0.12612    1.82222 f
+  R_10/allocator_unit/arb_L_X/U9/Q (NOR2XL)            0.92766    2.74989 r
+  R_10/allocator_unit/arb_L_X/X_S (arbiter_in_25)      0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/X_L_Y (arbiter_out_26)   0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/U9/Q (NAND2XL)           0.29411    3.04400 f
+  R_10/allocator_unit/arb_X_S/U22/Q (AOI211X1)         0.38909    3.43309 r
+  R_10/allocator_unit/arb_X_S/grant_Y_L (arbiter_out_26)
+                                                       0.00000    3.43309 r
+  R_10/allocator_unit/U46/Q (INVXL)                    0.12261    3.55569 f
+  R_10/allocator_unit/U14/Q (NOR2XL)                   1.14885    4.70455 r
+  R_10/allocator_unit/U28/Q (NOR3X1)                   0.10251    4.80706 f
+  R_10/allocator_unit/U11/Q (NAND2XL)                  0.57699    5.38405 r
+  R_10/allocator_unit/valid_S (allocator_5)            0.00000    5.38405 r
+  R_10/valid_out_S (router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/valid_in_N (router_credit_based_DATA_WIDTH32_current_address14_Cx_rst23_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/valid_in (FIFO_credit_based_DATA_WIDTH32_9)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/U8/Q (NAND2X1)                           0.55795    5.94200 f
+  R_14/FIFO_N/U248/Q (NOR2XL)                          0.58368    6.52569 r
+  R_14/FIFO_N/U6/Q (AND3X2)                            1.07357    7.59926 r
+  R_14/FIFO_N/U7/Q (CLKINVX2)                          0.80419    8.40345 f
+  R_14/FIFO_N/U83/Q (AO22X1)                           0.36465    8.76810 f
+  R_14/FIFO_N/FIFO_MEM_1_reg[1]/D (DFCX1)              0.00005    8.76815 f
+  data arrival time                                               8.76815
+
+  clock my_clock (rise edge)                          10.00000   10.00000
+  clock network delay (ideal)                          0.00000   10.00000
+  clock uncertainty                                   -0.01500    9.98500
+  R_14/FIFO_N/FIFO_MEM_1_reg[1]/CP (DFCX1)             0.00000    9.98500 r
+  library setup time                                  -0.12728    9.85772
+  data required time                                              9.85772
+  --------------------------------------------------------------------------
+  data required time                                              9.85772
+  data arrival time                                              -8.76815
+  --------------------------------------------------------------------------
+  slack (MET)                                                     1.08957
+
+
+  Startpoint: R_10/allocator_unit/arb_L_X/state_reg[1]
+              (rising edge-triggered flip-flop clocked by my_clock)
+  Endpoint: R_14/FIFO_N/FIFO_MEM_1_reg[0]
+            (rising edge-triggered flip-flop clocked by my_clock)
+  Path Group: my_clock
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  network_4x4_DATA_WIDTH32_DATA_WIDTH_LV11
+                     c18_wl_30k            c18_CORELIB_TYP
+  arbiter_in_25      c18_wl_30k            c18_CORELIB_TYP
+  allocator_5        c18_wl_30k            c18_CORELIB_TYP
+  arbiter_out_26     c18_wl_30k            c18_CORELIB_TYP
+  router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4
+                     c18_wl_30k            c18_CORELIB_TYP
+  FIFO_credit_based_DATA_WIDTH32_9
+                     c18_wl_30k            c18_CORELIB_TYP
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock my_clock (rise edge)                           0.00000    0.00000
+  clock network delay (ideal)                          0.00000    0.00000
+  R_10/allocator_unit/arb_L_X/state_reg[1]/CP (DFCX1)  0.00000 #  0.00000 r
+  R_10/allocator_unit/arb_L_X/state_reg[1]/QN (DFCX1)  0.30012    0.30012 f
+  R_10/allocator_unit/arb_L_X/U11/Q (NOR2XL)           0.72893    1.02905 r
+  R_10/allocator_unit/arb_L_X/U4/Q (OAI21X1)           0.36577    1.39482 f
+  R_10/allocator_unit/arb_L_X/U14/Q (AOI21X1)          0.30128    1.69610 r
+  R_10/allocator_unit/arb_L_X/U15/Q (NOR2XL)           0.12612    1.82222 f
+  R_10/allocator_unit/arb_L_X/U9/Q (NOR2XL)            0.92766    2.74989 r
+  R_10/allocator_unit/arb_L_X/X_S (arbiter_in_25)      0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/X_L_Y (arbiter_out_26)   0.00000    2.74989 r
+  R_10/allocator_unit/arb_X_S/U9/Q (NAND2XL)           0.29411    3.04400 f
+  R_10/allocator_unit/arb_X_S/U22/Q (AOI211X1)         0.38909    3.43309 r
+  R_10/allocator_unit/arb_X_S/grant_Y_L (arbiter_out_26)
+                                                       0.00000    3.43309 r
+  R_10/allocator_unit/U46/Q (INVXL)                    0.12261    3.55569 f
+  R_10/allocator_unit/U14/Q (NOR2XL)                   1.14885    4.70455 r
+  R_10/allocator_unit/U28/Q (NOR3X1)                   0.10251    4.80706 f
+  R_10/allocator_unit/U11/Q (NAND2XL)                  0.57699    5.38405 r
+  R_10/allocator_unit/valid_S (allocator_5)            0.00000    5.38405 r
+  R_10/valid_out_S (router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/valid_in_N (router_credit_based_DATA_WIDTH32_current_address14_Cx_rst23_NoC_size4)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/valid_in (FIFO_credit_based_DATA_WIDTH32_9)
+                                                       0.00000    5.38405 r
+  R_14/FIFO_N/U8/Q (NAND2X1)                           0.55795    5.94200 f
+  R_14/FIFO_N/U248/Q (NOR2XL)                          0.58368    6.52569 r
+  R_14/FIFO_N/U6/Q (AND3X2)                            1.07357    7.59926 r
+  R_14/FIFO_N/U7/Q (CLKINVX2)                          0.80419    8.40345 f
+  R_14/FIFO_N/U86/Q (AO22X1)                           0.36465    8.76810 f
+  R_14/FIFO_N/FIFO_MEM_1_reg[0]/D (DFCX1)              0.00005    8.76815 f
+  data arrival time                                               8.76815
+
+  clock my_clock (rise edge)                          10.00000   10.00000
+  clock network delay (ideal)                          0.00000   10.00000
+  clock uncertainty                                   -0.01500    9.98500
+  R_14/FIFO_N/FIFO_MEM_1_reg[0]/CP (DFCX1)             0.00000    9.98500 r
+  library setup time                                  -0.12728    9.85772
+  data required time                                              9.85772
+  --------------------------------------------------------------------------
+  data required time                                              9.85772
+  data arrival time                                              -8.76815
+  --------------------------------------------------------------------------
+  slack (MET)                                                     1.08957
+
+
+1
