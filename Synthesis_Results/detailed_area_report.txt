@@ -3,7 +3,7 @@
 Report : area
 Design : network_4x4_DATA_WIDTH32_DATA_WIDTH_LV11
 Version: M-2016.12
-Date   : Wed Nov 15 11:41:11 2017
+Date   : Wed Nov 15 12:04:08 2017
 ****************************************
 
 Information: Updating design information... (UID-85)
@@ -13,22 +13,22 @@ Library(s) Used:
     c18_CORELIB_TYP (File: /cad/dk/s/v4.11/c18_1.8V/c18_CORELIB_TYP.db)
 
 Number of ports:                        30819
-Number of nets:                         61755
-Number of cells:                        39094
-Number of combinational cells:          29022
+Number of nets:                         61718
+Number of cells:                        39057
+Number of combinational cells:          28985
 Number of sequential cells:              9704
 Number of macros/black boxes:               0
-Number of buf/inv:                       1739
+Number of buf/inv:                       1715
 Number of references:                      17
 
-Combinational area:             475887.694789
-Buf/Inv area:                    10883.174759
+Combinational area:             475664.725175
+Buf/Inv area:                    10747.699554
 Noncombinational area:          632195.014648
 Macro/Black Box area:                0.000000
-Net Interconnect area:          585292.817781
+Net Interconnect area:          585067.543652
 
-Total cell area:               1108082.709437
-Total area:                    1693375.527219
+Total cell area:               1107859.739823
+Total area:                    1692927.283475
 
 Hierarchical area distribution
 ------------------------------
@@ -39,16 +39,16 @@ Hierarchical cell                 Absolute      Percent  Combi-       Noncombi- 
                                   Total         Total    national     national     boxes   Design
 --------------------------------  ------------  -------  -----------  -----------  ------  ---------------------------------------------------------------------
 network_4x4_DATA_WIDTH32_DATA_WIDTH_LV11
-                                  1108082.7094    100.0      14.1120       0.0000  0.0000  network_4x4_DATA_WIDTH32_DATA_WIDTH_LV11
-R_0                                 48212.2369      4.4      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address0_Cx_rst26_NoC_size4
+                                  1107859.7398    100.0      14.1120       0.0000  0.0000  network_4x4_DATA_WIDTH32_DATA_WIDTH_LV11
+R_0                                 48220.7041      4.4      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address0_Cx_rst26_NoC_size4
 R_0/FIFO_E                          13911.6096      1.3    5018.2273    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_78
 R_0/FIFO_L                          13937.0112      1.3    5043.6289    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_75
 R_0/FIFO_S                          13911.6096      1.3    5018.2273    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_76
-R_0/LBDR_E                            620.9280      0.1     273.7728     347.1552  0.0000  LBDR_cur_addr_rst0_Cx_rst26_NoC_size4_3
-R_0/LBDR_L                            618.1056      0.1     270.9504     347.1552  0.0000  LBDR_cur_addr_rst0_Cx_rst26_NoC_size4_0
+R_0/LBDR_E                            623.7504      0.1     276.5952     347.1552  0.0000  LBDR_cur_addr_rst0_Cx_rst26_NoC_size4_3
+R_0/LBDR_L                            609.6384      0.1     262.4832     347.1552  0.0000  LBDR_cur_addr_rst0_Cx_rst26_NoC_size4_0
 R_0/LBDR_N                             28.2240      0.0      28.2240       0.0000  0.0000  LBDR_cur_addr_rst0_Cx_rst26_NoC_size4_4
 R_0/LBDR_S                            623.7504      0.1     276.5952     347.1552  0.0000  LBDR_cur_addr_rst0_Cx_rst26_NoC_size4_1
-R_0/LBDR_W                             14.1120      0.0      14.1120       0.0000  0.0000  LBDR_cur_addr_rst0_Cx_rst26_NoC_size4_2
+R_0/LBDR_W                             28.2240      0.0      28.2240       0.0000  0.0000  LBDR_cur_addr_rst0_Cx_rst26_NoC_size4_2
 R_0/XBAR_E                            753.5808      0.1     753.5808       0.0000  0.0000  XBAR_DATA_WIDTH32_78
 R_0/XBAR_L                            753.5808      0.1     753.5808       0.0000  0.0000  XBAR_DATA_WIDTH32_75
 R_0/XBAR_S                            753.5808      0.1     753.5808       0.0000  0.0000  XBAR_DATA_WIDTH32_76
@@ -59,16 +59,16 @@ R_0/allocator_unit/arb_S_X            313.2864      0.0     118.5408     194.745
 R_0/allocator_unit/arb_X_E            220.1472      0.0      90.3168     129.8304  0.0000  arbiter_out_78
 R_0/allocator_unit/arb_X_L            225.7920      0.0      95.9616     129.8304  0.0000  arbiter_out_75
 R_0/allocator_unit/arb_X_S            220.1472      0.0      90.3168     129.8304  0.0000  arbiter_out_76
-R_1                                 68762.1313      6.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address1_Cx_rst30_NoC_size4
+R_1                                 68736.7297      6.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address1_Cx_rst30_NoC_size4
 R_1/FIFO_E                          13917.2544      1.3    5023.8721    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_73
 R_1/FIFO_L                          13942.6560      1.3    5049.2737    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_70
 R_1/FIFO_S                          13917.2544      1.3    5023.8721    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_71
 R_1/FIFO_W                          13917.2544      1.3    5023.8721    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_72
-R_1/LBDR_E                            849.5424      0.1     361.2672     488.2752  0.0000  LBDR_cur_addr_rst1_Cx_rst30_NoC_size4_3
-R_1/LBDR_L                            855.1872      0.1     366.9120     488.2752  0.0000  LBDR_cur_addr_rst1_Cx_rst30_NoC_size4_0
+R_1/LBDR_E                            855.1872      0.1     366.9120     488.2752  0.0000  LBDR_cur_addr_rst1_Cx_rst30_NoC_size4_3
+R_1/LBDR_L                            838.2528      0.1     349.9776     488.2752  0.0000  LBDR_cur_addr_rst1_Cx_rst30_NoC_size4_0
 R_1/LBDR_N                             42.3360      0.0      42.3360       0.0000  0.0000  LBDR_cur_addr_rst1_Cx_rst30_NoC_size4_4
 R_1/LBDR_S                            852.3648      0.1     364.0896     488.2752  0.0000  LBDR_cur_addr_rst1_Cx_rst30_NoC_size4_1
-R_1/LBDR_W                            849.5424      0.1     361.2672     488.2752  0.0000  LBDR_cur_addr_rst1_Cx_rst30_NoC_size4_2
+R_1/LBDR_W                            835.4304      0.1     347.1552     488.2752  0.0000  LBDR_cur_addr_rst1_Cx_rst30_NoC_size4_2
 R_1/XBAR_E                           1230.5664      0.1    1230.5664       0.0000  0.0000  XBAR_DATA_WIDTH32_73
 R_1/XBAR_L                           1230.5664      0.1    1230.5664       0.0000  0.0000  XBAR_DATA_WIDTH32_70
 R_1/XBAR_S                           1230.5664      0.1    1230.5664       0.0000  0.0000  XBAR_DATA_WIDTH32_71
@@ -82,17 +82,17 @@ R_1/allocator_unit/arb_X_E            395.1360      0.0     200.3904     194.745
 R_1/allocator_unit/arb_X_L            397.9584      0.0     203.2128     194.7456  0.0000  arbiter_out_70
 R_1/allocator_unit/arb_X_S            409.2480      0.0     214.5024     194.7456  0.0000  arbiter_out_71
 R_1/allocator_unit/arb_X_W            440.2944      0.0     245.5488     194.7456  0.0000  arbiter_out_72
-R_10                                91033.6898      8.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4
+R_10                                91022.4002      8.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address10_Cx_rst31_NoC_size4
 R_10/FIFO_E                         13922.8992      1.3    5029.5169    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_28
 R_10/FIFO_L                         13948.3008      1.3    5054.9185    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_25
 R_10/FIFO_N                         13922.8992      1.3    5029.5169    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_29
 R_10/FIFO_S                         13925.7216      1.3    5032.3393    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_26
 R_10/FIFO_W                         13922.8992      1.3    5029.5169    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_27
-R_10/LBDR_E                          1072.5120      0.1     443.1168     629.3952  0.0000  LBDR_cur_addr_rst10_Cx_rst31_NoC_size4_3
-R_10/LBDR_L                          1072.5120      0.1     443.1168     629.3952  0.0000  LBDR_cur_addr_rst10_Cx_rst31_NoC_size4_0
-R_10/LBDR_N                          1072.5120      0.1     443.1168     629.3952  0.0000  LBDR_cur_addr_rst10_Cx_rst31_NoC_size4_4
-R_10/LBDR_S                          1078.1568      0.1     448.7616     629.3952  0.0000  LBDR_cur_addr_rst10_Cx_rst31_NoC_size4_1
-R_10/LBDR_W                          1066.8672      0.1     437.4720     629.3952  0.0000  LBDR_cur_addr_rst10_Cx_rst31_NoC_size4_2
+R_10/LBDR_E                          1064.0448      0.1     434.6496     629.3952  0.0000  LBDR_cur_addr_rst10_Cx_rst31_NoC_size4_3
+R_10/LBDR_L                          1052.7552      0.1     423.3600     629.3952  0.0000  LBDR_cur_addr_rst10_Cx_rst31_NoC_size4_0
+R_10/LBDR_N                          1080.9792      0.1     451.5840     629.3952  0.0000  LBDR_cur_addr_rst10_Cx_rst31_NoC_size4_4
+R_10/LBDR_S                          1072.5120      0.1     443.1168     629.3952  0.0000  LBDR_cur_addr_rst10_Cx_rst31_NoC_size4_1
+R_10/LBDR_W                          1080.9792      0.1     451.5840     629.3952  0.0000  LBDR_cur_addr_rst10_Cx_rst31_NoC_size4_2
 R_10/XBAR_E                          1659.5712      0.1    1659.5712       0.0000  0.0000  XBAR_DATA_WIDTH32_28
 R_10/XBAR_L                          1659.5712      0.1    1659.5712       0.0000  0.0000  XBAR_DATA_WIDTH32_25
 R_10/XBAR_N                          2111.1552      0.2    2111.1552       0.0000  0.0000  XBAR_DATA_WIDTH32_29
@@ -132,12 +132,12 @@ R_11/allocator_unit/arb_X_L           386.6688      0.0     191.9232     194.745
 R_11/allocator_unit/arb_X_N           400.7808      0.0     206.0352     194.7456  0.0000  arbiter_out_24
 R_11/allocator_unit/arb_X_S           366.9120      0.0     172.1664     194.7456  0.0000  arbiter_out_21
 R_11/allocator_unit/arb_X_W           304.8192      0.0     174.9888     129.8304  0.0000  arbiter_out_22
-R_12                                48635.5969      4.4      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address12_Cx_rst19_NoC_size4
+R_12                                48627.1297      4.4      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address12_Cx_rst19_NoC_size4
 R_12/FIFO_E                         13911.6096      1.3    5018.2273    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_18
 R_12/FIFO_L                         13937.0112      1.3    5043.6289    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_15
 R_12/FIFO_N                         13911.6096      1.3    5018.2273    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_19
 R_12/LBDR_E                           623.7504      0.1     276.5952     347.1552  0.0000  LBDR_cur_addr_rst12_Cx_rst19_NoC_size4_3
-R_12/LBDR_L                           626.5728      0.1     279.4176     347.1552  0.0000  LBDR_cur_addr_rst12_Cx_rst19_NoC_size4_0
+R_12/LBDR_L                           618.1056      0.1     270.9504     347.1552  0.0000  LBDR_cur_addr_rst12_Cx_rst19_NoC_size4_0
 R_12/LBDR_N                           620.9280      0.1     273.7728     347.1552  0.0000  LBDR_cur_addr_rst12_Cx_rst19_NoC_size4_4
 R_12/LBDR_S                            28.2240      0.0      28.2240       0.0000  0.0000  LBDR_cur_addr_rst12_Cx_rst19_NoC_size4_1
 R_12/LBDR_W                            28.2240      0.0      28.2240       0.0000  0.0000  LBDR_cur_addr_rst12_Cx_rst19_NoC_size4_2
@@ -151,50 +151,50 @@ R_12/allocator_unit/arb_N_X           338.6880      0.0     143.9424     194.745
 R_12/allocator_unit/arb_X_E           208.8576      0.0      79.0272     129.8304  0.0000  arbiter_out_18
 R_12/allocator_unit/arb_X_L           220.1472      0.0      90.3168     129.8304  0.0000  arbiter_out_15
 R_12/allocator_unit/arb_X_N           222.9696      0.0      93.1392     129.8304  0.0000  arbiter_out_19
-R_13                                68776.2433      6.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address13_Cx_rst23_NoC_size4
+R_13                                68773.4209      6.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address13_Cx_rst23_NoC_size4
 R_13/FIFO_E                         13917.2544      1.3    5023.8721    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_13
 R_13/FIFO_L                         13942.6560      1.3    5049.2737    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_10
 R_13/FIFO_N                         13917.2544      1.3    5023.8721    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_14
 R_13/FIFO_W                         13934.1888      1.3    5040.8065    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_12
-R_13/LBDR_E                           852.3648      0.1     364.0896     488.2752  0.0000  LBDR_cur_addr_rst13_Cx_rst23_NoC_size4_3
-R_13/LBDR_L                           855.1872      0.1     366.9120     488.2752  0.0000  LBDR_cur_addr_rst13_Cx_rst23_NoC_size4_0
+R_13/LBDR_E                           858.0096      0.1     369.7344     488.2752  0.0000  LBDR_cur_addr_rst13_Cx_rst23_NoC_size4_3
+R_13/LBDR_L                           841.0752      0.1     352.8000     488.2752  0.0000  LBDR_cur_addr_rst13_Cx_rst23_NoC_size4_0
 R_13/LBDR_N                           852.3648      0.1     364.0896     488.2752  0.0000  LBDR_cur_addr_rst13_Cx_rst23_NoC_size4_4
 R_13/LBDR_S                            42.3360      0.0      42.3360       0.0000  0.0000  LBDR_cur_addr_rst13_Cx_rst23_NoC_size4_1
-R_13/LBDR_W                           852.3648      0.1     364.0896     488.2752  0.0000  LBDR_cur_addr_rst13_Cx_rst23_NoC_size4_2
+R_13/LBDR_W                           860.8320      0.1     372.5568     488.2752  0.0000  LBDR_cur_addr_rst13_Cx_rst23_NoC_size4_2
 R_13/XBAR_E                          1253.1456      0.1    1253.1456       0.0000  0.0000  XBAR_DATA_WIDTH32_13
 R_13/XBAR_L                          1253.1456      0.1    1253.1456       0.0000  0.0000  XBAR_DATA_WIDTH32_10
 R_13/XBAR_N                          1605.9456      0.1    1605.9456       0.0000  0.0000  XBAR_DATA_WIDTH32_14
 R_13/XBAR_W                          1253.1456      0.1    1253.1456       0.0000  0.0000  XBAR_DATA_WIDTH32_12
-R_13/allocator_unit                  4216.6656      0.4     691.4880     519.3216  0.0000  allocator_2
+R_13/allocator_unit                  4213.8432      0.4     691.4880     519.3216  0.0000  allocator_2
 R_13/allocator_unit/arb_E_X           290.7072      0.0     160.8768     129.8304  0.0000  arbiter_in_13
 R_13/allocator_unit/arb_L_X           338.6880      0.0     208.8576     129.8304  0.0000  arbiter_in_10
 R_13/allocator_unit/arb_N_X           423.3600      0.0     228.6144     194.7456  0.0000  arbiter_in_14
 R_13/allocator_unit/arb_W_X           476.9856      0.0     282.2400     194.7456  0.0000  arbiter_in_12
 R_13/allocator_unit/arb_X_E           347.1552      0.0     152.4096     194.7456  0.0000  arbiter_out_13
-R_13/allocator_unit/arb_X_L           296.3520      0.0     166.5216     129.8304  0.0000  arbiter_out_10
+R_13/allocator_unit/arb_X_L           293.5296      0.0     163.6992     129.8304  0.0000  arbiter_out_10
 R_13/allocator_unit/arb_X_N           412.0704      0.0     217.3248     194.7456  0.0000  arbiter_out_14
 R_13/allocator_unit/arb_X_W           420.5376      0.0     225.7920     194.7456  0.0000  arbiter_out_12
-R_14                                68731.0849      6.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address14_Cx_rst23_NoC_size4
+R_14                                68753.6641      6.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address14_Cx_rst23_NoC_size4
 R_14/FIFO_E                         13934.1888      1.3    5040.8065    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_8
 R_14/FIFO_L                         13942.6560      1.3    5049.2737    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_5
 R_14/FIFO_N                         13917.2544      1.3    5023.8721    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_9
 R_14/FIFO_W                         13917.2544      1.3    5023.8721    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_7
-R_14/LBDR_E                           858.0096      0.1     369.7344     488.2752  0.0000  LBDR_cur_addr_rst14_Cx_rst23_NoC_size4_3
-R_14/LBDR_L                           841.0752      0.1     352.8000     488.2752  0.0000  LBDR_cur_addr_rst14_Cx_rst23_NoC_size4_0
+R_14/LBDR_E                           843.8976      0.1     355.6224     488.2752  0.0000  LBDR_cur_addr_rst14_Cx_rst23_NoC_size4_3
+R_14/LBDR_L                           838.2528      0.1     349.9776     488.2752  0.0000  LBDR_cur_addr_rst14_Cx_rst23_NoC_size4_0
 R_14/LBDR_N                           855.1872      0.1     366.9120     488.2752  0.0000  LBDR_cur_addr_rst14_Cx_rst23_NoC_size4_4
-R_14/LBDR_S                            14.1120      0.0      14.1120       0.0000  0.0000  LBDR_cur_addr_rst14_Cx_rst23_NoC_size4_1
-R_14/LBDR_W                           846.7200      0.1     358.4448     488.2752  0.0000  LBDR_cur_addr_rst14_Cx_rst23_NoC_size4_2
+R_14/LBDR_S                            42.3360      0.0      42.3360       0.0000  0.0000  LBDR_cur_addr_rst14_Cx_rst23_NoC_size4_1
+R_14/LBDR_W                           855.1872      0.1     366.9120     488.2752  0.0000  LBDR_cur_addr_rst14_Cx_rst23_NoC_size4_2
 R_14/XBAR_E                          1253.1456      0.1    1253.1456       0.0000  0.0000  XBAR_DATA_WIDTH32_8
 R_14/XBAR_L                          1253.1456      0.1    1253.1456       0.0000  0.0000  XBAR_DATA_WIDTH32_5
 R_14/XBAR_N                          1605.9456      0.1    1605.9456       0.0000  0.0000  XBAR_DATA_WIDTH32_9
 R_14/XBAR_W                          1253.1456      0.1    1253.1456       0.0000  0.0000  XBAR_DATA_WIDTH32_7
-R_14/allocator_unit                  4211.0208      0.4     691.4880     519.3216  0.0000  allocator_1
+R_14/allocator_unit                  4213.8432      0.4     691.4880     519.3216  0.0000  allocator_1
 R_14/allocator_unit/arb_E_X           290.7072      0.0     160.8768     129.8304  0.0000  arbiter_in_8
 R_14/allocator_unit/arb_L_X           338.6880      0.0     208.8576     129.8304  0.0000  arbiter_in_5
 R_14/allocator_unit/arb_N_X           420.5376      0.0     225.7920     194.7456  0.0000  arbiter_in_9
 R_14/allocator_unit/arb_W_X           476.9856      0.0     282.2400     194.7456  0.0000  arbiter_in_7
 R_14/allocator_unit/arb_X_E           347.1552      0.0     152.4096     194.7456  0.0000  arbiter_out_8
-R_14/allocator_unit/arb_X_L           293.5296      0.0     163.6992     129.8304  0.0000  arbiter_out_5
+R_14/allocator_unit/arb_X_L           296.3520      0.0     166.5216     129.8304  0.0000  arbiter_out_5
 R_14/allocator_unit/arb_X_N           412.0704      0.0     217.3248     194.7456  0.0000  arbiter_out_9
 R_14/allocator_unit/arb_X_W           420.5376      0.0     225.7920     194.7456  0.0000  arbiter_out_7
 R_15                                48347.7121      4.4      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address15_Cx_rst21_NoC_size4
@@ -216,28 +216,28 @@ R_15/allocator_unit/arb_W_X           118.5408      0.0      53.6256      64.915
 R_15/allocator_unit/arb_X_L           208.8576      0.0      79.0272     129.8304  0.0000  arbiter_out_0
 R_15/allocator_unit/arb_X_N           318.9312      0.0     124.1856     194.7456  0.0000  arbiter_out_4
 R_15/allocator_unit/arb_X_W           208.8576      0.0      79.0272     129.8304  0.0000  arbiter_out_2
-R_2                                 68753.6642      6.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address2_Cx_rst30_NoC_size4
+R_2                                 68731.0849      6.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address2_Cx_rst30_NoC_size4
 R_2/FIFO_E                          13917.2544      1.3    5023.8721    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_68
 R_2/FIFO_L                          13942.6560      1.3    5049.2737    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_65
 R_2/FIFO_S                          13917.2544      1.3    5023.8721    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_66
 R_2/FIFO_W                          13917.2544      1.3    5023.8721    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_67
-R_2/LBDR_E                            849.5424      0.1     361.2672     488.2752  0.0000  LBDR_cur_addr_rst2_Cx_rst30_NoC_size4_3
-R_2/LBDR_L                            846.7200      0.1     358.4448     488.2752  0.0000  LBDR_cur_addr_rst2_Cx_rst30_NoC_size4_0
+R_2/LBDR_E                            841.0752      0.1     352.8000     488.2752  0.0000  LBDR_cur_addr_rst2_Cx_rst30_NoC_size4_3
+R_2/LBDR_L                            835.4304      0.1     347.1552     488.2752  0.0000  LBDR_cur_addr_rst2_Cx_rst30_NoC_size4_0
 R_2/LBDR_N                             42.3360      0.0      42.3360       0.0000  0.0000  LBDR_cur_addr_rst2_Cx_rst30_NoC_size4_4
 R_2/LBDR_S                            852.3648      0.1     364.0896     488.2752  0.0000  LBDR_cur_addr_rst2_Cx_rst30_NoC_size4_1
-R_2/LBDR_W                            852.3648      0.1     364.0896     488.2752  0.0000  LBDR_cur_addr_rst2_Cx_rst30_NoC_size4_2
+R_2/LBDR_W                            846.7200      0.1     358.4448     488.2752  0.0000  LBDR_cur_addr_rst2_Cx_rst30_NoC_size4_2
 R_2/XBAR_E                           1230.5664      0.1    1230.5664       0.0000  0.0000  XBAR_DATA_WIDTH32_68
 R_2/XBAR_L                           1230.5664      0.1    1230.5664       0.0000  0.0000  XBAR_DATA_WIDTH32_65
 R_2/XBAR_S                           1230.5664      0.1    1230.5664       0.0000  0.0000  XBAR_DATA_WIDTH32_66
 R_2/XBAR_W                           1230.5664      0.1    1230.5664       0.0000  0.0000  XBAR_DATA_WIDTH32_67
-R_2/allocator_unit                   4665.4272      0.4     691.4880     519.3216  0.0000  allocator_13
+R_2/allocator_unit                   4668.2496      0.4     691.4880     519.3216  0.0000  allocator_13
 R_2/allocator_unit/arb_E_X            454.4064      0.0     259.6608     194.7456  0.0000  arbiter_in_68
 R_2/allocator_unit/arb_L_X            440.2944      0.0     245.5488     194.7456  0.0000  arbiter_in_65
 R_2/allocator_unit/arb_S_X            445.9392      0.0     251.1936     194.7456  0.0000  arbiter_in_66
 R_2/allocator_unit/arb_W_X            474.1632      0.0     279.4176     194.7456  0.0000  arbiter_in_67
 R_2/allocator_unit/arb_X_E            395.1360      0.0     200.3904     194.7456  0.0000  arbiter_out_68
 R_2/allocator_unit/arb_X_L            397.9584      0.0     203.2128     194.7456  0.0000  arbiter_out_65
-R_2/allocator_unit/arb_X_S            406.4256      0.0     211.6800     194.7456  0.0000  arbiter_out_66
+R_2/allocator_unit/arb_X_S            409.2480      0.0     214.5024     194.7456  0.0000  arbiter_out_66
 R_2/allocator_unit/arb_X_W            440.2944      0.0     245.5488     194.7456  0.0000  arbiter_out_67
 R_3                                 48271.5073      4.4      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address3_Cx_rst28_NoC_size4
 R_3/FIFO_L                          13937.0112      1.3    5043.6289    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_60
@@ -258,15 +258,15 @@ R_3/allocator_unit/arb_W_X            220.1472      0.0      90.3168     129.830
 R_3/allocator_unit/arb_X_L            228.6144      0.0      98.7840     129.8304  0.0000  arbiter_out_60
 R_3/allocator_unit/arb_X_S            318.9312      0.0     124.1856     194.7456  0.0000  arbiter_out_61
 R_3/allocator_unit/arb_X_W            220.1472      0.0      90.3168     129.8304  0.0000  arbiter_out_62
-R_4                                 69010.5025      6.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address4_Cx_rst27_NoC_size4
+R_4                                 68973.8113      6.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address4_Cx_rst27_NoC_size4
 R_4/FIFO_E                          13917.2544      1.3    5023.8721    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_58
 R_4/FIFO_L                          13942.6560      1.3    5049.2737    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_55
-R_4/FIFO_N                          13934.1888      1.3    5040.8065    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_59
+R_4/FIFO_N                          13917.2544      1.3    5023.8721    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_59
 R_4/FIFO_S                          13917.2544      1.3    5023.8721    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_56
-R_4/LBDR_E                            858.0096      0.1     369.7344     488.2752  0.0000  LBDR_cur_addr_rst4_Cx_rst27_NoC_size4_3
-R_4/LBDR_L                            852.3648      0.1     364.0896     488.2752  0.0000  LBDR_cur_addr_rst4_Cx_rst27_NoC_size4_0
-R_4/LBDR_N                            843.8976      0.1     355.6224     488.2752  0.0000  LBDR_cur_addr_rst4_Cx_rst27_NoC_size4_4
-R_4/LBDR_S                            843.8976      0.1     355.6224     488.2752  0.0000  LBDR_cur_addr_rst4_Cx_rst27_NoC_size4_1
+R_4/LBDR_E                            852.3648      0.1     364.0896     488.2752  0.0000  LBDR_cur_addr_rst4_Cx_rst27_NoC_size4_3
+R_4/LBDR_L                            835.4304      0.1     347.1552     488.2752  0.0000  LBDR_cur_addr_rst4_Cx_rst27_NoC_size4_0
+R_4/LBDR_N                            835.4304      0.1     347.1552     488.2752  0.0000  LBDR_cur_addr_rst4_Cx_rst27_NoC_size4_4
+R_4/LBDR_S                            855.1872      0.1     366.9120     488.2752  0.0000  LBDR_cur_addr_rst4_Cx_rst27_NoC_size4_1
 R_4/LBDR_W                             42.3360      0.0      42.3360       0.0000  0.0000  LBDR_cur_addr_rst4_Cx_rst27_NoC_size4_2
 R_4/XBAR_E                           1253.1456      0.1    1253.1456       0.0000  0.0000  XBAR_DATA_WIDTH32_58
 R_4/XBAR_L                           1253.1456      0.1    1253.1456       0.0000  0.0000  XBAR_DATA_WIDTH32_55
@@ -281,23 +281,23 @@ R_4/allocator_unit/arb_X_E            304.8192      0.0     174.9888     129.830
 R_4/allocator_unit/arb_X_L            420.5376      0.0     225.7920     194.7456  0.0000  arbiter_out_55
 R_4/allocator_unit/arb_X_N            443.1168      0.0     248.3712     194.7456  0.0000  arbiter_out_59
 R_4/allocator_unit/arb_X_S            448.7616      0.0     254.0160     194.7456  0.0000  arbiter_out_56
-R_5                                 91084.4930      8.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address5_Cx_rst31_NoC_size4
+R_5                                 91025.2226      8.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address5_Cx_rst31_NoC_size4
 R_5/FIFO_E                          13922.8992      1.3    5029.5169    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_53
 R_5/FIFO_L                          13948.3008      1.3    5054.9185    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_50
 R_5/FIFO_N                          13922.8992      1.3    5029.5169    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_54
 R_5/FIFO_S                          13922.8992      1.3    5029.5169    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_51
 R_5/FIFO_W                          13922.8992      1.3    5029.5169    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_52
-R_5/LBDR_E                           1089.4464      0.1     460.0512     629.3952  0.0000  LBDR_cur_addr_rst5_Cx_rst31_NoC_size4_3
-R_5/LBDR_L                           1086.6240      0.1     457.2288     629.3952  0.0000  LBDR_cur_addr_rst5_Cx_rst31_NoC_size4_0
-R_5/LBDR_N                           1075.3344      0.1     445.9392     629.3952  0.0000  LBDR_cur_addr_rst5_Cx_rst31_NoC_size4_4
+R_5/LBDR_E                           1075.3344      0.1     445.9392     629.3952  0.0000  LBDR_cur_addr_rst5_Cx_rst31_NoC_size4_3
+R_5/LBDR_L                           1052.7552      0.1     423.3600     629.3952  0.0000  LBDR_cur_addr_rst5_Cx_rst31_NoC_size4_0
+R_5/LBDR_N                           1069.6896      0.1     440.2944     629.3952  0.0000  LBDR_cur_addr_rst5_Cx_rst31_NoC_size4_4
 R_5/LBDR_S                           1072.5120      0.1     443.1168     629.3952  0.0000  LBDR_cur_addr_rst5_Cx_rst31_NoC_size4_1
-R_5/LBDR_W                           1083.8016      0.1     454.4064     629.3952  0.0000  LBDR_cur_addr_rst5_Cx_rst31_NoC_size4_2
+R_5/LBDR_W                           1069.6896      0.1     440.2944     629.3952  0.0000  LBDR_cur_addr_rst5_Cx_rst31_NoC_size4_2
 R_5/XBAR_E                           1670.8608      0.2    1670.8608       0.0000  0.0000  XBAR_DATA_WIDTH32_53
 R_5/XBAR_L                           1659.5712      0.1    1659.5712       0.0000  0.0000  XBAR_DATA_WIDTH32_50
 R_5/XBAR_N                           2111.1552      0.2    2111.1552       0.0000  0.0000  XBAR_DATA_WIDTH32_54
 R_5/XBAR_S                           1659.5712      0.1    1659.5712       0.0000  0.0000  XBAR_DATA_WIDTH32_51
-R_5/XBAR_W                           1659.5712      0.1    1659.5712       0.0000  0.0000  XBAR_DATA_WIDTH32_52
-R_5/allocator_unit                   7247.9233      0.7     987.8400     649.1520  0.0000  allocator_10
+R_5/XBAR_W                           1670.8608      0.2    1670.8608       0.0000  0.0000  XBAR_DATA_WIDTH32_52
+R_5/allocator_unit                   7245.1009      0.7     985.0176     649.1520  0.0000  allocator_10
 R_5/allocator_unit/arb_E_X            553.1904      0.0     358.4448     194.7456  0.0000  arbiter_in_53
 R_5/allocator_unit/arb_L_X            626.5728      0.1     431.8272     194.7456  0.0000  arbiter_in_50
 R_5/allocator_unit/arb_N_X            635.0400      0.1     440.2944     194.7456  0.0000  arbiter_in_54
@@ -308,22 +308,22 @@ R_5/allocator_unit/arb_X_L            502.3872      0.0     307.6416     194.745
 R_5/allocator_unit/arb_X_N            539.0784      0.0     344.3328     194.7456  0.0000  arbiter_out_54
 R_5/allocator_unit/arb_X_S            527.7888      0.0     333.0432     194.7456  0.0000  arbiter_out_51
 R_5/allocator_unit/arb_X_W            564.4800      0.1     369.7344     194.7456  0.0000  arbiter_out_52
-R_6                                 91073.2034      8.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address6_Cx_rst31_NoC_size4
+R_6                                 91030.8674      8.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address6_Cx_rst31_NoC_size4
 R_6/FIFO_E                          13922.8992      1.3    5029.5169    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_48
 R_6/FIFO_L                          13948.3008      1.3    5054.9185    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_45
 R_6/FIFO_N                          13922.8992      1.3    5029.5169    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_49
 R_6/FIFO_S                          13922.8992      1.3    5029.5169    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_46
 R_6/FIFO_W                          13922.8992      1.3    5029.5169    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_47
-R_6/LBDR_E                           1083.8016      0.1     454.4064     629.3952  0.0000  LBDR_cur_addr_rst6_Cx_rst31_NoC_size4_3
-R_6/LBDR_L                           1075.3344      0.1     445.9392     629.3952  0.0000  LBDR_cur_addr_rst6_Cx_rst31_NoC_size4_0
-R_6/LBDR_N                           1078.1568      0.1     448.7616     629.3952  0.0000  LBDR_cur_addr_rst6_Cx_rst31_NoC_size4_4
-R_6/LBDR_S                           1075.3344      0.1     445.9392     629.3952  0.0000  LBDR_cur_addr_rst6_Cx_rst31_NoC_size4_1
-R_6/LBDR_W                           1083.8016      0.1     454.4064     629.3952  0.0000  LBDR_cur_addr_rst6_Cx_rst31_NoC_size4_2
-R_6/XBAR_E                           1670.8608      0.2    1670.8608       0.0000  0.0000  XBAR_DATA_WIDTH32_48
+R_6/LBDR_E                           1078.1568      0.1     448.7616     629.3952  0.0000  LBDR_cur_addr_rst6_Cx_rst31_NoC_size4_3
+R_6/LBDR_L                           1055.5776      0.1     426.1824     629.3952  0.0000  LBDR_cur_addr_rst6_Cx_rst31_NoC_size4_0
+R_6/LBDR_N                           1075.3344      0.1     445.9392     629.3952  0.0000  LBDR_cur_addr_rst6_Cx_rst31_NoC_size4_4
+R_6/LBDR_S                           1072.5120      0.1     443.1168     629.3952  0.0000  LBDR_cur_addr_rst6_Cx_rst31_NoC_size4_1
+R_6/LBDR_W                           1072.5120      0.1     443.1168     629.3952  0.0000  LBDR_cur_addr_rst6_Cx_rst31_NoC_size4_2
+R_6/XBAR_E                           1659.5712      0.1    1659.5712       0.0000  0.0000  XBAR_DATA_WIDTH32_48
 R_6/XBAR_L                           1659.5712      0.1    1659.5712       0.0000  0.0000  XBAR_DATA_WIDTH32_45
 R_6/XBAR_N                           2111.1552      0.2    2111.1552       0.0000  0.0000  XBAR_DATA_WIDTH32_49
 R_6/XBAR_S                           1659.5712      0.1    1659.5712       0.0000  0.0000  XBAR_DATA_WIDTH32_46
-R_6/XBAR_W                           1659.5712      0.1    1659.5712       0.0000  0.0000  XBAR_DATA_WIDTH32_47
+R_6/XBAR_W                           1670.8608      0.2    1670.8608       0.0000  0.0000  XBAR_DATA_WIDTH32_47
 R_6/allocator_unit                   7247.9233      0.7     987.8400     649.1520  0.0000  allocator_9
 R_6/allocator_unit/arb_E_X            553.1904      0.0     358.4448     194.7456  0.0000  arbiter_in_48
 R_6/allocator_unit/arb_L_X            626.5728      0.1     431.8272     194.7456  0.0000  arbiter_in_45
@@ -358,14 +358,14 @@ R_7/allocator_unit/arb_X_L            386.6688      0.0     191.9232     194.745
 R_7/allocator_unit/arb_X_N            400.7808      0.0     206.0352     194.7456  0.0000  arbiter_out_44
 R_7/allocator_unit/arb_X_S            366.9120      0.0     172.1664     194.7456  0.0000  arbiter_out_41
 R_7/allocator_unit/arb_X_W            304.8192      0.0     174.9888     129.8304  0.0000  arbiter_out_42
-R_8                                 68976.6337      6.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address8_Cx_rst27_NoC_size4
+R_8                                 68968.1665      6.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address8_Cx_rst27_NoC_size4
 R_8/FIFO_E                          13917.2544      1.3    5023.8721    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_38
 R_8/FIFO_L                          13942.6560      1.3    5049.2737    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_35
 R_8/FIFO_N                          13917.2544      1.3    5023.8721    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_39
 R_8/FIFO_S                          13917.2544      1.3    5023.8721    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_36
-R_8/LBDR_E                            860.8320      0.1     372.5568     488.2752  0.0000  LBDR_cur_addr_rst8_Cx_rst27_NoC_size4_3
-R_8/LBDR_L                            843.8976      0.1     355.6224     488.2752  0.0000  LBDR_cur_addr_rst8_Cx_rst27_NoC_size4_0
-R_8/LBDR_N                            835.4304      0.1     347.1552     488.2752  0.0000  LBDR_cur_addr_rst8_Cx_rst27_NoC_size4_4
+R_8/LBDR_E                            846.7200      0.1     358.4448     488.2752  0.0000  LBDR_cur_addr_rst8_Cx_rst27_NoC_size4_3
+R_8/LBDR_L                            838.2528      0.1     349.9776     488.2752  0.0000  LBDR_cur_addr_rst8_Cx_rst27_NoC_size4_0
+R_8/LBDR_N                            846.7200      0.1     358.4448     488.2752  0.0000  LBDR_cur_addr_rst8_Cx_rst27_NoC_size4_4
 R_8/LBDR_S                            841.0752      0.1     352.8000     488.2752  0.0000  LBDR_cur_addr_rst8_Cx_rst27_NoC_size4_1
 R_8/LBDR_W                             42.3360      0.0      42.3360       0.0000  0.0000  LBDR_cur_addr_rst8_Cx_rst27_NoC_size4_2
 R_8/XBAR_E                           1253.1456      0.1    1253.1456       0.0000  0.0000  XBAR_DATA_WIDTH32_38
@@ -381,23 +381,23 @@ R_8/allocator_unit/arb_X_E            304.8192      0.0     174.9888     129.830
 R_8/allocator_unit/arb_X_L            420.5376      0.0     225.7920     194.7456  0.0000  arbiter_out_35
 R_8/allocator_unit/arb_X_N            443.1168      0.0     248.3712     194.7456  0.0000  arbiter_out_39
 R_8/allocator_unit/arb_X_S            448.7616      0.0     254.0160     194.7456  0.0000  arbiter_out_36
-R_9                                 91064.7362      8.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address9_Cx_rst31_NoC_size4
+R_9                                 91028.0450      8.2      28.2240       0.0000  0.0000  router_credit_based_DATA_WIDTH32_current_address9_Cx_rst31_NoC_size4
 R_9/FIFO_E                          13922.8992      1.3    5029.5169    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_33
 R_9/FIFO_L                          13948.3008      1.3    5054.9185    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_30
 R_9/FIFO_N                          13922.8992      1.3    5029.5169    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_34
 R_9/FIFO_S                          13925.7216      1.3    5032.3393    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_31
 R_9/FIFO_W                          13922.8992      1.3    5029.5169    8893.3823  0.0000  FIFO_credit_based_DATA_WIDTH32_32
-R_9/LBDR_E                           1078.1568      0.1     448.7616     629.3952  0.0000  LBDR_cur_addr_rst9_Cx_rst31_NoC_size4_3
-R_9/LBDR_L                           1078.1568      0.1     448.7616     629.3952  0.0000  LBDR_cur_addr_rst9_Cx_rst31_NoC_size4_0
-R_9/LBDR_N                           1072.5120      0.1     443.1168     629.3952  0.0000  LBDR_cur_addr_rst9_Cx_rst31_NoC_size4_4
-R_9/LBDR_S                           1078.1568      0.1     448.7616     629.3952  0.0000  LBDR_cur_addr_rst9_Cx_rst31_NoC_size4_1
-R_9/LBDR_W                           1086.6240      0.1     457.2288     629.3952  0.0000  LBDR_cur_addr_rst9_Cx_rst31_NoC_size4_2
-R_9/XBAR_E                           1659.5712      0.1    1659.5712       0.0000  0.0000  XBAR_DATA_WIDTH32_33
+R_9/LBDR_E                           1072.5120      0.1     443.1168     629.3952  0.0000  LBDR_cur_addr_rst9_Cx_rst31_NoC_size4_3
+R_9/LBDR_L                           1055.5776      0.1     426.1824     629.3952  0.0000  LBDR_cur_addr_rst9_Cx_rst31_NoC_size4_0
+R_9/LBDR_N                           1075.3344      0.1     445.9392     629.3952  0.0000  LBDR_cur_addr_rst9_Cx_rst31_NoC_size4_4
+R_9/LBDR_S                           1072.5120      0.1     443.1168     629.3952  0.0000  LBDR_cur_addr_rst9_Cx_rst31_NoC_size4_1
+R_9/LBDR_W                           1072.5120      0.1     443.1168     629.3952  0.0000  LBDR_cur_addr_rst9_Cx_rst31_NoC_size4_2
+R_9/XBAR_E                           1670.8608      0.2    1670.8608       0.0000  0.0000  XBAR_DATA_WIDTH32_33
 R_9/XBAR_L                           1659.5712      0.1    1659.5712       0.0000  0.0000  XBAR_DATA_WIDTH32_30
 R_9/XBAR_N                           2111.1552      0.2    2111.1552       0.0000  0.0000  XBAR_DATA_WIDTH32_34
 R_9/XBAR_S                           1659.5712      0.1    1659.5712       0.0000  0.0000  XBAR_DATA_WIDTH32_31
 R_9/XBAR_W                           1659.5712      0.1    1659.5712       0.0000  0.0000  XBAR_DATA_WIDTH32_32
-R_9/allocator_unit                   7250.7457      0.7     990.6624     649.1520  0.0000  allocator_6
+R_9/allocator_unit                   7247.9233      0.7     987.8400     649.1520  0.0000  allocator_6
 R_9/allocator_unit/arb_E_X            553.1904      0.0     358.4448     194.7456  0.0000  arbiter_in_33
 R_9/allocator_unit/arb_L_X            626.5728      0.1     431.8272     194.7456  0.0000  arbiter_in_30
 R_9/allocator_unit/arb_N_X            635.0400      0.1     440.2944     194.7456  0.0000  arbiter_in_34
@@ -409,6 +409,6 @@ R_9/allocator_unit/arb_X_N            539.0784      0.0     344.3328     194.745
 R_9/allocator_unit/arb_X_S            527.7888      0.0     333.0432     194.7456  0.0000  arbiter_out_31
 R_9/allocator_unit/arb_X_W            564.4800      0.1     369.7344     194.7456  0.0000  arbiter_out_32
 --------------------------------  ------------  -------  -----------  -----------  ------  ---------------------------------------------------------------------
-Total                                                    475887.6948  632195.0146  0.0000
+Total                                                    475664.7252  632195.0146  0.0000
 
 1
