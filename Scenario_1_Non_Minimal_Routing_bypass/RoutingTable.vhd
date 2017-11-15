@@ -31,22 +31,22 @@ entity RoutingTable is
     );
     port (  reset: in  std_logic;
             clk: in  std_logic;
-            
+
             empty: in  std_logic;
             flit_type: in std_logic_vector(2 downto 0);
             dst_addr: in std_logic_vector(NoC_size-1 downto 0);
-	        grant_N, grant_E, grant_W, grant_S, grant_L: in std_logic;
+	          grant_N, grant_E, grant_W, grant_S, grant_L: in std_logic;
             Req_N, Req_E, Req_W, Req_S, Req_L:out std_logic
             );
 end entity RoutingTable;
 
 architecture behavioral of RoutingTable is
 
-signal routing_table : t_tata;
-  
+signal routing_table, routing_table_in : t_tata;
+
 -- Bits are in this order: NEWS
 
-signal cur_addr:  std_logic_vector(NoC_size-1 downto 0);      
+signal cur_addr:  std_logic_vector(NoC_size-1 downto 0);
 signal Req_N_in, Req_E_in, Req_W_in, Req_S_in, Req_L_in: std_logic;
 signal Req_N_FF, Req_E_FF, Req_W_FF, Req_S_FF, Req_L_FF: std_logic;
 signal grants: std_logic;
@@ -57,13 +57,13 @@ begin
 
 process(clk, reset) begin
 
-	if reset = '0' then 
+	if reset = '0' then
 		Req_N_FF <= '0';
 		Req_E_FF <= '0';
 		Req_W_FF <= '0';
 		Req_S_FF <= '0';
 		Req_L_FF <= '0';
-		routing_table <= routing_table_rst;
+		routing_table <= ((others=> (others=>'0')));
 
 	elsif clk'event and clk = '1' then
 		Req_N_FF <= Req_N_in;
@@ -71,11 +71,13 @@ process(clk, reset) begin
 		Req_W_FF <= Req_W_in;
 		Req_S_FF <= Req_S_in;
 		Req_L_FF <= Req_L_in;
-
+    routing_table <= routing_table_in;
 	end if;
 
 end process;
- 
+
+
+ routing_table_in <= routing_table_rst;
 -- Anything below is combinational
 
 grants <= grant_N or grant_E or grant_W or grant_S or grant_L;
@@ -92,14 +94,14 @@ process (flit_type, empty, cur_addr, dst_addr, grants, Req_N_FF, Req_E_FF, Req_W
 
 	if flit_type = "001" and empty = '0' then
 		-- Header flit, perform routing, look in the routing table
-		if (cur_addr = dst_addr) then 
+		if (cur_addr = dst_addr) then
 			-- If flit has reached its destination (current node is the destination node) -> Local output request goes active.
 			Req_N_in <= '0';
 			Req_E_in <= '0';
 			Req_W_in <= '0';
 			Req_S_in <= '0';
 			Req_L_in <= '1';
-		else 
+		else
 			-- Find appropriate candidate output port(s) based on the routing table.
   			Req_N_in <= routing_table(to_integer(unsigned(dst_addr)))(3);
   			Req_E_in <= routing_table(to_integer(unsigned(dst_addr)))(2);
@@ -125,5 +127,5 @@ process (flit_type, empty, cur_addr, dst_addr, grants, Req_N_FF, Req_E_FF, Req_W
 	end if;
 
 end process;
-  
+
 end architecture behavioral;
