@@ -12,12 +12,12 @@ use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 use work.TB_Package.all;
 
-USE ieee.numeric_std.ALL; 
+USE ieee.numeric_std.ALL;
 use IEEE.math_real."ceil";
 use IEEE.math_real."log2";
 
 entity tb_network_4x4 is
-end tb_network_4x4; 
+end tb_network_4x4;
 
 
 architecture behavior of tb_network_4x4 is
@@ -25,8 +25,8 @@ architecture behavior of tb_network_4x4 is
 -- Declaring network component
 component network_4x4 is
  generic (DATA_WIDTH: integer := 32; DATA_WIDTH_LV: integer := 11);
-port (reset: in  std_logic; 
-	clk: in  std_logic; 
+port (reset: in  std_logic;
+	clk: in  std_logic;
 	Rxy_reconf_0: in  std_logic_vector(19 downto 0);
 	Rxy_reconf_1: in  std_logic_vector(19 downto 0);
 	Rxy_reconf_2: in  std_logic_vector(19 downto 0);
@@ -126,8 +126,8 @@ port (reset: in  std_logic;
 	credit_in_L_15, valid_in_L_15: in std_logic;
 	TX_L_15: out std_logic_vector (DATA_WIDTH-1 downto 0)
 
-            ); 
-end component; 
+            );
+end component;
 
 -- generating bulk signals...
 	signal RX_L_0, TX_L_0:  std_logic_vector (31 downto 0);
@@ -208,16 +208,16 @@ end component;
 	signal Rxy_reconf_2:  std_logic_vector(19 downto 0) := "11000000110000000000"; --0
 	signal Rxy_reconf_3:  std_logic_vector(19 downto 0) := "00000000000000001010"; --10
 	signal Rxy_reconf_4:  std_logic_vector(19 downto 0) := "11001100000000100000"; --32
-	signal Rxy_reconf_5:  std_logic_vector(19 downto 0) := "11111111111100111100"; --252
-	signal Rxy_reconf_6:  std_logic_vector(19 downto 0) := "11111111111100111100"; --252
+	signal Rxy_reconf_5:  std_logic_vector(19 downto 0) := "11111111111111111100"; --252
+	signal Rxy_reconf_6:  std_logic_vector(19 downto 0) := "11111111111111111100"; --252
 	signal Rxy_reconf_7:  std_logic_vector(19 downto 0) := "00110000001100000000"; --0
-	signal Rxy_reconf_8:  std_logic_vector(19 downto 0) := "11001111001100110000"; --112
-	signal Rxy_reconf_9:  std_logic_vector(19 downto 0) := "11111111111100111100"; --252
-	signal Rxy_reconf_10: std_logic_vector(19 downto 0) := "11111111111100111100"; --252
+	signal Rxy_reconf_8:  std_logic_vector(19 downto 0) := "11001111001101110000"; --112
+	signal Rxy_reconf_9:  std_logic_vector(19 downto 0) := "11111111111111111100"; --252
+	signal Rxy_reconf_10: std_logic_vector(19 downto 0) := "11111111111111111100"; --252
 	signal Rxy_reconf_11: std_logic_vector(19 downto 0) := "00110000001100000000"; --0
-	signal Rxy_reconf_12: std_logic_vector(19 downto 0) := "00001111000000010000"; --80
-	signal Rxy_reconf_13: std_logic_vector(19 downto 0) := "00111111110000010100"; --212
-	signal Rxy_reconf_14: std_logic_vector(19 downto 0) := "00110011000000000100"; --132
+	signal Rxy_reconf_12: std_logic_vector(19 downto 0) := "00001111000001010000"; --80
+	signal Rxy_reconf_13: std_logic_vector(19 downto 0) := "00111111110011010100"; --212
+	signal Rxy_reconf_14: std_logic_vector(19 downto 0) := "00110011000010000100"; --132
 	signal Rxy_reconf_15: std_logic_vector(19 downto 0) := "00000011000000000000"; --0
 
 	--signal Rxy_reconf_0:  std_logic_vector(19 downto 0) := "11111111111100111100";
@@ -247,35 +247,35 @@ begin
    clk_process :process
    begin
         clk <= '0';
-        wait for clk_period/2;   
+        wait for clk_period/2;
         clk <= '1';
-        wait for clk_period/2; 
+        wait for clk_period/2;
    end process;
 
 reset <= '1' after 1 ns;
 -- instantiating the network
 NoC: network_4x4 generic map (DATA_WIDTH  => 32, DATA_WIDTH_LV => 11)
-port map (reset, clk, Rxy_reconf_0, Rxy_reconf_1, Rxy_reconf_2, Rxy_reconf_3, Rxy_reconf_4, Rxy_reconf_5, 
+port map (reset, clk, Rxy_reconf_0, Rxy_reconf_1, Rxy_reconf_2, Rxy_reconf_3, Rxy_reconf_4, Rxy_reconf_5,
 	Rxy_reconf_6, Rxy_reconf_7, Rxy_reconf_8, Rxy_reconf_9, Rxy_reconf_10, Rxy_reconf_11, Rxy_reconf_12, Rxy_reconf_13,
-	Rxy_reconf_14, Rxy_reconf_15, Reconfig, 
-	RX_L_0, credit_out_L_0, valid_out_L_0, credit_in_L_0, valid_in_L_0,  TX_L_0, 
-	RX_L_1, credit_out_L_1, valid_out_L_1, credit_in_L_1, valid_in_L_1,  TX_L_1, 
-	RX_L_2, credit_out_L_2, valid_out_L_2, credit_in_L_2, valid_in_L_2,  TX_L_2, 
-	RX_L_3, credit_out_L_3, valid_out_L_3, credit_in_L_3, valid_in_L_3,  TX_L_3, 
-	RX_L_4, credit_out_L_4, valid_out_L_4, credit_in_L_4, valid_in_L_4,  TX_L_4, 
-	RX_L_5, credit_out_L_5, valid_out_L_5, credit_in_L_5, valid_in_L_5,  TX_L_5, 
-	RX_L_6, credit_out_L_6, valid_out_L_6, credit_in_L_6, valid_in_L_6,  TX_L_6, 
-	RX_L_7, credit_out_L_7, valid_out_L_7, credit_in_L_7, valid_in_L_7,  TX_L_7, 
-	RX_L_8, credit_out_L_8, valid_out_L_8, credit_in_L_8, valid_in_L_8,  TX_L_8, 
-	RX_L_9, credit_out_L_9, valid_out_L_9, credit_in_L_9, valid_in_L_9,  TX_L_9, 
-	RX_L_10, credit_out_L_10, valid_out_L_10, credit_in_L_10, valid_in_L_10,  TX_L_10, 
-	RX_L_11, credit_out_L_11, valid_out_L_11, credit_in_L_11, valid_in_L_11,  TX_L_11, 
-	RX_L_12, credit_out_L_12, valid_out_L_12, credit_in_L_12, valid_in_L_12,  TX_L_12, 
-	RX_L_13, credit_out_L_13, valid_out_L_13, credit_in_L_13, valid_in_L_13,  TX_L_13, 
-	RX_L_14, credit_out_L_14, valid_out_L_14, credit_in_L_14, valid_in_L_14,  TX_L_14, 
+	Rxy_reconf_14, Rxy_reconf_15, Reconfig,
+	RX_L_0, credit_out_L_0, valid_out_L_0, credit_in_L_0, valid_in_L_0,  TX_L_0,
+	RX_L_1, credit_out_L_1, valid_out_L_1, credit_in_L_1, valid_in_L_1,  TX_L_1,
+	RX_L_2, credit_out_L_2, valid_out_L_2, credit_in_L_2, valid_in_L_2,  TX_L_2,
+	RX_L_3, credit_out_L_3, valid_out_L_3, credit_in_L_3, valid_in_L_3,  TX_L_3,
+	RX_L_4, credit_out_L_4, valid_out_L_4, credit_in_L_4, valid_in_L_4,  TX_L_4,
+	RX_L_5, credit_out_L_5, valid_out_L_5, credit_in_L_5, valid_in_L_5,  TX_L_5,
+	RX_L_6, credit_out_L_6, valid_out_L_6, credit_in_L_6, valid_in_L_6,  TX_L_6,
+	RX_L_7, credit_out_L_7, valid_out_L_7, credit_in_L_7, valid_in_L_7,  TX_L_7,
+	RX_L_8, credit_out_L_8, valid_out_L_8, credit_in_L_8, valid_in_L_8,  TX_L_8,
+	RX_L_9, credit_out_L_9, valid_out_L_9, credit_in_L_9, valid_in_L_9,  TX_L_9,
+	RX_L_10, credit_out_L_10, valid_out_L_10, credit_in_L_10, valid_in_L_10,  TX_L_10,
+	RX_L_11, credit_out_L_11, valid_out_L_11, credit_in_L_11, valid_in_L_11,  TX_L_11,
+	RX_L_12, credit_out_L_12, valid_out_L_12, credit_in_L_12, valid_in_L_12,  TX_L_12,
+	RX_L_13, credit_out_L_13, valid_out_L_13, credit_in_L_13, valid_in_L_13,  TX_L_13,
+	RX_L_14, credit_out_L_14, valid_out_L_14, credit_in_L_14, valid_in_L_14,  TX_L_14,
 	RX_L_15, credit_out_L_15, valid_out_L_15, credit_in_L_15, valid_in_L_15,  TX_L_15
-            ); 
-not_reset <= not reset; 
+            );
+not_reset <= not reset;
 
 -- connecting the packet generators
 credit_counter_control(clk, credit_out_L_0, valid_in_L_0, credit_counter_out_0);
