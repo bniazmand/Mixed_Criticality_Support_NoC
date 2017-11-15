@@ -152,17 +152,21 @@ package body TB_Package is
           Packet_length:=max_packet_size;
       end if;
       --------------------------------------
+      if source = 1 or source = 2 or source = 3 or source = 7 or source = 11 then 
+        wait;
+      end if;
+
       uniform(seed1, seed2, rand);
       destination_id := integer(rand*real((network_size**2)-1));
-      while (destination_id = source or destination_id = 0 or destination_id = 1) loop -- Behrad: did this to make the region contaning nodes 0 and 1 critical region!
+      while (destination_id = source or destination_id = 0 or destination_id = 1 or destination_id = 2 or destination_id = 3 or destination_id = 7 or destination_id = 11 or destination_id = 15) loop -- Behrad: did this to make the region contaning nodes 0 and 1 critical region!
           uniform(seed1, seed2, rand);
           destination_id := integer(rand*real((network_size**2)-1));
       end loop;
 
       -- Added by behrad (to make the critical part, 0 always sends to 1 and 1 always sends to 0)
       if source = 0 then
-        destination_id := 1;
-      elsif source = 1 then
+        destination_id := 15;
+      elsif source = 15 then
         destination_id := 0;
       end if;
 

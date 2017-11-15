@@ -232,33 +232,47 @@ end component;
 	signal TX_N_14, TX_E_14, TX_W_14, TX_S_14 : std_logic_vector (DATA_WIDTH-1 downto 0);
 	signal TX_N_15, TX_E_15, TX_W_15, TX_S_15 : std_logic_vector (DATA_WIDTH-1 downto 0);
 
-	signal Rxy_reconf: std_logic_vector (7 downto 0) := "11111100"; -- North-Last turn model
+	-- The turn model for non-critical region
+	signal Rxy_reconf: std_logic_vector (7 downto 0) := "11111100"; -- North-Last turn model 
+
+	-- The turn model for critical region (path from node 0 to 15 and 15 to 0)
+	signal Rxy_reconf_critical_0: std_logic_vector (7 downto 0)  := "00111100"; -- XY turn model 
+	signal Rxy_reconf_critical_1: std_logic_vector (7 downto 0)  := "00111100"; -- XY turn model 
+	signal Rxy_reconf_critical_2: std_logic_vector (7 downto 0)  := "00111100"; -- XY turn model 
+	signal Rxy_reconf_critical_3: std_logic_vector (7 downto 0)  := "00111100"; -- XY turn model
+	signal Rxy_reconf_critical_7: std_logic_vector (7 downto 0)  := "11000011"; -- YX turn model 
+	signal Rxy_reconf_critical_11: std_logic_vector (7 downto 0) := "11000011"; -- YX turn model 
+	signal Rxy_reconf_critical_15: std_logic_vector (7 downto 0) := "11000011"; -- YX turn model 
+
 	signal Reconfig: std_logic := '0';
 
 --        organizaiton of the network:
 --     x --------------->
---  y         ----       ----       ----       ----
---  |        | 0  | --- | 1  | --- | 2  | --- | 3  |
---  |         ----       ----       ----       ----
---  |          |          |          |          |
---  |         ----       ----       ----       ----
---  |        | 4  | --- | 5  | --- | 6  | --- | 7  |
---  |         ----       ----       ----       ----
---  |          |          |          |          |
---  |         ----       ----       ----       ----
---  |        | 8  | --- | 9  | --- | 10 | --- | 11 |
---  |         ----       ----       ----       ----
---  |          |          |          |          |
---  |         ----       ----       ----       ----
---  |        | 12 | --- | 13 | --- | 14 | --- | 15 |
---  v         ----       ----       ----       ----
---                                               
+--  y      .-----------------------------------------.
+--		   |  ----       ----       ----       ----	 | C
+--  |      | | 0  | --- | 1  | --- | 2  | --- | 3  | | R
+--  |      |  ----       ----       ----       ----  | I
+--  |      .---|-----------|----------|----.    |	 | T
+--  |         ----       ----       ----   |   ----	 | I
+--  |        | 4  | --- | 5  | --- | 6  | -+- | 7  | | C
+--  |         ----       ----       ----   |   ----	 | A
+--  |          |          |          |     |    |	 | L
+--  |         ----       ----       ----   |   ----  |	
+--  |        | 8  | --- | 9  | --- | 10 | -+- | 11 | | R
+--  |         ----       ----       ----   |   ----  | E
+--  |          |          |          |     |    |	 | G
+--  |         ----       ----       ----   |   ----  | I
+--  |        | 12 | --- | 13 | --- | 14 | -+- | 15 | | O
+--  v         ----       ----       ----   |   ----  | N
+--               						   .---------.	
+-- 				   NON-CRITICAL REGION
+
 begin
 
 -- instantiating the routers
-R_0: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>0, Cx_rst => 2, NoC_size=>4) -- Node 0 is only connected to 1 (critical region)
+R_0: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>0, Cx_rst => 2, NoC_size=>4) -- critical region
 PORT MAP (reset, clk, 
-    Rxy_reconf, Reconfig,
+    Rxy_reconf_critical_0, Reconfig,
 	RX_N_0, RX_E_0, RX_W_0, RX_S_0, RX_L_0,
 	credit_in_N_0, credit_in_E_0, credit_in_W_0, credit_in_S_0, credit_in_L_0,
 	valid_in_N_0, valid_in_E_0, valid_in_W_0, valid_in_S_0, valid_in_L_0,
@@ -266,9 +280,9 @@ PORT MAP (reset, clk,
 	credit_out_N_0, credit_out_E_0, credit_out_W_0, credit_out_S_0, credit_out_L_0,
 	TX_N_0, TX_E_0, TX_W_0, TX_S_0, TX_L_0); 
 
-R_1: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>1, Cx_rst => 4, NoC_size=>4) -- Node 1 is only connected to 0 (critical region)
+R_1: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>1, Cx_rst => 6, NoC_size=>4) -- critical region
 PORT MAP (reset, clk, 
-    Rxy_reconf, Reconfig,
+    Rxy_reconf_critical_1, Reconfig,
 	RX_N_1, RX_E_1, RX_W_1, RX_S_1, RX_L_1,
 	credit_in_N_1, credit_in_E_1, credit_in_W_1, credit_in_S_1, credit_in_L_1,
 	valid_in_N_1, valid_in_E_1, valid_in_W_1, valid_in_S_1, valid_in_L_1,
@@ -276,9 +290,9 @@ PORT MAP (reset, clk,
 	credit_out_N_1, credit_out_E_1, credit_out_W_1, credit_out_S_1, credit_out_L_1,
 	TX_N_1, TX_E_1, TX_W_1, TX_S_1, TX_L_1); 
 
-R_2: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>2, Cx_rst => 10, NoC_size=>4) -- Non-critical region
+R_2: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>2, Cx_rst => 6, NoC_size=>4) -- critical region
 PORT MAP (reset, clk, 
-    Rxy_reconf, Reconfig,
+    Rxy_reconf_critical_2, Reconfig,
 	RX_N_2, RX_E_2, RX_W_2, RX_S_2, RX_L_2,
 	credit_in_N_2, credit_in_E_2, credit_in_W_2, credit_in_S_2, credit_in_L_2,
 	valid_in_N_2, valid_in_E_2, valid_in_W_2, valid_in_S_2, valid_in_L_2,
@@ -286,9 +300,9 @@ PORT MAP (reset, clk,
 	credit_out_N_2, credit_out_E_2, credit_out_W_2, credit_out_S_2, credit_out_L_2,
 	TX_N_2, TX_E_2, TX_W_2, TX_S_2, TX_L_2); 
 
-R_3: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>3, Cx_rst => 12, NoC_size=>4)
+R_3: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>3, Cx_rst => 12, NoC_size=>4) -- critical region
 PORT MAP (reset, clk, 
-    Rxy_reconf, Reconfig,
+    Rxy_reconf_critical_3, Reconfig,
 	RX_N_3, RX_E_3, RX_W_3, RX_S_3, RX_L_3,
 	credit_in_N_3, credit_in_E_3, credit_in_W_3, credit_in_S_3, credit_in_L_3,
 	valid_in_N_3, valid_in_E_3, valid_in_W_3, valid_in_S_3, valid_in_L_3,
@@ -296,7 +310,7 @@ PORT MAP (reset, clk,
 	credit_out_N_3, credit_out_E_3, credit_out_W_3, credit_out_S_3, credit_out_L_3,
 	TX_N_3, TX_E_3, TX_W_3, TX_S_3, TX_L_3); 
 
-R_4: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>4, Cx_rst => 10, NoC_size=>4) -- Non-critical region
+R_4: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>4, Cx_rst => 10, NoC_size=>4) 
 PORT MAP (reset, clk, 
     Rxy_reconf, Reconfig,
 	RX_N_4, RX_E_4, RX_W_4, RX_S_4, RX_L_4,
@@ -306,7 +320,7 @@ PORT MAP (reset, clk,
 	credit_out_N_4, credit_out_E_4, credit_out_W_4, credit_out_S_4, credit_out_L_4,
 	TX_N_4, TX_E_4, TX_W_4, TX_S_4, TX_L_4); 
 
-R_5: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>5, Cx_rst => 14, NoC_size=>4) -- Non-critical region
+R_5: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>5, Cx_rst => 14, NoC_size=>4)
 PORT MAP (reset, clk, 
     Rxy_reconf, Reconfig,
 	RX_N_5, RX_E_5, RX_W_5, RX_S_5, RX_L_5,
@@ -316,7 +330,7 @@ PORT MAP (reset, clk,
 	credit_out_N_5, credit_out_E_5, credit_out_W_5, credit_out_S_5, credit_out_L_5,
 	TX_N_5, TX_E_5, TX_W_5, TX_S_5, TX_L_5); 
 
-R_6: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>6, Cx_rst => 15, NoC_size=>4)
+R_6: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>6, Cx_rst => 12, NoC_size=>4)
 PORT MAP (reset, clk, 
     Rxy_reconf, Reconfig,
 	RX_N_6, RX_E_6, RX_W_6, RX_S_6, RX_L_6,
@@ -326,9 +340,9 @@ PORT MAP (reset, clk,
 	credit_out_N_6, credit_out_E_6, credit_out_W_6, credit_out_S_6, credit_out_L_6,
 	TX_N_6, TX_E_6, TX_W_6, TX_S_6, TX_L_6); 
 
-R_7: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>7, Cx_rst => 13, NoC_size=>4)
+R_7: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>7, Cx_rst => 9, NoC_size=>4) -- critical region
 PORT MAP (reset, clk, 
-    Rxy_reconf, Reconfig,
+    Rxy_reconf_critical_7, Reconfig,
 	RX_N_7, RX_E_7, RX_W_7, RX_S_7, RX_L_7,
 	credit_in_N_7, credit_in_E_7, credit_in_W_7, credit_in_S_7, credit_in_L_7,
 	valid_in_N_7, valid_in_E_7, valid_in_W_7, valid_in_S_7, valid_in_L_7,
@@ -356,7 +370,7 @@ PORT MAP (reset, clk,
 	credit_out_N_9, credit_out_E_9, credit_out_W_9, credit_out_S_9, credit_out_L_9,
 	TX_N_9, TX_E_9, TX_W_9, TX_S_9, TX_L_9); 
 
-R_10: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>10, Cx_rst => 15, NoC_size=>4)
+R_10: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>10, Cx_rst => 13, NoC_size=>4)
 PORT MAP (reset, clk, 
     Rxy_reconf, Reconfig,
 	RX_N_10, RX_E_10, RX_W_10, RX_S_10, RX_L_10,
@@ -366,9 +380,9 @@ PORT MAP (reset, clk,
 	credit_out_N_10, credit_out_E_10, credit_out_W_10, credit_out_S_10, credit_out_L_10,
 	TX_N_10, TX_E_10, TX_W_10, TX_S_10, TX_L_10); 
 
-R_11: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>11, Cx_rst => 13, NoC_size=>4)
+R_11: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>11, Cx_rst => 9, NoC_size=>4) -- critical region
 PORT MAP (reset, clk, 
-    Rxy_reconf, Reconfig,
+    Rxy_reconf_critical_11, Reconfig,
 	RX_N_11, RX_E_11, RX_W_11, RX_S_11, RX_L_11,
 	credit_in_N_11, credit_in_E_11, credit_in_W_11, credit_in_S_11, credit_in_L_11,
 	valid_in_N_11, valid_in_E_11, valid_in_W_11, valid_in_S_11, valid_in_L_11,
@@ -396,7 +410,7 @@ PORT MAP (reset, clk,
 	credit_out_N_13, credit_out_E_13, credit_out_W_13, credit_out_S_13, credit_out_L_13,
 	TX_N_13, TX_E_13, TX_W_13, TX_S_13, TX_L_13); 
 
-R_14: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>14, Cx_rst => 7, NoC_size=>4)
+R_14: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>14, Cx_rst => 5, NoC_size=>4)
 PORT MAP (reset, clk, 
     Rxy_reconf, Reconfig,
 	RX_N_14, RX_E_14, RX_W_14, RX_S_14, RX_L_14,
@@ -406,9 +420,9 @@ PORT MAP (reset, clk,
 	credit_out_N_14, credit_out_E_14, credit_out_W_14, credit_out_S_14, credit_out_L_14,
 	TX_N_14, TX_E_14, TX_W_14, TX_S_14, TX_L_14); 
 
-R_15: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>15, Cx_rst => 5, NoC_size=>4)
+R_15: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>15, Cx_rst => 1, NoC_size=>4) -- critical region
 PORT MAP (reset, clk, 
-    Rxy_reconf, Reconfig,
+    Rxy_reconf_critical_15, Reconfig,
 	RX_N_15, RX_E_15, RX_W_15, RX_S_15, RX_L_15,
 	credit_in_N_15, credit_in_E_15, credit_in_W_15, credit_in_S_15, credit_in_L_15,
 	valid_in_N_15, valid_in_E_15, valid_in_W_15, valid_in_S_15, valid_in_L_15,
