@@ -1,0 +1,11 @@
+.*
+RTL_Routing_Table/work/*
+RTL_Routing_Table/transcript
+RTL_Routing_Table/vsim.wlf
+RTL_Routing_Table/wave.vcd
+
+
+RTL_Routing_Table/sent.txt
+RTL_Routing_Table/received.txt
+RTL_Routing_Table/DIAGNOSIS.txt
+RTL_Routing_Table/latency.txt
