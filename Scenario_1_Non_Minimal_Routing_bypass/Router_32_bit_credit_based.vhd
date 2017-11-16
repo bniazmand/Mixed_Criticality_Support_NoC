@@ -44,42 +44,7 @@ entity router_credit_based is
 	generic (
         DATA_WIDTH: integer := 32;
         current_address : integer := 0;
-        NoC_size: integer := 4;
-
-        routing_table_bits_local: t_tata := (
-            0 =>    "0000", 1 =>    "0000", 2 =>    "0000", 3 =>    "0000",
-						4 =>    "0000", 5 =>    "0000", 6 =>    "0000", 7 =>    "0000",
-						8 =>    "0000", 9 =>    "0000", 10 =>   "0000", 11 =>   "0000",
-						12 =>   "0000", 13 =>   "0000", 14 =>   "0000", 15 =>   "0100"
-        );
-
-        routing_table_bits_north: t_tata := (
-            0 =>    "0000", 1 =>    "0000", 2 =>    "0000", 3 =>    "0000",
-						4 =>    "0000", 5 =>    "0000", 6 =>    "0000", 7 =>    "0000",
-						8 =>    "0000", 9 =>    "0000", 10 =>   "0000", 11 =>   "0000",
-						12 =>   "0000", 13 =>   "0000", 14 =>   "0000", 15 =>   "0100"
-        );
-
-        routing_table_bits_east: t_tata := (
-            0 =>    "0000", 1 =>    "0000", 2 =>    "0000", 3 =>    "0000",
-						4 =>    "0000", 5 =>    "0000", 6 =>    "0000", 7 =>    "0000",
-						8 =>    "0000", 9 =>    "0000", 10 =>   "0000", 11 =>   "0000",
-						12 =>   "0000", 13 =>   "0000", 14 =>   "0000", 15 =>   "0100"
-        );
-
-        routing_table_bits_west: t_tata := (
-            0 =>    "0000", 1 =>    "0000", 2 =>    "0000", 3 =>    "0000",
-						4 =>    "0000", 5 =>    "0000", 6 =>    "0000", 7 =>    "0000",
-						8 =>    "0000", 9 =>    "0000", 10 =>   "0000", 11 =>   "0000",
-						12 =>   "0000", 13 =>   "0000", 14 =>   "0000", 15 =>   "0100"
-        );
-
-        routing_table_bits_south: t_tata := (
-            0 =>    "0000", 1 =>    "0000", 2 =>    "0000", 3 =>    "0000",
-						4 =>    "0000", 5 =>    "0000", 6 =>    "0000", 7 =>    "0000",
-						8 =>    "0000", 9 =>    "0000", 10 =>   "0000", 11 =>   "0000",
-						12 =>   "0000", 13 =>   "0000", 14 =>   "0000", 15 =>   "0100"
-        )
+        NoC_size: integer := 4
     );
     port (
     reset, clk: in std_logic;
@@ -88,6 +53,7 @@ entity router_credit_based is
 
     credit_in_N, credit_in_E, credit_in_W, credit_in_S, credit_in_L: in std_logic;
     valid_in_N, valid_in_E, valid_in_W, valid_in_S, valid_in_L : in std_logic;
+    routing_table_rst_Local, routing_table_rst_North, routing_table_rst_East, routing_table_rst_West, routing_table_rst_South: in t_tata;
 
     valid_out_N, valid_out_E, valid_out_W, valid_out_S, valid_out_L : out std_logic;
     credit_out_N, credit_out_E, credit_out_W, credit_out_S, credit_out_L: out std_logic;
@@ -166,13 +132,7 @@ end COMPONENT;
 COMPONENT RoutingTable is
     generic (
         cur_addr_rst: integer := 8;
-        NoC_size: integer := 4;
-        routing_table_rst: t_tata := (
-            0 =>    "0000", 1 =>    "0000", 2 =>    "0000", 3 =>    "0000",
-						4 =>    "0000", 5 =>    "0000", 6 =>    "0000", 7 =>    "0000",
-						8 =>    "0000", 9 =>    "0000", 10 =>   "0000", 11 =>   "0000",
-						12 =>   "0000", 13 =>   "0000", 14 =>   "0000", 15 =>   "0100"
-        )
+        NoC_size: integer := 4
     );
     port (  reset: in  std_logic;
             clk: in  std_logic;
@@ -181,6 +141,8 @@ COMPONENT RoutingTable is
             flit_type: in std_logic_vector(2 downto 0);
             dst_addr: in std_logic_vector(NoC_size-1 downto 0);
             grant_N, grant_E, grant_W, grant_S, grant_L: in std_logic;
+	        routing_table_rst: in t_tata;
+
             Req_N, Req_E, Req_W, Req_S, Req_L:out std_logic
             );
 end COMPONENT;
@@ -384,34 +346,39 @@ FIFO_L: FIFO_credit_based
 ------------------------------------------------------------------------------------------------------------------------------
 
 -- All the routing tables
-ROUTING_TABLE_N: RoutingTable generic map (cur_addr_rst => current_address, NoC_size => NoC_size, routing_table_rst => routing_table_bits_north)
-       PORT MAP (reset => reset, clk => clk, empty => empty_N,
-                 flit_type => FIFO_D_out_N(DATA_WIDTH-1 downto DATA_WIDTH-3), dst_addr=> FIFO_D_out_N(NoC_size  downto 1) ,
+ROUTING_TABLE_N: RoutingTable generic map (cur_addr_rst => current_address, NoC_size => NoC_size)
+       PORT MAP (reset => reset, clk => clk, empty => empty_N, 
+                 flit_type => FIFO_D_out_N(DATA_WIDTH-1 downto DATA_WIDTH-3), dst_addr=> FIFO_D_out_N(NoC_size  downto 1),
                  grant_N => '0', grant_E =>Grant_EN, grant_W => Grant_WN, grant_S=>Grant_SN, grant_L =>Grant_LN,
+                 routing_table_rst => routing_table_rst_North, 
                  Req_N=> Req_NN, Req_E=>Req_NE, Req_W=>Req_NW, Req_S=>Req_NS, Req_L=>Req_NL);
 
-ROUTING_TABLE_E: RoutingTable generic map (cur_addr_rst => current_address, NoC_size => NoC_size, routing_table_rst => routing_table_bits_east)
-       PORT MAP (reset =>  reset, clk => clk, empty => empty_E,
-                 flit_type => FIFO_D_out_E(DATA_WIDTH-1 downto DATA_WIDTH-3), dst_addr=> FIFO_D_out_E(NoC_size downto 1) ,
+ROUTING_TABLE_E: RoutingTable generic map (cur_addr_rst => current_address, NoC_size => NoC_size)
+       PORT MAP (reset =>  reset, clk => clk, empty => empty_E, 
+                 flit_type => FIFO_D_out_E(DATA_WIDTH-1 downto DATA_WIDTH-3), dst_addr=> FIFO_D_out_E(NoC_size downto 1),
                  grant_N => Grant_NE, grant_E =>'0', grant_W => Grant_WE, grant_S=>Grant_SE, grant_L =>Grant_LE,
+                 routing_table_rst => routing_table_rst_East, 
                  Req_N=> Req_EN, Req_E=>Req_EE, Req_W=>Req_EW, Req_S=>Req_ES, Req_L=>Req_EL);
 
-ROUTING_TABLE_W: RoutingTable generic map (cur_addr_rst => current_address, NoC_size => NoC_size, routing_table_rst => routing_table_bits_west)
-       PORT MAP (reset =>  reset, clk => clk, empty => empty_W,
-                 flit_type => FIFO_D_out_W(DATA_WIDTH-1 downto DATA_WIDTH-3), dst_addr=> FIFO_D_out_W(NoC_size downto 1) ,
+ROUTING_TABLE_W: RoutingTable generic map (cur_addr_rst => current_address, NoC_size => NoC_size)
+       PORT MAP (reset =>  reset, clk => clk, empty => empty_W, 
+                 flit_type => FIFO_D_out_W(DATA_WIDTH-1 downto DATA_WIDTH-3), dst_addr=> FIFO_D_out_W(NoC_size downto 1),
                  grant_N => Grant_NW, grant_E =>Grant_EW, grant_W =>'0' ,grant_S=>Grant_SW, grant_L =>Grant_LW,
+                 routing_table_rst=> routing_table_rst_West, 
                  Req_N=> Req_WN, Req_E=>Req_WE, Req_W=>Req_WW, Req_S=>Req_WS, Req_L=>Req_WL);
 
-ROUTING_TABLE_S: RoutingTable generic map (cur_addr_rst => current_address, NoC_size => NoC_size, routing_table_rst => routing_table_bits_south)
-       PORT MAP (reset =>  reset, clk => clk, empty => empty_S,
-                 flit_type => FIFO_D_out_S(DATA_WIDTH-1 downto DATA_WIDTH-3), dst_addr=> FIFO_D_out_S(NoC_size downto 1) ,
+ROUTING_TABLE_S: RoutingTable generic map (cur_addr_rst => current_address, NoC_size => NoC_size)
+       PORT MAP (reset =>  reset, clk => clk, empty => empty_S, 
+                 flit_type => FIFO_D_out_S(DATA_WIDTH-1 downto DATA_WIDTH-3), dst_addr=> FIFO_D_out_S(NoC_size downto 1),
                  grant_N => Grant_NS, grant_E =>Grant_ES, grant_W =>Grant_WS ,grant_S=>'0', grant_L =>Grant_LS,
+                 routing_table_rst => routing_table_rst_South, 
                  Req_N=> Req_SN, Req_E=>Req_SE, Req_W=>Req_SW, Req_S=>Req_SS, Req_L=>Req_SL);
 
-ROUTING_TABLE_L: RoutingTable generic map (cur_addr_rst => current_address, NoC_size => NoC_size, routing_table_rst => routing_table_bits_local)
-       PORT MAP (reset =>  reset, clk => clk, empty => empty_L,
-                 flit_type => FIFO_D_out_L(DATA_WIDTH-1 downto DATA_WIDTH-3), dst_addr=> FIFO_D_out_L(NoC_size downto 1) ,
+ROUTING_TABLE_L: RoutingTable generic map (cur_addr_rst => current_address, NoC_size => NoC_size)
+       PORT MAP (reset =>  reset, clk => clk, empty => empty_L, 
+                 flit_type => FIFO_D_out_L(DATA_WIDTH-1 downto DATA_WIDTH-3), dst_addr=> FIFO_D_out_L(NoC_size downto 1),
                  grant_N => Grant_NL, grant_E =>Grant_EL, grant_W => Grant_WL,grant_S=>Grant_SL, grant_L =>'0',
+                 routing_table_rst => routing_table_rst_Local, 
                  Req_N=> Req_LN, Req_E=>Req_LE, Req_W=>Req_LW, Req_S=>Req_LS, Req_L=>Req_LL);
 
 ------------------------------------------------------------------------------------------------------------------------------
