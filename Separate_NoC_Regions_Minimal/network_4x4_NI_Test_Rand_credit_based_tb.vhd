@@ -10,6 +10,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
+USE ieee.numeric_std.ALL; 
 use work.TB_Package.all;
 
 USE ieee.numeric_std.ALL; 
@@ -106,9 +107,44 @@ port (reset: in  std_logic;
 	RX_L_15: in std_logic_vector (DATA_WIDTH-1 downto 0);
 	credit_out_L_15, valid_out_L_15: out std_logic;
 	credit_in_L_15, valid_in_L_15: in std_logic;
-	TX_L_15: out std_logic_vector (DATA_WIDTH-1 downto 0)
+	TX_L_15: out std_logic_vector (DATA_WIDTH-1 downto 0);
 
-            ); 
+	Cx_reconf_0: in std_logic_vector(3 downto 0);
+	Cx_reconf_1: in std_logic_vector(3 downto 0);
+	Cx_reconf_2: in std_logic_vector(3 downto 0);
+	Cx_reconf_3: in std_logic_vector(3 downto 0);
+	Cx_reconf_4: in std_logic_vector(3 downto 0);
+	Cx_reconf_5: in std_logic_vector(3 downto 0);
+	Cx_reconf_6: in std_logic_vector(3 downto 0);
+	Cx_reconf_7: in std_logic_vector(3 downto 0);
+	Cx_reconf_8: in std_logic_vector(3 downto 0);
+	Cx_reconf_9: in std_logic_vector(3 downto 0);
+	Cx_reconf_10: in std_logic_vector(3 downto 0);
+	Cx_reconf_11: in std_logic_vector(3 downto 0);
+	Cx_reconf_12: in std_logic_vector(3 downto 0);
+	Cx_reconf_13: in std_logic_vector(3 downto 0);
+	Cx_reconf_14: in std_logic_vector(3 downto 0);
+	Cx_reconf_15: in std_logic_vector(3 downto 0);
+	
+	Rxy_reconf_0: in std_logic_vector(7 downto 0);
+	Rxy_reconf_1: in std_logic_vector(7 downto 0);
+	Rxy_reconf_2: in std_logic_vector(7 downto 0);
+	Rxy_reconf_3: in std_logic_vector(7 downto 0);
+	Rxy_reconf_4: in std_logic_vector(7 downto 0);
+	Rxy_reconf_5: in std_logic_vector(7 downto 0);
+	Rxy_reconf_6: in std_logic_vector(7 downto 0);
+	Rxy_reconf_7: in std_logic_vector(7 downto 0);
+	Rxy_reconf_8: in std_logic_vector(7 downto 0);
+	Rxy_reconf_9: in std_logic_vector(7 downto 0);
+	Rxy_reconf_10: in std_logic_vector(7 downto 0);
+	Rxy_reconf_11: in std_logic_vector(7 downto 0);
+	Rxy_reconf_12: in std_logic_vector(7 downto 0);
+	Rxy_reconf_13: in std_logic_vector(7 downto 0);
+	Rxy_reconf_14: in std_logic_vector(7 downto 0);
+	Rxy_reconf_15: in std_logic_vector(7 downto 0);
+
+	Reconfig : in std_logic
+   ); 
 end component; 
 
 -- generating bulk signals...
@@ -160,6 +196,46 @@ end component;
 	signal RX_L_15, TX_L_15:  std_logic_vector (31 downto 0);
 	signal credit_counter_out_15:  std_logic_vector (1 downto 0);
 	signal credit_out_L_15, credit_in_L_15, valid_in_L_15, valid_out_L_15: std_logic;
+
+	signal Cx_reconf_0:  std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(2,4));
+	signal Cx_reconf_1:  std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(6,4));
+	signal Cx_reconf_2:  std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(6,4));
+	signal Cx_reconf_3:  std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(12,4));
+	signal Cx_reconf_4:  std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(10,4));
+	signal Cx_reconf_5:  std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(14,4));
+	signal Cx_reconf_6:  std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(12,4));
+	signal Cx_reconf_7:  std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(9,4));
+	signal Cx_reconf_8:  std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(11,4));
+	signal Cx_reconf_9:  std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(15,4));
+	signal Cx_reconf_10: std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(13,4));
+	signal Cx_reconf_11: std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(9,4));
+	signal Cx_reconf_12: std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(3,4));
+	signal Cx_reconf_13: std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(7,4));
+	signal Cx_reconf_14: std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(5,4));
+	signal Cx_reconf_15: std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(1,4));
+
+	-- The turn model for critical region (path from node 0 to 15 and 15 to 0)
+	signal Rxy_reconf_0: std_logic_vector (7 downto 0)  := "00111100"; -- XY turn model 
+	signal Rxy_reconf_1: std_logic_vector (7 downto 0)  := "00111100"; -- XY turn model 
+	signal Rxy_reconf_2: std_logic_vector (7 downto 0)  := "00111100"; -- XY turn model 
+	signal Rxy_reconf_3: std_logic_vector (7 downto 0)  := "00111100"; -- XY turn model
+	signal Rxy_reconf_7: std_logic_vector (7 downto 0)  := "11000011"; -- YX turn model 
+	signal Rxy_reconf_11: std_logic_vector (7 downto 0) := "11000011"; -- YX turn model 
+	signal Rxy_reconf_15: std_logic_vector (7 downto 0) := "11000011"; -- YX turn model 
+
+	-- The turn model for non-critical region
+	signal Rxy_reconf_4: std_logic_vector (7 downto 0) := "11111100"; -- North-Last turn model 
+	signal Rxy_reconf_5: std_logic_vector (7 downto 0) := "11111100"; -- North-Last turn model 
+	signal Rxy_reconf_6: std_logic_vector (7 downto 0) := "11111100"; -- North-Last turn model 
+	signal Rxy_reconf_8: std_logic_vector (7 downto 0) := "11111100"; -- North-Last turn model 
+	signal Rxy_reconf_9: std_logic_vector (7 downto 0) := "11111100"; -- North-Last turn model 
+	signal Rxy_reconf_10: std_logic_vector (7 downto 0) := "11111100"; -- North-Last turn model 
+	signal Rxy_reconf_12: std_logic_vector (7 downto 0) := "11111100"; -- North-Last turn model 
+	signal Rxy_reconf_13: std_logic_vector (7 downto 0) := "11111100"; -- North-Last turn model 
+	signal Rxy_reconf_14: std_logic_vector (7 downto 0) := "11111100"; -- North-Last turn model 
+
+	signal Reconfig: std_logic := '0';
+
 	--------------
 	constant clk_period : time := 10 ns;
 	signal reset, not_reset, clk: std_logic :='0';
@@ -175,6 +251,9 @@ begin
    end process;
 
 reset <= '1' after 1 ns;
+
+not_reset <= not reset; 
+
 -- instantiating the network
 NoC: network_4x4 generic map (DATA_WIDTH  => 32, DATA_WIDTH_LV => 11)
 port map (reset, clk, 
@@ -193,9 +272,21 @@ port map (reset, clk,
 	RX_L_12, credit_out_L_12, valid_out_L_12, credit_in_L_12, valid_in_L_12,  TX_L_12, 
 	RX_L_13, credit_out_L_13, valid_out_L_13, credit_in_L_13, valid_in_L_13,  TX_L_13, 
 	RX_L_14, credit_out_L_14, valid_out_L_14, credit_in_L_14, valid_in_L_14,  TX_L_14, 
-	RX_L_15, credit_out_L_15, valid_out_L_15, credit_in_L_15, valid_in_L_15,  TX_L_15
-            ); 
-not_reset <= not reset; 
+	RX_L_15, credit_out_L_15, valid_out_L_15, credit_in_L_15, valid_in_L_15,  TX_L_15, 
+
+	Cx_reconf_0, Cx_reconf_1, Cx_reconf_2, Cx_reconf_3, 
+	Cx_reconf_4, Cx_reconf_5, Cx_reconf_6, Cx_reconf_7, 
+	Cx_reconf_8, Cx_reconf_9, Cx_reconf_10, Cx_reconf_11, 
+	Cx_reconf_12, Cx_reconf_13, Cx_reconf_14, Cx_reconf_15, 
+
+	Rxy_reconf_0, Rxy_reconf_1, Rxy_reconf_2, Rxy_reconf_3, 
+	Rxy_reconf_4, Rxy_reconf_5, Rxy_reconf_6, Rxy_reconf_7, 
+	Rxy_reconf_8, Rxy_reconf_9, Rxy_reconf_10, Rxy_reconf_11, 
+	Rxy_reconf_12, Rxy_reconf_13, Rxy_reconf_14, Rxy_reconf_15, 
+
+	Reconfig
+   ); 
+
 
 -- connecting the packet generators
 credit_counter_control(clk, credit_out_L_0, valid_in_L_0, credit_counter_out_0);
