@@ -102,50 +102,47 @@ port (reset: in  std_logic;
 	credit_in_L_15, valid_in_L_15: in std_logic;
 	TX_L_15: out std_logic_vector (DATA_WIDTH-1 downto 0);
 
-	routing_table_bits_0:  in t_tata_long;
-	routing_table_bits_1:  in t_tata_long;
-	routing_table_bits_2:  in t_tata_long;
-	routing_table_bits_3:  in t_tata_long;
-	routing_table_bits_4:  in t_tata_long;
-	routing_table_bits_5:  in t_tata_long;
-	routing_table_bits_6:  in t_tata_long;
-	routing_table_bits_7:  in t_tata_long;
-	routing_table_bits_8:  in t_tata_long;
-	routing_table_bits_9:  in t_tata_long;
+	--routing table signals
+	routing_table_bits_0 :  in t_tata_long;
+	routing_table_bits_1 :  in t_tata_long;
+	routing_table_bits_2 :  in t_tata_long;
+	routing_table_bits_3 :  in t_tata_long;
+	routing_table_bits_4 :  in t_tata_long;
+	routing_table_bits_5 :  in t_tata_long;
+	routing_table_bits_6 :  in t_tata_long;
+	routing_table_bits_7 :  in t_tata_long;
+	routing_table_bits_8 :  in t_tata_long;
+	routing_table_bits_9 :  in t_tata_long;
 	routing_table_bits_10: in t_tata_long;
 	routing_table_bits_11: in t_tata_long;
 	routing_table_bits_12: in t_tata_long;
 	routing_table_bits_13: in t_tata_long;
 	routing_table_bits_14: in t_tata_long;
-	routing_table_bits_15: in t_tata_long	
+	routing_table_bits_15: in t_tata_long;
+
+	-- bypass mux select signals
+	sel_N_R_0 , sel_E_R_0 , sel_W_R_0 , sel_S_R_0 : in std_logic_vector(1 downto 0);
+	sel_N_R_1 , sel_E_R_1 , sel_W_R_1 , sel_S_R_1 : in std_logic_vector(1 downto 0);
+	sel_N_R_2 , sel_E_R_2 , sel_W_R_2 , sel_S_R_2 : in std_logic_vector(1 downto 0);
+	sel_N_R_3 , sel_E_R_3 , sel_W_R_3 , sel_S_R_3 : in std_logic_vector(1 downto 0);
+	sel_N_R_4 , sel_E_R_4 , sel_W_R_4 , sel_S_R_4 : in std_logic_vector(1 downto 0);
+	sel_N_R_5 , sel_E_R_5 , sel_W_R_5 , sel_S_R_5 : in std_logic_vector(1 downto 0);
+	sel_N_R_6 , sel_E_R_6 , sel_W_R_6 , sel_S_R_6 : in std_logic_vector(1 downto 0);
+	sel_N_R_7 , sel_E_R_7 , sel_W_R_7 , sel_S_R_7 : in std_logic_vector(1 downto 0);
+	sel_N_R_8 , sel_E_R_8 , sel_W_R_8 , sel_S_R_8 : in std_logic_vector(1 downto 0);
+	sel_N_R_9 , sel_E_R_9 , sel_W_R_9 , sel_S_R_9 : in std_logic_vector(1 downto 0);
+	sel_N_R_10, sel_E_R_10, sel_W_R_10, sel_S_R_10: in std_logic_vector(1 downto 0);
+	sel_N_R_11, sel_E_R_11, sel_W_R_11, sel_S_R_11: in std_logic_vector(1 downto 0);
+	sel_N_R_12, sel_E_R_12, sel_W_R_12, sel_S_R_12: in std_logic_vector(1 downto 0);
+	sel_N_R_13, sel_E_R_13, sel_W_R_13, sel_S_R_13: in std_logic_vector(1 downto 0);
+	sel_N_R_14, sel_E_R_14, sel_W_R_14, sel_S_R_14: in std_logic_vector(1 downto 0);
+	sel_N_R_15, sel_E_R_15, sel_W_R_15, sel_S_R_15: in std_logic_vector(1 downto 0)
    );
 end network_4x4;
 
 
 architecture behavior of network_4x4 is
 
---component router_credit_based is
---  generic (
---        DATA_WIDTH: integer := 32;
---        current_address : integer := 0;
---        Cx_rst : integer := 10;
---        NoC_size: integer := 4
---    );
---    port (
---    reset, clk: in std_logic;
-
---    Rxy_reconf: in  std_logic_vector(19 downto 0);
---    Reconfig : in std_logic;
---    RX_N, RX_E, RX_W, RX_S, RX_L : in std_logic_vector (DATA_WIDTH-1 downto 0);
---    credit_in_N, credit_in_E, credit_in_W, credit_in_S, credit_in_L: in std_logic;
---    valid_in_N, valid_in_E, valid_in_W, valid_in_S, valid_in_L : in std_logic;
-
---    valid_out_N, valid_out_E, valid_out_W, valid_out_S, valid_out_L : out std_logic;
---    credit_out_N, credit_out_E, credit_out_W, credit_out_S, credit_out_L: out std_logic;
-
---    TX_N, TX_E, TX_W, TX_S, TX_L: out std_logic_vector (DATA_WIDTH-1 downto 0)
---    );
---end component;
 
 component router_credit_based is
 	generic (
@@ -304,208 +301,240 @@ PORT MAP (reset, clk,
 	RX_N_0, RX_E_0, RX_W_0, RX_S_0, RX_L_0,
 	credit_in_N_0, credit_in_E_0, credit_in_W_0, credit_in_S_0, credit_in_L_0,
 	valid_in_N_0, valid_in_E_0, valid_in_W_0, valid_in_S_0, valid_in_L_0,
+	--routing table signals
 	t_tata (routing_table_bits_0 (0 to 15)),  t_tata (routing_table_bits_0 (16 to 31)), 
-	 t_tata (routing_table_bits_0 (32 to 47)),  t_tata (routing_table_bits_0 (48 to 63)), 
-	 t_tata (routing_table_bits_0 (64 to 79)), 
+	t_tata (routing_table_bits_0 (32 to 47)), t_tata (routing_table_bits_0 (48 to 63)), 
+	t_tata (routing_table_bits_0 (64 to 79)), 
 	valid_out_N_0, valid_out_E_0, valid_out_W_0, valid_out_S_0, valid_out_L_0,
 	credit_out_N_0, credit_out_E_0, credit_out_W_0, credit_out_S_0, credit_out_L_0,
 	TX_N_0, TX_E_0, TX_W_0, TX_S_0, TX_L_0, 
-  "00", "00", "00", "00");
+	-- bypass mux select signals
+  	sel_N_R_0 , sel_E_R_0 , sel_W_R_0 , sel_S_R_0);
 
 R_1: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>1, NoC_size=>4) 
 PORT MAP (reset, clk, 
 	RX_N_1, RX_E_1, RX_W_1, RX_S_1, RX_L_1,
 	credit_in_N_1, credit_in_E_1, credit_in_W_1, credit_in_S_1, credit_in_L_1,
 	valid_in_N_1, valid_in_E_1, valid_in_W_1, valid_in_S_1, valid_in_L_1,
+	--routing table signals
 	t_tata (routing_table_bits_1 (0 to 15)),  t_tata (routing_table_bits_1 (16 to 31)), 
-	 t_tata (routing_table_bits_1 (32 to 47)),  t_tata (routing_table_bits_1 (48 to 63)), 
-	 t_tata (routing_table_bits_1 (64 to 79)), 
+	t_tata (routing_table_bits_1 (32 to 47)), t_tata (routing_table_bits_1 (48 to 63)), 
+	t_tata (routing_table_bits_1 (64 to 79)), 
 	valid_out_N_1, valid_out_E_1, valid_out_W_1, valid_out_S_1, valid_out_L_1,
 	credit_out_N_1, credit_out_E_1, credit_out_W_1, credit_out_S_1, credit_out_L_1,
 	TX_N_1, TX_E_1, TX_W_1, TX_S_1, TX_L_1,
-  "00", "01", "11", "00");
+	-- bypass mux select signals
+  	sel_N_R_1 , sel_E_R_1 , sel_W_R_1 , sel_S_R_1);
 
 R_2: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>2, NoC_size=>4)
 PORT MAP (reset, clk, 
 	RX_N_2, RX_E_2, RX_W_2, RX_S_2, RX_L_2,
 	credit_in_N_2, credit_in_E_2, credit_in_W_2, credit_in_S_2, credit_in_L_2,
 	valid_in_N_2, valid_in_E_2, valid_in_W_2, valid_in_S_2, valid_in_L_2,
+	--routing table signals
 	t_tata (routing_table_bits_2 (0 to 15)),  t_tata (routing_table_bits_2 (16 to 31)), 
-	 t_tata (routing_table_bits_2 (32 to 47)),  t_tata (routing_table_bits_2 (48 to 63)), 
-	 t_tata (routing_table_bits_2 (64 to 79)), 
+	t_tata (routing_table_bits_2 (32 to 47)), t_tata (routing_table_bits_2 (48 to 63)), 
+	t_tata (routing_table_bits_2 (64 to 79)), 
 	valid_out_N_2, valid_out_E_2, valid_out_W_2, valid_out_S_2, valid_out_L_2,
 	credit_out_N_2, credit_out_E_2, credit_out_W_2, credit_out_S_2, credit_out_L_2,
 	TX_N_2, TX_E_2, TX_W_2, TX_S_2, TX_L_2,
-  "00", "01", "11", "00");
+	-- bypass mux select signals
+  sel_N_R_2 , sel_E_R_2 , sel_W_R_2 , sel_S_R_2);
 
 R_3: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>3, NoC_size=>4)
 PORT MAP (reset, clk, 
 	RX_N_3, RX_E_3, RX_W_3, RX_S_3, RX_L_3,
 	credit_in_N_3, credit_in_E_3, credit_in_W_3, credit_in_S_3, credit_in_L_3,
 	valid_in_N_3, valid_in_E_3, valid_in_W_3, valid_in_S_3, valid_in_L_3,
+	--routing table signals
 	t_tata (routing_table_bits_3 (0 to 15)),  t_tata (routing_table_bits_3 (16 to 31)), 
-	 t_tata (routing_table_bits_3 (32 to 47)),  t_tata (routing_table_bits_3 (48 to 63)), 
-	 t_tata (routing_table_bits_3 (64 to 79)), 
+	t_tata (routing_table_bits_3 (32 to 47)), t_tata (routing_table_bits_3 (48 to 63)), 
+	t_tata (routing_table_bits_3 (64 to 79)), 
 	valid_out_N_3, valid_out_E_3, valid_out_W_3, valid_out_S_3, valid_out_L_3,
 	credit_out_N_3, credit_out_E_3, credit_out_W_3, credit_out_S_3, credit_out_L_3,
 	TX_N_3, TX_E_3, TX_W_3, TX_S_3, TX_L_3,
-  "00", "00", "01", "11");
+	-- bypass mux select signals
+  	sel_N_R_3 , sel_E_R_3 , sel_W_R_3 , sel_S_R_3);
 
 R_4: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>4, NoC_size=>4)
 PORT MAP (reset, clk, 
 	RX_N_4, RX_E_4, RX_W_4, RX_S_4, RX_L_4,
 	credit_in_N_4, credit_in_E_4, credit_in_W_4, credit_in_S_4, credit_in_L_4,
 	valid_in_N_4, valid_in_E_4, valid_in_W_4, valid_in_S_4, valid_in_L_4,
+	--routing table signals
 	t_tata (routing_table_bits_4 (0 to 15)),  t_tata (routing_table_bits_4 (16 to 31)), 
-	 t_tata (routing_table_bits_4 (32 to 47)),  t_tata (routing_table_bits_4 (48 to 63)), 
-	 t_tata (routing_table_bits_4 (64 to 79)), 
+	t_tata (routing_table_bits_4 (32 to 47)), t_tata (routing_table_bits_4 (48 to 63)), 
+	t_tata (routing_table_bits_4 (64 to 79)), 
 	valid_out_N_4, valid_out_E_4, valid_out_W_4, valid_out_S_4, valid_out_L_4,
 	credit_out_N_4, credit_out_E_4, credit_out_W_4, credit_out_S_4, credit_out_L_4,
 	TX_N_4, TX_E_4, TX_W_4, TX_S_4, TX_L_4,
-  "00", "00", "00", "00");
+	-- bypass mux select signals
+  	sel_N_R_4 , sel_E_R_4 , sel_W_R_4 , sel_S_R_4);
 
 R_5: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>5, NoC_size=>4)
 PORT MAP (reset, clk, 
 	RX_N_5, RX_E_5, RX_W_5, RX_S_5, RX_L_5,
 	credit_in_N_5, credit_in_E_5, credit_in_W_5, credit_in_S_5, credit_in_L_5,
 	valid_in_N_5, valid_in_E_5, valid_in_W_5, valid_in_S_5, valid_in_L_5,
+	--routing table signals
 	t_tata (routing_table_bits_5 (0 to 15)),  t_tata (routing_table_bits_5 (16 to 31)), 
-	 t_tata (routing_table_bits_5 (32 to 47)),  t_tata (routing_table_bits_5 (48 to 63)), 
-	 t_tata (routing_table_bits_5 (64 to 79)), 
+	t_tata (routing_table_bits_5 (32 to 47)), t_tata (routing_table_bits_5 (48 to 63)), 
+	t_tata (routing_table_bits_5 (64 to 79)), 
 	valid_out_N_5, valid_out_E_5, valid_out_W_5, valid_out_S_5, valid_out_L_5,
 	credit_out_N_5, credit_out_E_5, credit_out_W_5, credit_out_S_5, credit_out_L_5,
 	TX_N_5, TX_E_5, TX_W_5, TX_S_5, TX_L_5,
-  "00", "00", "00", "00");
+	-- bypass mux select signals
+   	sel_N_R_5 , sel_E_R_5 , sel_W_R_5 , sel_S_R_5);
 
 R_6: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>6, NoC_size=>4)
 PORT MAP (reset, clk, 
 	RX_N_6, RX_E_6, RX_W_6, RX_S_6, RX_L_6,
 	credit_in_N_6, credit_in_E_6, credit_in_W_6, credit_in_S_6, credit_in_L_6,
 	valid_in_N_6, valid_in_E_6, valid_in_W_6, valid_in_S_6, valid_in_L_6,
+	--routing table signals
 	t_tata (routing_table_bits_6 (0 to 15)),  t_tata (routing_table_bits_6 (16 to 31)), 
-	 t_tata (routing_table_bits_6 (32 to 47)),  t_tata (routing_table_bits_6 (48 to 63)), 
-	 t_tata (routing_table_bits_6 (64 to 79)), 
+	t_tata (routing_table_bits_6 (32 to 47)), t_tata (routing_table_bits_6 (48 to 63)), 
+	t_tata (routing_table_bits_6 (64 to 79)), 
 	valid_out_N_6, valid_out_E_6, valid_out_W_6, valid_out_S_6, valid_out_L_6,
 	credit_out_N_6, credit_out_E_6, credit_out_W_6, credit_out_S_6, credit_out_L_6,
 	TX_N_6, TX_E_6, TX_W_6, TX_S_6, TX_L_6,
-  "00", "00", "00", "00");
+	-- bypass mux select signals
+  	sel_N_R_6 , sel_E_R_6 , sel_W_R_6 , sel_S_R_6);
 
 R_7: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>7, NoC_size=>4)
 PORT MAP (reset, clk, 
 	RX_N_7, RX_E_7, RX_W_7, RX_S_7, RX_L_7,
 	credit_in_N_7, credit_in_E_7, credit_in_W_7, credit_in_S_7, credit_in_L_7,
 	valid_in_N_7, valid_in_E_7, valid_in_W_7, valid_in_S_7, valid_in_L_7,
+	--routing table signals
 	t_tata (routing_table_bits_7 (0 to 15)),  t_tata (routing_table_bits_7 (16 to 31)), 
-	 t_tata (routing_table_bits_7 (32 to 47)),  t_tata (routing_table_bits_7 (48 to 63)), 
-	 t_tata (routing_table_bits_7 (64 to 79)), 
+	t_tata (routing_table_bits_7 (32 to 47)), t_tata (routing_table_bits_7 (48 to 63)), 
+	t_tata (routing_table_bits_7 (64 to 79)), 
 	valid_out_N_7, valid_out_E_7, valid_out_W_7, valid_out_S_7, valid_out_L_7,
 	credit_out_N_7, credit_out_E_7, credit_out_W_7, credit_out_S_7, credit_out_L_7,
 	TX_N_7, TX_E_7, TX_W_7, TX_S_7, TX_L_7,
-  "11", "00", "00", "01");
+	-- bypass mux select signals
+  	sel_N_R_7 , sel_E_R_7 , sel_W_R_7 , sel_S_R_7);
 
 R_8: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>8, NoC_size=>4)
 PORT MAP (reset, clk, 
 	RX_N_8, RX_E_8, RX_W_8, RX_S_8, RX_L_8,
 	credit_in_N_8, credit_in_E_8, credit_in_W_8, credit_in_S_8, credit_in_L_8,
 	valid_in_N_8, valid_in_E_8, valid_in_W_8, valid_in_S_8, valid_in_L_8,
+	--routing table signals
 	t_tata (routing_table_bits_8 (0 to 15)),  t_tata (routing_table_bits_8 (16 to 31)), 
-	 t_tata (routing_table_bits_8 (32 to 47)),  t_tata (routing_table_bits_8 (48 to 63)), 
-	 t_tata (routing_table_bits_8 (64 to 79)), 
+	t_tata (routing_table_bits_8 (32 to 47)), t_tata (routing_table_bits_8 (48 to 63)), 
+	t_tata (routing_table_bits_8 (64 to 79)), 
 	valid_out_N_8, valid_out_E_8, valid_out_W_8, valid_out_S_8, valid_out_L_8,
 	credit_out_N_8, credit_out_E_8, credit_out_W_8, credit_out_S_8, credit_out_L_8,
 	TX_N_8, TX_E_8, TX_W_8, TX_S_8, TX_L_8,
-  "00", "00", "00", "00");
+	-- bypass mux select signals
+  	sel_N_R_8 , sel_E_R_8 , sel_W_R_8 , sel_S_R_8);
 
 R_9: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>9, NoC_size=>4)
 PORT MAP (reset, clk, 
 	RX_N_9, RX_E_9, RX_W_9, RX_S_9, RX_L_9,
 	credit_in_N_9, credit_in_E_9, credit_in_W_9, credit_in_S_9, credit_in_L_9,
 	valid_in_N_9, valid_in_E_9, valid_in_W_9, valid_in_S_9, valid_in_L_9,
+	--routing table signals
 	t_tata (routing_table_bits_9 (0 to 15)),  t_tata (routing_table_bits_9 (16 to 31)), 
-	 t_tata (routing_table_bits_9 (32 to 47)),  t_tata (routing_table_bits_9 (48 to 63)), 
-	 t_tata (routing_table_bits_9 (64 to 79)), 
+	t_tata (routing_table_bits_9 (32 to 47)), t_tata (routing_table_bits_9 (48 to 63)), 
+	t_tata (routing_table_bits_9 (64 to 79)), 
 	valid_out_N_9, valid_out_E_9, valid_out_W_9, valid_out_S_9, valid_out_L_9,
 	credit_out_N_9, credit_out_E_9, credit_out_W_9, credit_out_S_9, credit_out_L_9,
 	TX_N_9, TX_E_9, TX_W_9, TX_S_9, TX_L_9,
-  "00", "00", "00", "00");
+	-- bypass mux select signals
+  	sel_N_R_9 , sel_E_R_9 , sel_W_R_9 , sel_S_R_9);
 
 R_10: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>10, NoC_size=>4)
 PORT MAP (reset, clk, 
 	RX_N_10, RX_E_10, RX_W_10, RX_S_10, RX_L_10,
 	credit_in_N_10, credit_in_E_10, credit_in_W_10, credit_in_S_10, credit_in_L_10,
 	valid_in_N_10, valid_in_E_10, valid_in_W_10, valid_in_S_10, valid_in_L_10,
+	--routing table signals
 	t_tata (routing_table_bits_10 (0 to 15)),  t_tata (routing_table_bits_10 (16 to 31)), 
-	 t_tata (routing_table_bits_10 (32 to 47)),  t_tata (routing_table_bits_10 (48 to 63)), 
-	 t_tata (routing_table_bits_10 (64 to 79)), 
+	t_tata (routing_table_bits_10 (32 to 47)), t_tata (routing_table_bits_10 (48 to 63)), 
+	t_tata (routing_table_bits_10 (64 to 79)), 
 	valid_out_N_10, valid_out_E_10, valid_out_W_10, valid_out_S_10, valid_out_L_10,
 	credit_out_N_10, credit_out_E_10, credit_out_W_10, credit_out_S_10, credit_out_L_10,
 	TX_N_10, TX_E_10, TX_W_10, TX_S_10, TX_L_10,
-  "00", "00", "00", "00");
+	-- bypass mux select signals
+  	sel_N_R_10 , sel_E_R_10 , sel_W_R_10 , sel_S_R_10);
 
 R_11: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>11, NoC_size=>4)
 PORT MAP (reset, clk, 
 	RX_N_11, RX_E_11, RX_W_11, RX_S_11, RX_L_11,
 	credit_in_N_11, credit_in_E_11, credit_in_W_11, credit_in_S_11, credit_in_L_11,
 	valid_in_N_11, valid_in_E_11, valid_in_W_11, valid_in_S_11, valid_in_L_11,
+	--routing table signals
 	t_tata (routing_table_bits_11 (0 to 15)),  t_tata (routing_table_bits_11 (16 to 31)), 
-	 t_tata (routing_table_bits_11 (32 to 47)),  t_tata (routing_table_bits_11 (48 to 63)), 
-	 t_tata (routing_table_bits_11 (64 to 79)), 
+	t_tata (routing_table_bits_11 (32 to 47)),  t_tata (routing_table_bits_11 (48 to 63)), 
+	t_tata (routing_table_bits_11 (64 to 79)), 
 	valid_out_N_11, valid_out_E_11, valid_out_W_11, valid_out_S_11, valid_out_L_11,
 	credit_out_N_11, credit_out_E_11, credit_out_W_11, credit_out_S_11, credit_out_L_11,
 	TX_N_11, TX_E_11, TX_W_11, TX_S_11, TX_L_11,
-  "11", "00", "00", "01");
+	-- bypass mux select signals
+  	sel_N_R_11 , sel_E_R_11 , sel_W_R_11 , sel_S_R_11);
 
 R_12: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>12, NoC_size=>4)
 PORT MAP (reset, clk, 
 	RX_N_12, RX_E_12, RX_W_12, RX_S_12, RX_L_12,
 	credit_in_N_12, credit_in_E_12, credit_in_W_12, credit_in_S_12, credit_in_L_12,
 	valid_in_N_12, valid_in_E_12, valid_in_W_12, valid_in_S_12, valid_in_L_12,
+	--routing table signals
 	t_tata (routing_table_bits_12 (0 to 15)),  t_tata (routing_table_bits_12 (16 to 31)), 
-	 t_tata (routing_table_bits_12 (32 to 47)),  t_tata (routing_table_bits_12 (48 to 63)), 
-	 t_tata (routing_table_bits_12 (64 to 79)), 
+	t_tata (routing_table_bits_12 (32 to 47)), t_tata (routing_table_bits_12 (48 to 63)), 
+	t_tata (routing_table_bits_12 (64 to 79)), 
 	valid_out_N_12, valid_out_E_12, valid_out_W_12, valid_out_S_12, valid_out_L_12,
 	credit_out_N_12, credit_out_E_12, credit_out_W_12, credit_out_S_12, credit_out_L_12,
 	TX_N_12, TX_E_12, TX_W_12, TX_S_12, TX_L_12,
-  "00", "00", "00", "00");
+	-- bypass mux select signals
+  	sel_N_R_12 , sel_E_R_12 , sel_W_R_12 , sel_S_R_12);
 
 R_13: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>13, NoC_size=>4)
 PORT MAP (reset, clk, 
 	RX_N_13, RX_E_13, RX_W_13, RX_S_13, RX_L_13,
 	credit_in_N_13, credit_in_E_13, credit_in_W_13, credit_in_S_13, credit_in_L_13,
 	valid_in_N_13, valid_in_E_13, valid_in_W_13, valid_in_S_13, valid_in_L_13,
+	--routing table signals
 	t_tata (routing_table_bits_13 (0 to 15)),  t_tata (routing_table_bits_13 (16 to 31)), 
-	 t_tata (routing_table_bits_13 (32 to 47)),  t_tata (routing_table_bits_13 (48 to 63)), 
-	 t_tata (routing_table_bits_13 (64 to 79)), 
+	t_tata (routing_table_bits_13 (32 to 47)), t_tata (routing_table_bits_13 (48 to 63)), 
+	t_tata (routing_table_bits_13 (64 to 79)), 
 	valid_out_N_13, valid_out_E_13, valid_out_W_13, valid_out_S_13, valid_out_L_13,
 	credit_out_N_13, credit_out_E_13, credit_out_W_13, credit_out_S_13, credit_out_L_13,
 	TX_N_13, TX_E_13, TX_W_13, TX_S_13, TX_L_13,
-  "00", "00", "00", "00");
+	-- bypass mux select signals
+  	sel_N_R_13 , sel_E_R_13 , sel_W_R_13 , sel_S_R_13);
 
 R_14: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>14, NoC_size=>4)
 PORT MAP (reset, clk, 
 	RX_N_14, RX_E_14, RX_W_14, RX_S_14, RX_L_14,
 	credit_in_N_14, credit_in_E_14, credit_in_W_14, credit_in_S_14, credit_in_L_14,
 	valid_in_N_14, valid_in_E_14, valid_in_W_14, valid_in_S_14, valid_in_L_14,
+	--routing table signals
 	t_tata (routing_table_bits_14 (0 to 15)),  t_tata (routing_table_bits_14 (16 to 31)), 
-	 t_tata (routing_table_bits_14 (32 to 47)),  t_tata (routing_table_bits_14 (48 to 63)), 
-	 t_tata (routing_table_bits_14 (64 to 79)), 
+	t_tata (routing_table_bits_14 (32 to 47)), t_tata (routing_table_bits_14 (48 to 63)), 
+	t_tata (routing_table_bits_14 (64 to 79)), 
 	valid_out_N_14, valid_out_E_14, valid_out_W_14, valid_out_S_14, valid_out_L_14,
 	credit_out_N_14, credit_out_E_14, credit_out_W_14, credit_out_S_14, credit_out_L_14,
 	TX_N_14, TX_E_14, TX_W_14, TX_S_14, TX_L_14,
-  "00", "00", "00", "00");
+	-- bypass mux select signals
+  	sel_N_R_14 , sel_E_R_14 , sel_W_R_14 , sel_S_R_14);
 
 R_15: router_credit_based generic map (DATA_WIDTH  => DATA_WIDTH, current_address=>15, NoC_size=>4)
 PORT MAP (reset, clk, 
 	RX_N_15, RX_E_15, RX_W_15, RX_S_15, RX_L_15,
 	credit_in_N_15, credit_in_E_15, credit_in_W_15, credit_in_S_15, credit_in_L_15,
 	valid_in_N_15, valid_in_E_15, valid_in_W_15, valid_in_S_15, valid_in_L_15,
+	--routing table signals
 	t_tata (routing_table_bits_15 (0 to 15)),  t_tata (routing_table_bits_15 (16 to 31)), 
-	 t_tata (routing_table_bits_15 (32 to 47)),  t_tata (routing_table_bits_15 (48 to 63)), 
-	 t_tata (routing_table_bits_15 (64 to 79)), 
+	t_tata (routing_table_bits_15 (32 to 47)), t_tata (routing_table_bits_15 (48 to 63)), 
+	t_tata (routing_table_bits_15 (64 to 79)), 
 	valid_out_N_15, valid_out_E_15, valid_out_W_15, valid_out_S_15, valid_out_L_15,
 	credit_out_N_15, credit_out_E_15, credit_out_W_15, credit_out_S_15, credit_out_L_15,
 	TX_N_15, TX_E_15, TX_W_15, TX_S_15, TX_L_15,
-  "00", "00", "00", "00");
+	-- bypass mux select signals
+  	sel_N_R_15 , sel_E_R_15 , sel_W_R_15 , sel_S_R_15);
 
 
 ---------------------------------------------------------------
