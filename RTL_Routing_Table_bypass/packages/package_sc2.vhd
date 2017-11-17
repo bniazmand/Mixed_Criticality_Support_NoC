@@ -12,7 +12,7 @@ package type_def_pack is
 
    type t_tata IS ARRAY(0 to 15) OF STD_LOGIC_VECTOR(3 DOWNTO 0);
    type t_tata_long IS ARRAY(0 to 79) OF STD_LOGIC_VECTOR(3 DOWNTO 0);
-   
+
   -- Node 0
    constant routing_table_bits_0: t_tata_long := (
    	-- local
@@ -1429,9 +1429,9 @@ package type_def_pack is
  constant sel_S_R_0 : std_logic_vector(1 downto 0):=  "00";
 
  constant sel_N_R_1 : std_logic_vector(1 downto 0):=  "00";
- constant sel_E_R_1 : std_logic_vector(1 downto 0):=  "01";
- constant sel_W_R_1 : std_logic_vector(1 downto 0):=  "11";
- constant sel_S_R_1 : std_logic_vector(1 downto 0):=  "00";
+ constant sel_E_R_1 : std_logic_vector(1 downto 0):=  "00";
+ constant sel_W_R_1 : std_logic_vector(1 downto 0):=  "01";
+ constant sel_S_R_1 : std_logic_vector(1 downto 0):=  "11";
 
  constant sel_N_R_2 : std_logic_vector(1 downto 0):=  "00";
  constant sel_E_R_2 : std_logic_vector(1 downto 0):=  "00";
