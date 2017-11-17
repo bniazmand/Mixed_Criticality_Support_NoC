@@ -153,6 +153,9 @@ package body TB_Package is
           Packet_length:=max_packet_size;
       end if;
 
+      if source = 3 then
+        wait;
+      end if;
       --------------------------------------
       uniform(seed1, seed2, rand);
       valid_dest:= False;
@@ -182,41 +185,65 @@ package body TB_Package is
             valid_dest:= False;
           end if;
 
-          if source = 1 and destination_id = 4 then
+          if source = 1 and destination_id = 2 then
             valid_dest:= False;
-          elsif source = 1 and destination_id = 5 then
+          elsif source = 1 and destination_id = 3 then
+            valid_dest:= False;
+          elsif source = 1 and destination_id = 4 then
+            valid_dest:= False;
+          elsif source = 1 and destination_id = 6 then
+            valid_dest:= False;
+          elsif source = 1 and destination_id = 7 then
             valid_dest:= False;
           elsif source = 1 and destination_id = 8 then
             valid_dest:= False;
-          elsif source = 1 and destination_id = 9 then
+          elsif source = 1 and destination_id = 10 then
+            valid_dest:= False;
+          elsif source = 1 and destination_id = 11 then
             valid_dest:= False;
           elsif source = 1 and destination_id = 12 then
             valid_dest:= False;
-          elsif source = 1 and destination_id = 13 then
-            valid_dest:= False;
           elsif source = 1 and destination_id = 14 then
+            valid_dest:= False;
+          elsif source = 2 and destination_id = 1 then
+            valid_dest:= False;
+          elsif source = 2 and destination_id = 3 then
             valid_dest:= False;
           elsif source = 2 and destination_id = 4 then
             valid_dest:= False;
           elsif source = 2 and destination_id = 5 then
             valid_dest:= False;
+          elsif source = 2 and destination_id = 7 then
+            valid_dest:= False;
           elsif source = 2 and destination_id = 8 then
             valid_dest:= False;
           elsif source = 2 and destination_id = 9 then
+            valid_dest:= False;
+          elsif source = 2 and destination_id = 11 then
             valid_dest:= False;
           elsif source = 2 and destination_id = 12 then
             valid_dest:= False;
           elsif source = 2 and destination_id = 13 then
             valid_dest:= False;
-          elsif source = 2 and destination_id = 14 then
+          elsif source = 3 and destination_id = 1 then
+            valid_dest:= False;
+          elsif source = 3 and destination_id = 2 then
             valid_dest:= False;
           elsif source = 3 and destination_id = 4 then
             valid_dest:= False;
           elsif source = 3 and destination_id = 5 then
             valid_dest:= False;
+          elsif source = 3 and destination_id = 6 then
+            valid_dest:= False;
+          elsif source = 3 and destination_id = 7 then
+            valid_dest:= False;
           elsif source = 3 and destination_id = 8 then
             valid_dest:= False;
           elsif source = 3 and destination_id = 9 then
+            valid_dest:= False;
+          elsif source = 3 and destination_id = 10 then
+            valid_dest:= False;
+          elsif source = 3 and destination_id = 11 then
             valid_dest:= False;
           elsif source = 3 and destination_id = 12 then
             valid_dest:= False;
@@ -224,154 +251,57 @@ package body TB_Package is
             valid_dest:= False;
           elsif source = 3 and destination_id = 14 then
             valid_dest:= False;
-          elsif source = 4 and destination_id = 1 then
+          elsif source = 4 and destination_id = 3 then
             valid_dest:= False;
-          elsif source = 4 and destination_id = 9 then
+          elsif source = 4 and destination_id = 11 then
             valid_dest:= False;
-          elsif source = 4 and destination_id = 13 then
+          elsif source = 5 and destination_id = 3 then
             valid_dest:= False;
-          elsif source = 4 and destination_id = 14 then
+          elsif source = 5 and destination_id = 11 then
             valid_dest:= False;
-          elsif source = 5 and destination_id = 1 then
+          elsif source = 6 and destination_id = 3 then
             valid_dest:= False;
-          elsif source = 5 and destination_id = 9 then
+          elsif source = 6 and destination_id = 11 then
             valid_dest:= False;
-          elsif source = 5 and destination_id = 13 then
+          elsif source = 7 and destination_id = 3 then
             valid_dest:= False;
-          elsif source = 5 and destination_id = 14 then
-            valid_dest:= False;
-          elsif source = 6 and destination_id = 1 then
-            valid_dest:= False;
-          elsif source = 6 and destination_id = 9 then
-            valid_dest:= False;
-          elsif source = 6 and destination_id = 13 then
-            valid_dest:= False;
-          elsif source = 6 and destination_id = 14 then
-            valid_dest:= False;
-          elsif source = 7 and destination_id = 1 then
-            valid_dest:= False;
-          elsif source = 7 and destination_id = 9 then
-            valid_dest:= False;
-          elsif source = 7 and destination_id = 13 then
-            valid_dest:= False;
-          elsif source = 7 and destination_id = 14 then
-            valid_dest:= False;
-          elsif source = 8 and destination_id = 1 then
-            valid_dest:= False;
-          elsif source = 8 and destination_id = 2 then
+          elsif source = 7 and destination_id = 11 then
             valid_dest:= False;
           elsif source = 8 and destination_id = 3 then
             valid_dest:= False;
-          elsif source = 8 and destination_id = 5 then
-            valid_dest:= False;
-          elsif source = 8 and destination_id = 6 then
-            valid_dest:= False;
           elsif source = 8 and destination_id = 7 then
-            valid_dest:= False;
-          elsif source = 8 and destination_id = 10 then
-            valid_dest:= False;
-          elsif source = 8 and destination_id = 11 then
-            valid_dest:= False;
-          elsif source = 8 and destination_id = 14 then
-            valid_dest:= False;
-          elsif source = 9 and destination_id = 1 then
-            valid_dest:= False;
-          elsif source = 9 and destination_id = 2 then
             valid_dest:= False;
           elsif source = 9 and destination_id = 3 then
             valid_dest:= False;
-          elsif source = 9 and destination_id = 5 then
-            valid_dest:= False;
-          elsif source = 9 and destination_id = 6 then
-            valid_dest:= False;
           elsif source = 9 and destination_id = 7 then
             valid_dest:= False;
-          elsif source = 9 and destination_id = 10 then
+          elsif source = 10 and destination_id = 3 then
             valid_dest:= False;
-          elsif source = 9 and destination_id = 11 then
+          elsif source = 10 and destination_id = 7 then
             valid_dest:= False;
-          elsif source = 9 and destination_id = 14 then
+          elsif source = 11 and destination_id = 3 then
             valid_dest:= False;
-          elsif source = 10 and destination_id = 1 then
-            valid_dest:= False;
-          elsif source = 10 and destination_id = 4 then
-            valid_dest:= False;
-          elsif source = 10 and destination_id = 5 then
-            valid_dest:= False;
-          elsif source = 10 and destination_id = 8 then
-            valid_dest:= False;
-          elsif source = 10 and destination_id = 9 then
-            valid_dest:= False;
-          elsif source = 10 and destination_id = 12 then
-            valid_dest:= False;
-          elsif source = 10 and destination_id = 13 then
-            valid_dest:= False;
-          elsif source = 10 and destination_id = 14 then
-            valid_dest:= False;
-          elsif source = 11 and destination_id = 1 then
-            valid_dest:= False;
-          elsif source = 11 and destination_id = 4 then
-            valid_dest:= False;
-          elsif source = 11 and destination_id = 5 then
-            valid_dest:= False;
-          elsif source = 11 and destination_id = 8 then
-            valid_dest:= False;
-          elsif source = 11 and destination_id = 9 then
-            valid_dest:= False;
-          elsif source = 11 and destination_id = 12 then
-            valid_dest:= False;
-          elsif source = 11 and destination_id = 13 then
-            valid_dest:= False;
-          elsif source = 11 and destination_id = 14 then
-            valid_dest:= False;
-          elsif source = 12 and destination_id = 1 then
-            valid_dest:= False;
-          elsif source = 12 and destination_id = 2 then
+          elsif source = 11 and destination_id = 7 then
             valid_dest:= False;
           elsif source = 12 and destination_id = 3 then
             valid_dest:= False;
-          elsif source = 12 and destination_id = 5 then
-            valid_dest:= False;
-          elsif source = 12 and destination_id = 6 then
-            valid_dest:= False;
           elsif source = 12 and destination_id = 7 then
-            valid_dest:= False;
-          elsif source = 12 and destination_id = 10 then
             valid_dest:= False;
           elsif source = 12 and destination_id = 11 then
             valid_dest:= False;
-          elsif source = 13 and destination_id = 1 then
-            valid_dest:= False;
-          elsif source = 13 and destination_id = 2 then
-            valid_dest:= False;
           elsif source = 13 and destination_id = 3 then
-            valid_dest:= False;
-          elsif source = 13 and destination_id = 5 then
-            valid_dest:= False;
-          elsif source = 13 and destination_id = 6 then
             valid_dest:= False;
           elsif source = 13 and destination_id = 7 then
             valid_dest:= False;
-          elsif source = 13 and destination_id = 10 then
-            valid_dest:= False;
           elsif source = 13 and destination_id = 11 then
-            valid_dest:= False;
-          elsif source = 14 and destination_id = 1 then
-            valid_dest:= False;
-          elsif source = 14 and destination_id = 2 then
             valid_dest:= False;
           elsif source = 14 and destination_id = 3 then
             valid_dest:= False;
-          elsif source = 14 and destination_id = 5 then
-            valid_dest:= False;
-          elsif source = 14 and destination_id = 6 then
-            valid_dest:= False;
           elsif source = 14 and destination_id = 7 then
-            valid_dest:= False;
-          elsif source = 14 and destination_id = 10 then
             valid_dest:= False;
           elsif source = 14 and destination_id = 11 then
             valid_dest:= False;
+
           end if;
       end loop;
       --------------------------------------

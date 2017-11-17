@@ -8,15 +8,15 @@
 vlib work
 
 # Include files and compile them
-vcom "packages/pacakge_sc2.vhd"
+vcom "packages/pacakge_sc1.vhd"
 vcom "arbiter_in.vhd"
 vcom "arbiter_out.vhd"
 vcom "allocator.vhd"
-vcom "LBDR_sc2.vhd"
+vcom "LBDR_sc1.vhd"
 vcom "xbar.vhd"
 vcom "FIFO_one_hot_credit_based.vhd"
 vcom "Router_32_bit_credit_based.vhd"
-vcom "packages/TB_Package_32_bit_credit_based_sc2.vhd"
+vcom "packages/TB_Package_32_bit_credit_based_sc1.vhd"
 vcom "network_4x4_credit_based.vhd"
 vcom "network_4x4_NI_Test_Rand_credit_based_tb.vhd"
 

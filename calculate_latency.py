@@ -6,7 +6,7 @@ import random
 import sys
 
 warmup_time = 1000
-SIMUL_DIR = "RTL_LBDR_20_bits_XY/"
+SIMUL_DIR = "RTL_LBDR_20_bits_modified/"
 
 if '--help' in sys.argv[1:]:
     print "\t-S [path to file]: path to file containing all the sent packets."
