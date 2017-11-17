@@ -145,9 +145,7 @@ port (reset: in  std_logic;
 	Rxy_reconf_12: in std_logic_vector(7 downto 0);
 	Rxy_reconf_13: in std_logic_vector(7 downto 0);
 	Rxy_reconf_14: in std_logic_vector(7 downto 0);
-	Rxy_reconf_15: in std_logic_vector(7 downto 0);
-
-	Reconfig : in std_logic
+	Rxy_reconf_15: in std_logic_vector(7 downto 0)
    );
 end component;
 
@@ -201,7 +199,6 @@ end component;
 	signal credit_counter_out_15:  std_logic_vector (1 downto 0);
 	signal credit_out_L_15, credit_in_L_15, valid_in_L_15, valid_out_L_15: std_logic;
 
-	signal Reconfig: std_logic := '0';
 
 	--------------
 	constant clk_period : time := 10 ns;
@@ -249,9 +246,7 @@ port map (reset, clk,
 	Rxy_reconf_0, Rxy_reconf_1, Rxy_reconf_2, Rxy_reconf_3,
 	Rxy_reconf_4, Rxy_reconf_5, Rxy_reconf_6, Rxy_reconf_7,
 	Rxy_reconf_8, Rxy_reconf_9, Rxy_reconf_10, Rxy_reconf_11,
-	Rxy_reconf_12, Rxy_reconf_13, Rxy_reconf_14, Rxy_reconf_15,
-
-	Reconfig
+	Rxy_reconf_12, Rxy_reconf_13, Rxy_reconf_14, Rxy_reconf_15
    );
 
 

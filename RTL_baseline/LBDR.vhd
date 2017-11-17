@@ -15,9 +15,8 @@ entity LBDR is
     port (  reset: in  std_logic;
             clk: in  std_logic;
 
-            Cx_reconf:  in  std_logic_vector(3 downto 0);
-            Rxy_reconf: in  std_logic_vector(7 downto 0);
-            Reconfig : in std_logic;
+            Cx:  in  std_logic_vector(3 downto 0);
+            Rxy: in  std_logic_vector(7 downto 0);
 
             empty: in  std_logic;
             flit_type: in std_logic_vector(2 downto 0);
@@ -29,8 +28,7 @@ end LBDR;
 
 architecture behavior of LBDR is
 
-  signal Cx, Cx_in:  std_logic_vector(3 downto 0);
-  signal Rxy, Rxy_in:  std_logic_vector(7 downto 0);
+  
   signal cur_addr:  std_logic_vector(NoC_size-1 downto 0);  
   signal N1, E1, W1, S1  :std_logic :='0';  
   signal Req_N_in, Req_E_in, Req_W_in, Req_S_in, Req_L_in: std_logic;
@@ -42,7 +40,6 @@ begin
 
  grants <= grant_N or grant_E or grant_W or grant_S or grant_L;
 
-  --Cx <= std_logic_vector(to_unsigned(Cx_rst, Cx'length));
   
   cur_addr <= std_logic_vector(to_unsigned(cur_addr_rst, cur_addr'length));
 
@@ -54,8 +51,6 @@ begin
 
 process(clk, reset) begin
     if reset = '0' then 
-        Cx <= Cx_reconf;
-        Rxy <= Rxy_reconf;
         Req_N_FF <= '0';
         Req_E_FF <= '0';
         Req_W_FF <= '0';
@@ -63,8 +58,6 @@ process(clk, reset) begin
         Req_L_FF <= '0';
         ReConf_FF_out <= '0';
     elsif clk'event and clk = '1' then
-        Cx <= Cx_in;
-        Rxy <= Rxy_in;  
         Req_N_FF <= Req_N_in;
         Req_E_FF <= Req_E_in;
         Req_W_FF <= Req_W_in;
@@ -76,21 +69,7 @@ end process;
  
 
 -- The combionational part
-process(Rxy_reconf, ReConf_FF_out, Rxy, Reconfig, flit_type, grants, empty)begin
-  if ReConf_FF_out= '1' and flit_type = "100" and empty = '0' and grants = '1' then
-      Rxy_in <= Rxy_reconf;
-      ReConf_FF_in <= '0';
-  else
-    Rxy_in <= Rxy;
-    if Reconfig = '1' then 
-      ReConf_FF_in <= '1';
-    else
-      ReConf_FF_in <= ReConf_FF_out;
-    end if;
-  end if; 
-end process;
 
-Cx_in <= Cx;
 
 Req_N <= Req_N_FF;
 Req_E <= Req_E_FF;

@@ -9,7 +9,6 @@ entity router_credit_based is
     generic (
         DATA_WIDTH: integer := 32;
         current_address : integer := 0;
-        Cx_rst : integer := 10;
         NoC_size: integer := 4
     );
     port (
@@ -17,7 +16,6 @@ entity router_credit_based is
 
     Cx_reconf:  in  std_logic_vector(3 downto 0);
     Rxy_reconf: in  std_logic_vector(7 downto 0);
-    Reconfig : in std_logic;
 
     RX_N, RX_E, RX_W, RX_S, RX_L : in std_logic_vector (DATA_WIDTH-1 downto 0); 
 
@@ -84,10 +82,9 @@ end COMPONENT;
     );
     port (  reset: in  std_logic;
             clk: in  std_logic;
-
-            Cx_reconf:  in  std_logic_vector(3 downto 0);
-            Rxy_reconf: in  std_logic_vector(7 downto 0);
-            Reconfig : in std_logic;
+            
+            Cx:  in  std_logic_vector(3 downto 0);
+            Rxy: in  std_logic_vector(7 downto 0);
 
             empty: in  std_logic;
             flit_type: in std_logic_vector(2 downto 0);
@@ -132,7 +129,24 @@ end COMPONENT;
 
     signal Xbar_sel_N, Xbar_sel_E, Xbar_sel_W, Xbar_sel_S, Xbar_sel_L: std_logic_vector(4 downto 0);
 
+    signal Cx, Cx_in:  std_logic_vector(3 downto 0);
+    signal Rxy, Rxy_in:  std_logic_vector(7 downto 0);
 begin
+
+----------------------------------------------------------------
+----------------------------------------------------------------
+process(clk, reset) begin
+    if reset = '0' then 
+        Cx <= Cx_reconf;
+        Rxy <= Rxy_reconf;
+    elsif clk'event and clk = '1' then
+        Cx <= Cx_in;
+        Rxy <= Rxy_in;  
+    end if;
+end process;
+
+Rxy_in <= Rxy;  
+Cx_in <= Cx;
 
 -- all the FIFOs
 FIFO_N: FIFO_credit_based
@@ -170,31 +184,31 @@ FIFO_L: FIFO_credit_based
 
 -- all the LBDRs
 LBDR_N: LBDR generic map (cur_addr_rst => current_address, NoC_size => NoC_size)
-       PORT MAP (reset => reset, clk => clk, empty => empty_N, Cx_reconf => Cx_reconf, Rxy_reconf => Rxy_reconf, Reconfig => Reconfig,
+       PORT MAP (reset => reset, clk => clk, empty => empty_N, Cx => Cx, Rxy => Rxy, 
              flit_type => FIFO_D_out_N(DATA_WIDTH-1 downto DATA_WIDTH-3), dst_addr=> FIFO_D_out_N(NoC_size  downto 1) ,
              grant_N => '0', grant_E =>Grant_EN, grant_W => Grant_WN, grant_S=>Grant_SN, grant_L =>Grant_LN,
              Req_N=> Req_NN, Req_E=>Req_NE, Req_W=>Req_NW, Req_S=>Req_NS, Req_L=>Req_NL);
 
 LBDR_E: LBDR generic map (cur_addr_rst => current_address, NoC_size => NoC_size)
-   PORT MAP (reset =>  reset, clk => clk, empty => empty_E, Cx_reconf => Cx_reconf, Rxy_reconf => Rxy_reconf, Reconfig => Reconfig,
+   PORT MAP (reset =>  reset, clk => clk, empty => empty_E, Cx => Cx, Rxy => Rxy, 
              flit_type => FIFO_D_out_E(DATA_WIDTH-1 downto DATA_WIDTH-3), dst_addr=> FIFO_D_out_E(NoC_size downto 1) ,
              grant_N => Grant_NE, grant_E =>'0', grant_W => Grant_WE, grant_S=>Grant_SE, grant_L =>Grant_LE,
              Req_N=> Req_EN, Req_E=>Req_EE, Req_W=>Req_EW, Req_S=>Req_ES, Req_L=>Req_EL);
 
 LBDR_W: LBDR generic map (cur_addr_rst => current_address, NoC_size => NoC_size)
-   PORT MAP (reset =>  reset, clk => clk, empty => empty_W, Cx_reconf => Cx_reconf, Rxy_reconf => Rxy_reconf, Reconfig => Reconfig,
+   PORT MAP (reset =>  reset, clk => clk, empty => empty_W, Cx => Cx, Rxy => Rxy, 
              flit_type => FIFO_D_out_W(DATA_WIDTH-1 downto DATA_WIDTH-3), dst_addr=> FIFO_D_out_W(NoC_size downto 1) ,
              grant_N => Grant_NW, grant_E =>Grant_EW, grant_W =>'0' ,grant_S=>Grant_SW, grant_L =>Grant_LW,
              Req_N=> Req_WN, Req_E=>Req_WE, Req_W=>Req_WW, Req_S=>Req_WS, Req_L=>Req_WL);
 
 LBDR_S: LBDR generic map (cur_addr_rst => current_address, NoC_size => NoC_size)
-   PORT MAP (reset =>  reset, clk => clk, empty => empty_S, Cx_reconf => Cx_reconf, Rxy_reconf => Rxy_reconf, Reconfig => Reconfig,
+   PORT MAP (reset =>  reset, clk => clk, empty => empty_S, Cx => Cx, Rxy => Rxy, 
              flit_type => FIFO_D_out_S(DATA_WIDTH-1 downto DATA_WIDTH-3), dst_addr=> FIFO_D_out_S(NoC_size downto 1) ,
              grant_N => Grant_NS, grant_E =>Grant_ES, grant_W =>Grant_WS ,grant_S=>'0', grant_L =>Grant_LS,
              Req_N=> Req_SN, Req_E=>Req_SE, Req_W=>Req_SW, Req_S=>Req_SS, Req_L=>Req_SL);
 
 LBDR_L: LBDR generic map (cur_addr_rst => current_address, NoC_size => NoC_size)
-   PORT MAP (reset =>  reset, clk => clk, empty => empty_L, Cx_reconf => Cx_reconf, Rxy_reconf => Rxy_reconf, Reconfig => Reconfig,
+   PORT MAP (reset =>  reset, clk => clk, empty => empty_L, Cx => Cx, Rxy => Rxy, 
              flit_type => FIFO_D_out_L(DATA_WIDTH-1 downto DATA_WIDTH-3), dst_addr=> FIFO_D_out_L(NoC_size downto 1) ,
              grant_N => Grant_NL, grant_E =>Grant_EL, grant_W => Grant_WL,grant_S=>Grant_SL, grant_L =>'0',
              Req_N=> Req_LN, Req_E=>Req_LE, Req_W=>Req_LW, Req_S=>Req_LS, Req_L=>Req_LL);
