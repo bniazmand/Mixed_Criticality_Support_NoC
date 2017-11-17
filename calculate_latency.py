@@ -6,7 +6,7 @@ import random
 import sys
 
 warmup_time = 1000
-SIMUL_DIR = "Separate_NoC_Regions_Minimal/"
+SIMUL_DIR = "Synthesis_Results/"
 
 if '--help' in sys.argv[1:]:
     print "\t-S [path to file]: path to file containing all the sent packets."
