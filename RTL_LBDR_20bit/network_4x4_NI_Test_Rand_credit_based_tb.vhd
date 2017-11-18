@@ -30,22 +30,23 @@ component network_4x4 is
  generic (DATA_WIDTH: integer := 32; DATA_WIDTH_LV: integer := 11);
 port (reset: in  std_logic;
 	clk: in  std_logic;
-  Cx_reconf_0 : in std_logic_vector(4 downto 0);
-  Cx_reconf_1 : in std_logic_vector(4 downto 0);
-  Cx_reconf_2 : in std_logic_vector(4 downto 0);
-  Cx_reconf_3 : in std_logic_vector(4 downto 0);
-  Cx_reconf_4 : in std_logic_vector(4 downto 0);
-  Cx_reconf_5 : in std_logic_vector(4 downto 0);
-  Cx_reconf_6 : in std_logic_vector(4 downto 0);
-  Cx_reconf_7 : in std_logic_vector(4 downto 0);
-  Cx_reconf_8 : in std_logic_vector(4 downto 0);
-  Cx_reconf_9 : in std_logic_vector(4 downto 0);
-  Cx_reconf_10: in std_logic_vector(4 downto 0);
-  Cx_reconf_11: in std_logic_vector(4 downto 0);
-  Cx_reconf_12: in std_logic_vector(4 downto 0);
-  Cx_reconf_13: in std_logic_vector(4 downto 0);
-  Cx_reconf_14: in std_logic_vector(4 downto 0);
-  Cx_reconf_15: in std_logic_vector(4 downto 0);
+
+    Cx_reconf_0 : in std_logic_vector(4 downto 0);
+    Cx_reconf_1 : in std_logic_vector(4 downto 0);
+    Cx_reconf_2 : in std_logic_vector(4 downto 0);
+    Cx_reconf_3 : in std_logic_vector(4 downto 0);
+    Cx_reconf_4 : in std_logic_vector(4 downto 0);
+    Cx_reconf_5 : in std_logic_vector(4 downto 0);
+    Cx_reconf_6 : in std_logic_vector(4 downto 0);
+    Cx_reconf_7 : in std_logic_vector(4 downto 0);
+    Cx_reconf_8 : in std_logic_vector(4 downto 0);
+    Cx_reconf_9 : in std_logic_vector(4 downto 0);
+    Cx_reconf_10: in std_logic_vector(4 downto 0);
+    Cx_reconf_11: in std_logic_vector(4 downto 0);
+    Cx_reconf_12: in std_logic_vector(4 downto 0);
+    Cx_reconf_13: in std_logic_vector(4 downto 0);
+    Cx_reconf_14: in std_logic_vector(4 downto 0);
+    Cx_reconf_15: in std_logic_vector(4 downto 0);
 
 	Rxy_reconf_0: in  std_logic_vector(19 downto 0);
 	Rxy_reconf_1: in  std_logic_vector(19 downto 0);
@@ -64,7 +65,6 @@ port (reset: in  std_logic;
 	Rxy_reconf_14: in  std_logic_vector(19 downto 0);
 	Rxy_reconf_15: in  std_logic_vector(19 downto 0);
 
-	Reconfig : in std_logic;
 	--------------
 	RX_L_0: in std_logic_vector (DATA_WIDTH-1 downto 0);
 	credit_out_L_0, valid_out_L_0: out std_logic;
@@ -200,10 +200,6 @@ end component;
 	signal credit_out_L_15, credit_in_L_15, valid_in_L_15, valid_out_L_15: std_logic;
 	-- NI testing signals
 	--------------
-
-
-
-	signal Reconfig: std_logic := '0';
 	--------------
 	constant clk_period : time := 10 ns;
 	signal reset, not_reset, clk: std_logic :='0';
@@ -219,16 +215,19 @@ begin
    end process;
 
 reset <= '1' after 1 ns;
+
+not_reset <= not reset;
+
 -- instantiating the network
 NoC: network_4x4 generic map (DATA_WIDTH  => 32, DATA_WIDTH_LV => 11)
 port map (reset, clk,
-  Cx_reconf_0 , Cx_reconf_1 , Cx_reconf_2 , Cx_reconf_3 , Cx_reconf_4 ,
-  Cx_reconf_5 , Cx_reconf_6 , Cx_reconf_7 , Cx_reconf_8 , Cx_reconf_9 ,
-  Cx_reconf_10, Cx_reconf_11, Cx_reconf_12, Cx_reconf_13, Cx_reconf_14, Cx_reconf_15,
+    Cx_reconf_0 , Cx_reconf_1 , Cx_reconf_2 , Cx_reconf_3 , Cx_reconf_4 ,
+    Cx_reconf_5 , Cx_reconf_6 , Cx_reconf_7 , Cx_reconf_8 , Cx_reconf_9 ,
+    Cx_reconf_10, Cx_reconf_11, Cx_reconf_12, Cx_reconf_13, Cx_reconf_14, Cx_reconf_15,
 
-  Rxy_reconf_0, Rxy_reconf_1, Rxy_reconf_2, Rxy_reconf_3, Rxy_reconf_4, Rxy_reconf_5,
+    Rxy_reconf_0, Rxy_reconf_1, Rxy_reconf_2, Rxy_reconf_3, Rxy_reconf_4, Rxy_reconf_5,
 	Rxy_reconf_6, Rxy_reconf_7, Rxy_reconf_8, Rxy_reconf_9, Rxy_reconf_10, Rxy_reconf_11, Rxy_reconf_12, Rxy_reconf_13,
-	Rxy_reconf_14, Rxy_reconf_15, Reconfig,
+	Rxy_reconf_14, Rxy_reconf_15,
 
 	RX_L_0, credit_out_L_0, valid_out_L_0, credit_in_L_0, valid_in_L_0,  TX_L_0,
 	RX_L_1, credit_out_L_1, valid_out_L_1, credit_in_L_1, valid_in_L_1,  TX_L_1,
@@ -247,7 +246,6 @@ port map (reset, clk,
 	RX_L_14, credit_out_L_14, valid_out_L_14, credit_in_L_14, valid_in_L_14,  TX_L_14,
 	RX_L_15, credit_out_L_15, valid_out_L_15, credit_in_L_15, valid_in_L_15,  TX_L_15
             );
-not_reset <= not reset;
 
 -- connecting the packet generators
 credit_counter_control(clk, credit_out_L_0, valid_in_L_0, credit_counter_out_0);

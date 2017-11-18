@@ -15,9 +15,8 @@ entity LBDR is
     port (  reset: in  std_logic;
             clk: in  std_logic;
 
-            Cx_reconf: in std_logic_vector(4 downto 0);
-            Rxy_reconf: in  std_logic_vector(19 downto 0);
-            Reconfig : in std_logic;
+            Cx:  in  std_logic_vector(4 downto 0);
+            Rxy: in  std_logic_vector(19 downto 0);
 
             empty: in  std_logic;
             flit_type: in std_logic_vector(2 downto 0);
@@ -31,9 +30,7 @@ end LBDR;
 
 architecture behavior of LBDR is
 
-  signal Cx, Cx_in:  std_logic_vector(4 downto 0);
   signal Cn, Ce, Cw, Cs, Cl: std_logic;
-  signal Rxy, Rxy_in:  std_logic_vector(19 downto 0);
   signal cur_addr:  std_logic_vector(NoC_size-1 downto 0);
   signal N1, E1, W1, S1  :std_logic :='0';
   signal N_prime, E_prime, W_prime, S_prime  :std_logic :='0';
@@ -43,7 +40,6 @@ architecture behavior of LBDR is
   signal L2N, N2L, L2E, E2L, L2W, W2L, L2S, S2L: std_logic;
 
   signal grants: std_logic;
-  signal ReConf_FF_in, ReConf_FF_out: std_logic;
 
   CONSTANT North: std_logic_vector(2 downto 0) := "000";
   CONSTANT East:  std_logic_vector(2 downto 0) := "001";
@@ -57,23 +53,17 @@ begin
   process(clk, reset)
   begin
   if reset = '0' then
-    Rxy <= Rxy_reconf;
     Req_N_FF <= '0';
     Req_E_FF <= '0';
     Req_W_FF <= '0';
     Req_S_FF <= '0';
     Req_L_FF <= '0';
-    ReConf_FF_out <= '0';
-    Cx <= Cx_reconf;
   elsif clk'event and clk = '1' then
-    Rxy <= Rxy_in;
     Req_N_FF <= Req_N_in;
     Req_E_FF <= Req_E_in;
     Req_W_FF <= Req_W_in;
     Req_S_FF <= Req_S_in;
     Req_L_FF <= Req_L_in;
-    ReConf_FF_out <= ReConf_FF_in;
-    Cx <= Cx_in;
   end if;
   end process;
 
@@ -121,22 +111,6 @@ begin
   W2L <= Rxy(17);
   L2S <= Rxy(18);
   S2L <= Rxy(19);
-
-Cx_in <= Cx;
-
-process(Rxy_reconf, ReConf_FF_out, Rxy, Reconfig, flit_type, grants, empty)begin
-  if ReConf_FF_out= '1' and flit_type = "100" and empty = '0' and grants = '1' then
-	  	Rxy_in <= Rxy_reconf;
-	  	ReConf_FF_in <= '0';
-  else
-  	Rxy_in <= Rxy;
-  	if Reconfig = '1' then
-  		ReConf_FF_in <= '1';
-  	else
-  		ReConf_FF_in <= ReConf_FF_out;
-  	end if;
-  end if;
-end process;
 
 
 Req_N <= Req_N_FF;
