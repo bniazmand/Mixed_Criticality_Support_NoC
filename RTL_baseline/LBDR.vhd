@@ -35,7 +35,6 @@ architecture behavior of LBDR is
   signal Req_N_FF, Req_E_FF, Req_W_FF, Req_S_FF, Req_L_FF: std_logic;
   signal grants: std_logic;
 
-  signal ReConf_FF_in, ReConf_FF_out: std_logic;
 begin 
 
  grants <= grant_N or grant_E or grant_W or grant_S or grant_L;
@@ -56,14 +55,12 @@ process(clk, reset) begin
         Req_W_FF <= '0';
         Req_S_FF <= '0';
         Req_L_FF <= '0';
-        ReConf_FF_out <= '0';
     elsif clk'event and clk = '1' then
         Req_N_FF <= Req_N_in;
         Req_E_FF <= Req_E_in;
         Req_W_FF <= Req_W_in;
         Req_S_FF <= Req_S_in;
         Req_L_FF <= Req_L_in;
-        ReConf_FF_out <= ReConf_FF_in;
     end if;
 end process;
  
