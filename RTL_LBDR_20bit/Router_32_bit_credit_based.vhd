@@ -131,8 +131,8 @@ end COMPONENT;
 
  	signal Xbar_sel_N, Xbar_sel_E, Xbar_sel_W, Xbar_sel_S, Xbar_sel_L: std_logic_vector(4 downto 0);
 
-    signal Cx, Cx_in:  std_logic_vector(3 downto 0);
-    signal Rxy, Rxy_in:  std_logic_vector(7 downto 0);
+    signal Cx, Cx_in:    std_logic_vector(4 downto 0);
+    signal Rxy, Rxy_in:  std_logic_vector(19 downto 0);
 
 begin
 
