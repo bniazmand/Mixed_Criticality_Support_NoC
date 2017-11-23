@@ -21,7 +21,7 @@ vcom "network_4x4_credit_based.vhd"
 
 ###################################
 # for Tallinn Experiments
-# vcom "packages/TB_Package_32_bit_credit_based_Sc_1.vhd"
+# vcom "packages/TB_Package_32_bit_credit_based_sc_1.vhd"
 # vcom "network_4x4_NI_Test_Rand_credit_based_tb.vhd"
 
 
