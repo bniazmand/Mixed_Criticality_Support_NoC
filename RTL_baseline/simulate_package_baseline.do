@@ -16,8 +16,9 @@ vcom "LBDR.vhd"
 vcom "xbar.vhd"
 vcom "FIFO_one_hot_credit_based.vhd"
 vcom "Router_32_bit_credit_based.vhd"
-vcom "packages/TB_Package_32_bit_credit_based_baseline.vhd"
 vcom "network_4x4_credit_based.vhd"
+
+vcom "packages/TB_Package_32_bit_credit_based_baseline.vhd"
 vcom "network_4x4_NI_Test_Rand_credit_based_tb.vhd"
 
 # Start the simulation

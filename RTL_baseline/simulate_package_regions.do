@@ -16,9 +16,17 @@ vcom "LBDR.vhd"
 vcom "xbar.vhd"
 vcom "FIFO_one_hot_credit_based.vhd"
 vcom "Router_32_bit_credit_based.vhd"
-vcom "packages/TB_Package_32_bit_credit_based_regions.vhd"
 vcom "network_4x4_credit_based.vhd"
-vcom "network_4x4_NI_Test_Rand_credit_based_tb.vhd"
+
+###################################
+# use for Tallinn Experiments
+vcom "packages/TB_seeds_packet.vhd"
+vcom "packages/TB_experiment_settings_packet.vhd"
+vcom "packages/TB_Package_32_bit_credit_based_sergio.vhd"
+vcom "network_4x4_NI_Test_Rand_credit_based_tb_sergio.vhd"
+
+###################################
+# use for Torino Experiments
 
 # Start the simulation
 vsim work.tb_network_4x4
