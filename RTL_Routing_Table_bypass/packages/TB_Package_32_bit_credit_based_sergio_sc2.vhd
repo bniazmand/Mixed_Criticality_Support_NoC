@@ -336,10 +336,6 @@ package body TB_Package is
       end if;
       --------------------------------------
 
-      if source = 3 then
-        wait;
-      end if;
-
       if (node_type = critical) then -- critical
       	destination_id := destination_id_in;
       elsif (node_type = not_critical) then -- not critical
