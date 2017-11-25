@@ -37,25 +37,34 @@ package TB_Package is
 		                              signal credit_counter_out: out std_logic_vector(1 downto 0));
 
 
-	 procedure gen_crit_packet_n(	network_size, frame_length, source, destination_id, initial_delay, min_packet_size, max_packet_size: in integer;
-											finish_time: in time;
-											signal clk: in std_logic;
-											signal credit_counter_in: in std_logic_vector(1 downto 0); signal valid_out: out std_logic;
-											signal port_in: out std_logic_vector;
-											seed_1, seed_2: in positive);
+	 procedure gen_crit_packet_n(network_size, frame_length, source, destination_id, initial_delay, min_packet_size, max_packet_size: in integer;
+  				             finish_time: in time;
+  				             signal clk: in std_logic;
+  				             signal full: in std_logic;
+                       signal valid_out: out std_logic;
+  				          	 signal port_in: out std_logic_vector;
+                       seed_1, seed_2 : in positive);
 
 
-	procedure gen_not_crit_packet_n(	network_size, frame_length, source, initial_delay, min_packet_size, max_packet_size: in integer;
-												finish_time: in time;
-												signal clk: in std_logic;
-												signal credit_counter_in: in std_logic_vector(1 downto 0); signal valid_out: out std_logic;
-												signal port_in: out std_logic_vector;
-												seed_1, seed_2: in positive);
-
+	procedure gen_not_crit_packet_n(network_size, frame_length, source, initial_delay, min_packet_size, max_packet_size: in integer;
+  			             finish_time: in time;
+  			             signal clk: in std_logic;
+                     signal full: in std_logic;
+                     signal valid_out: out std_logic;
+  			          	 signal port_in: out std_logic_vector;
+                     seed_1, seed_2 : in positive);
 
 
   procedure get_packet(DATA_WIDTH, initial_delay, Node_ID: in integer; signal clk: in std_logic;
                      signal credit_out: out std_logic; signal valid_in: in std_logic; signal port_in: in std_logic_vector);
+
+  procedure infinite_buffer(signal clk: in std_logic;
+                            signal valid_in :in std_logic;
+                            signal port_in: in std_logic_vector;
+                            signal credit_counter_in: in std_logic_vector;
+                            signal valid_out: out std_logic;
+                            signal full: out std_logic;
+                            signal port_out: out std_logic_vector);
 end TB_Package;
 
 
@@ -247,12 +256,13 @@ package body TB_Package is
  --
 
  procedure packet_generator(node_type: in t_NODE_TYPE;
-										network_size, frame_length, source, destination_id_in, initial_delay, min_packet_size, max_packet_size: in integer;
-						             finish_time: in time;
-						             signal clk: in std_logic;
-						             signal credit_counter_in: in std_logic_vector(1 downto 0); signal valid_out: out std_logic;
-						          	 signal port_in: out std_logic_vector;
-						             seed_1, seed_2 : in positive) is
+										        network_size, frame_length, source, destination_id_in, initial_delay, min_packet_size, max_packet_size: in integer;
+						                finish_time: in time;
+                            signal clk: in std_logic;
+                            signal valid_out : out std_logic;
+                            signal TX : out std_logic_vector (31 downto 0);
+                            signal full: in std_logic;
+						                seed_1, seed_2 : in positive) is
 
 	file VEC_FILE : text is out "sent.txt";
 	file TRAFFIC_GENERATION_VERBOSE_FILE : text is out "traffic_generator_verbose.txt";
@@ -266,7 +276,7 @@ package body TB_Package is
 	-- sof = start of frame
 	-- eof = end of frame
 	variable id_counter, sof_delay, Packet_length, time_to_eof : integer:= 0;
-	variable credit_counter: std_logic_vector (1 downto 0);
+
 	variable debug_1: integer:= 0;
 
 	variable packet_nominal_starting_time: time := 0 ns;
@@ -284,12 +294,12 @@ package body TB_Package is
 --   uniform(seed_1_var, seed_2_var, rand);
 --    Packet_length := integer((integer(rand*100.0)*max_packet_size)/100);
     valid_out <= '0';
-    port_in <= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" ;
+    TX <= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" ;
     wait until clk'event and clk ='1';
     for i in 0 to initial_delay loop
       wait until clk'event and clk ='1';
     end loop;
-    port_in <= "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU" ;
+    TX <= "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU" ;
 
 
 	write(LINEVARIABLE, 		"node_id: " & 					fIntToStringLeading0(source, 2) &
@@ -325,6 +335,10 @@ package body TB_Package is
           Packet_length:=max_packet_size;
       end if;
       --------------------------------------
+
+      if source = 3 then
+        wait;
+      end if;
 
       if (node_type = critical) then -- critical
       	destination_id := destination_id_in;
@@ -459,58 +473,58 @@ package body TB_Package is
       end loop;
 
 
-      --------
-      --
-      --	wait until the transmission is possible
-      --
-
-      while credit_counter_in = 0 loop
-        wait until clk'event and clk ='0';
-      end loop;
 
       packet_actual_starting_time := now;
 
+      if full = '1' then
+        while(full = '1')loop
+          wait until clk'event and clk ='0';
+        end loop;
+      end if;
 
       wait until clk'event and clk ='0'; -- On negative edge of clk (for syncing purposes)
-      port_in <= Header_gen(source, destination_id); -- Generating the header flit of the packet (All packets have a header flit)!
+      TX <= Header_gen(source, destination_id); -- Generating the header flit of the packet (All packets have a header flit)!
       valid_out <= '1';
       wait until clk'event and clk ='0';
+      valid_out <= '0';
 
       for I in 0 to Packet_length-3 loop
             -- The reason for -3 is that we have packet length of Packet_length, now if you exclude header and tail
             -- it would be Packet_length-2 to enumerate them, you can count from 0 to Packet_length-3.
-            if credit_counter_in = "00" then
-             valid_out <= '0';
-             -- Wait until next router/NI has at least enough space for one flit in its input FIFO
-             wait until credit_counter_in'event and credit_counter_in > 0;
-             wait until clk'event and clk ='0';
-            end if;
 
             uniform(seed_1_var, seed_2_var, rand);
             -- Each packet can have no body flits or one or more than body flits.
-            if I = 0 then
-              port_in <= Body_1_gen(Packet_length, id_counter);
-            else
-              port_in <= Body_gen(integer(rand*1000.0));
+            if full = '1' then
+              while(full = '1')loop
+                wait until clk'event and clk ='0';
+              end loop;
             end if;
-             valid_out <= '1';
-             wait until clk'event and clk ='0';
+
+            if I = 0 then
+              TX <= Body_1_gen(Packet_length, id_counter);
+            else
+              TX <= Body_gen(integer(rand*1000.0));
+            end if;
+            valid_out <= '1';
+            wait until clk'event and clk ='0';
+            valid_out <= '0';
       end loop;
-
-      if credit_counter_in = "00" then
-             valid_out <= '0';
-             -- Wait until next router/NI has at least enough space for one flit in its input FIFO
-             wait until credit_counter_in'event and credit_counter_in > 0;
-             wait until clk'event and clk ='0';
-      end if;
-
 
       uniform(seed_1_var, seed_2_var, rand);
       -- Close the packet with a tail flit (All packets have one tail flit)!
-      port_in <= Tail_gen(Packet_length, integer(rand*1000.0));
+
+
+      if full = '1' then
+        while(full = '1')loop
+          wait until clk'event and clk ='0';
+        end loop;
+      end if;
+
+      wait until clk'event and clk ='0';
+      TX <= Tail_gen(Packet_length, integer(rand*1000.0));
       valid_out <= '1';
       wait until clk'event and clk ='0';
-
+      valid_out <= '0';
 
 
       -- just completed the transmission... it's time to log :)
@@ -542,12 +556,12 @@ package body TB_Package is
 
 
       valid_out <= '0';
-      port_in <= "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ" ;
+      TX <= "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ" ;
 
       for l in 0 to time_to_eof-1 loop
          wait until clk'event and clk ='0';
       end loop;
-      port_in <= "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU" ;
+      TX <= "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU" ;
 
       if now > finish_time then
           wait;
@@ -557,25 +571,79 @@ package body TB_Package is
  end packet_generator;
 
 
+procedure infinite_buffer(signal clk: in std_logic;
+                          signal valid_in :in std_logic;
+                          signal port_in: in std_logic_vector;
+                          signal credit_counter_in: in std_logic_vector;
+                          signal valid_out: out std_logic;
+                          signal full: out std_logic;
+                          signal port_out: out std_logic_vector) is
 
+    variable read_pointer, write_pointer: std_logic_vector(14 downto 0) := "000000000000000";
+    type MEM is array (0 to 32767) of std_logic_vector(31 downto 0);
+
+    --variable read_pointer, write_pointer: std_logic_vector(1 downto 0) := "00";
+    --type MEM is array (0 to 3) of std_logic_vector(31 downto 0);
+
+    variable FIFO : MEM;
+begin
+  port_out<= "00000000000000000000000000000000";
+  valid_out <= '0';
+  full <= '0';
+
+  while true loop
+    wait until clk'event and clk ='1';
+    valid_out <= '0';
+
+    if write_pointer /= read_pointer-1 then
+      if valid_in = '1' then
+          FIFO(to_integer(unsigned(write_pointer))) := port_in;
+          write_pointer := write_pointer + 1 ;
+        end if;
+    end if;
+
+    port_out<= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+    -- here we need to wait and make sure that the credit counter has properly
+    -- processed the valid_in signal! otherwise we will read the wrong credit-
+    -- counter value
+    wait for 10 ps;
+    if credit_counter_in /= "00" then
+      if write_pointer /= read_pointer then
+          port_out <=  FIFO(to_integer(unsigned(read_pointer)));
+          read_pointer := read_pointer + 1 ;
+          valid_out <= '1';
+      end if;
+    end if;
+
+    if write_pointer = read_pointer-1 then
+      full <= '1';
+    else
+      full <= '0';
+    end if;
+  end loop;
+
+end infinite_buffer;
 
  procedure gen_crit_packet_n(network_size, frame_length, source, destination_id, initial_delay, min_packet_size, max_packet_size: in integer;
 				             finish_time: in time;
 				             signal clk: in std_logic;
-				             signal credit_counter_in: in std_logic_vector(1 downto 0); signal valid_out: out std_logic;
+				             signal full: in std_logic;
+                     signal valid_out: out std_logic;
 				          	 signal port_in: out std_logic_vector;
-				             seed_1, seed_2 : in positive) is
+                     seed_1, seed_2 : in positive) is
 
 				             variable node_type: t_NODE_TYPE;
 
-				             begin
+   			             begin
 
 				             node_type := critical;
 
 
 				             packet_generator(node_type,
 				             						network_size, frame_length, source, destination_id, initial_delay, min_packet_size, max_packet_size, finish_time,
-				             						clk, credit_counter_in, valid_out, port_in, seed_1, seed_2);
+				             						clk, valid_out , port_in , full, seed_1, seed_2);
+
+
 
  end gen_crit_packet_n;
 
@@ -585,9 +653,10 @@ package body TB_Package is
 procedure gen_not_crit_packet_n(network_size, frame_length, source, initial_delay, min_packet_size, max_packet_size: in integer;
 			             finish_time: in time;
 			             signal clk: in std_logic;
-			             signal credit_counter_in: in std_logic_vector(1 downto 0); signal valid_out: out std_logic;
+                   signal full: in std_logic;
+                   signal valid_out: out std_logic;
 			          	 signal port_in: out std_logic_vector;
-			             seed_1, seed_2 : in positive) is
+                   seed_1, seed_2 : in positive) is
 
 			             variable node_type: t_NODE_TYPE;
 			             variable destination_id: integer; -- dummy var
@@ -597,9 +666,11 @@ procedure gen_not_crit_packet_n(network_size, frame_length, source, initial_dela
 			             node_type := not_critical;
 			             destination_id := source; -- dummy var
 
-			             packet_generator(node_type,
-			             						network_size, frame_length, source, destination_id, initial_delay, min_packet_size, max_packet_size, finish_time,
-			             						clk, credit_counter_in, valid_out, port_in, seed_1, seed_2);
+                   pac_gen: packet_generator(node_type,
+                              network_size, frame_length, source, destination_id, initial_delay, min_packet_size, max_packet_size, finish_time,
+                              clk, valid_out , port_in , full, seed_1, seed_2);
+
+
 
  end gen_not_crit_packet_n;
 
@@ -614,9 +685,6 @@ procedure gen_not_crit_packet_n(network_size, frame_length, source, initial_dela
     variable source_node, destination_node, P_length, packet_id, counter: integer;
     variable LINEVARIABLE : line;
      file VEC_FILE : text is out "received.txt";
-     file DIAGNOSIS_FILE : text is out "DIAGNOSIS.txt";
-     variable DIAGNOSIS: std_logic;
-     variable DIAGNOSIS_vector: std_logic_vector(12 downto 0);
      begin
      credit_out <= '1';
      counter := 0;
@@ -625,14 +693,14 @@ procedure gen_not_crit_packet_n(network_size, frame_length, source, initial_dela
          wait until clk'event and clk ='1';
 
          if valid_in = '1' then
+
               if (port_in(DATA_WIDTH-1 downto DATA_WIDTH-3) = "001") then
-                counter := 1;
-                DIAGNOSIS := '0';
+                counter := counter+1;
                 source_node := to_integer(unsigned(port_in(28 downto 15)));
                 destination_node := to_integer(unsigned(port_in(14 downto 1)));
+              end if;
 
-            end if;
-            if  (port_in(DATA_WIDTH-1 downto DATA_WIDTH-3) = "010")   then
+              if  (port_in(DATA_WIDTH-1 downto DATA_WIDTH-3) = "010")   then
                --report "flit type: " &integer'image(to_integer(unsigned(port_in(DATA_WIDTH-1 downto DATA_WIDTH-3)))) ;
                --report  "counter: " & integer'image(counter);
                if counter = 1 then
@@ -640,13 +708,10 @@ procedure gen_not_crit_packet_n(network_size, frame_length, source, initial_dela
                   packet_id := to_integer(unsigned(port_in(14 downto 1)));
                end if;
                counter := counter+1;
-               if port_in(28 downto 13) = "0100011001000100" then
-                  DIAGNOSIS := '1';
-                  DIAGNOSIS_vector(11 downto 0) := port_in(12 downto 1);
-               end if;
-            end if;
-            if (port_in(DATA_WIDTH-1 downto DATA_WIDTH-3) = "100") then
-                counter := counter+1;
+             end if;
+
+             if (port_in(DATA_WIDTH-1 downto DATA_WIDTH-3) = "100") then
+              counter := counter+1;
               report	"Node: " & integer'image(Node_ID) &
 							" Packet received at " & time'image(now) &
 							" From " & integer'image(source_node) &
@@ -655,16 +720,6 @@ procedure gen_not_crit_packet_n(network_size, frame_length, source, initial_dela
 							" counter: "& integer'image(counter);
               assert (P_length=counter) report "wrong packet size" severity failure;
               assert (Node_ID=destination_node) report "wrong packet destination " severity failure;
-              if DIAGNOSIS = '1' then
-                DIAGNOSIS_vector(12) := port_in(28);
-                write(LINEVARIABLE, "Packet received at " & time'image(now) &
-                							" From: " & integer'image(source_node) &
-                							" to: " & integer'image(destination_node) &
-                							" length: "& integer'image(P_length) &
-                							" actual length: "& integer'image(counter)  &
-                							" id: "& integer'image(packet_id));
-                writeline(DIAGNOSIS_FILE, LINEVARIABLE);
-              else
                 write(LINEVARIABLE, "Packet received at " & time'image(now) &
                 							" From: " & integer'image(source_node) &
                 							" to: " & integer'image(destination_node) &
@@ -672,7 +727,6 @@ procedure gen_not_crit_packet_n(network_size, frame_length, source, initial_dela
                 							" actual length: "& integer'image(counter)  &
                 							" id: "& integer'image(packet_id));
                 writeline(VEC_FILE, LINEVARIABLE);
-              end if;
                counter := 0;
             end if;
          end if;
