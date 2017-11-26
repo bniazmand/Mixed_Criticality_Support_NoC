@@ -28,5 +28,5 @@ do wave_4x4.do
 # Run the simulation
 vcd file wave.vcd
 vcd add -r -optcells /*
-run 14000 ns
+run 11 ms
 vcd flush
