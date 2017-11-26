@@ -320,7 +320,7 @@ add wave -noupdate -group {NoC Empty_Sigs} :tb_network_4x4:NoC:R_15:FIFO_E:empty
 add wave -noupdate -group {NoC Empty_Sigs} :tb_network_4x4:NoC:R_15:FIFO_W:empty
 add wave -noupdate -group {NoC Empty_Sigs} :tb_network_4x4:NoC:R_15:FIFO_S:empty
 add wave -noupdate -group {NoC Empty_Sigs} :tb_network_4x4:NoC:R_15:FIFO_L:empty
-add wave -noupdate -group {NoC Empty_Sigs} :tb_network_4x4:clk
+
 add wave -noupdate -group {NoC Full_Sigs} :tb_network_4x4:NoC:R_0:FIFO_N:full
 add wave -noupdate -group {NoC Full_Sigs} :tb_network_4x4:NoC:R_0:FIFO_E:full
 add wave -noupdate -group {NoC Full_Sigs} :tb_network_4x4:NoC:R_0:FIFO_W:full
@@ -401,7 +401,24 @@ add wave -noupdate -group {NoC Full_Sigs} :tb_network_4x4:NoC:R_15:FIFO_E:full
 add wave -noupdate -group {NoC Full_Sigs} :tb_network_4x4:NoC:R_15:FIFO_W:full
 add wave -noupdate -group {NoC Full_Sigs} :tb_network_4x4:NoC:R_15:FIFO_S:full
 add wave -noupdate -group {NoC Full_Sigs} :tb_network_4x4:NoC:R_15:FIFO_L:full
-add wave -noupdate -group {NoC Full_Sigs} :tb_network_4x4:clk
+
+add wave -noupdate -group {NI Full_Sigs} :tb_network_4x4:buff_full_0
+add wave -noupdate -group {NI Full_Sigs} :tb_network_4x4:buff_full_1
+add wave -noupdate -group {NI Full_Sigs} :tb_network_4x4:buff_full_2
+add wave -noupdate -group {NI Full_Sigs} :tb_network_4x4:buff_full_3
+add wave -noupdate -group {NI Full_Sigs} :tb_network_4x4:buff_full_4
+add wave -noupdate -group {NI Full_Sigs} :tb_network_4x4:buff_full_5
+add wave -noupdate -group {NI Full_Sigs} :tb_network_4x4:buff_full_6
+add wave -noupdate -group {NI Full_Sigs} :tb_network_4x4:buff_full_7
+add wave -noupdate -group {NI Full_Sigs} :tb_network_4x4:buff_full_8
+add wave -noupdate -group {NI Full_Sigs} :tb_network_4x4:buff_full_9
+add wave -noupdate -group {NI Full_Sigs} :tb_network_4x4:buff_full_10
+add wave -noupdate -group {NI Full_Sigs} :tb_network_4x4:buff_full_11
+add wave -noupdate -group {NI Full_Sigs} :tb_network_4x4:buff_full_12
+add wave -noupdate -group {NI Full_Sigs} :tb_network_4x4:buff_full_13
+add wave -noupdate -group {NI Full_Sigs} :tb_network_4x4:buff_full_14
+add wave -noupdate -group {NI Full_Sigs} :tb_network_4x4:buff_full_15
+
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors
 quietly wave cursor active 0
