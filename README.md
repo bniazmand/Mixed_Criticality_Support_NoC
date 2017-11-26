@@ -23,17 +23,3 @@ The branches of the repository are as follows:
   * MC_LBDR_20_bit: Mixed Critical regions using extended LBDR to improve the connectivity
   * MC_Routing_Table: Using routing tables, providing Non-minimal routing to improve the reachability
   * MC_Routing_Table_bypass: providing router bypass in order to improve the latency in the critical region
-
--------------------
-### Todo:
-
-- update TB_packages and Testbench
-	- [ ] baseline
-	- [ ] 20-bit routing
-	- [ ] Table based 
-	- [X] Table based bypass
-- Testing updated TB_package and TBs
-	- [ ] baseline
-	- [ ] 20-bit routing
-	- [ ] Table based 
-	- [ ] Table based bypass
