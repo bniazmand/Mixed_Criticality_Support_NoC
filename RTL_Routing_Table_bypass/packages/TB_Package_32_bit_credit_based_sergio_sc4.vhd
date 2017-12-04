@@ -90,7 +90,7 @@ package body TB_Package is
   -- this is the max statistic collector is able to process
   constant MAX_PACKETS_PER_NODE : integer := 10000;
 
-  constant Crit_nodes : t_crit_nodes_array := (0, 15);
+  constant Crit_nodes : t_crit_nodes_array := (0, 14);
 
 
 	--------------------------------------
@@ -336,9 +336,7 @@ package body TB_Package is
       end if;
       --------------------------------------
 
-      if source = 3 then
-        wait;
-      end if;
+
 
       if (node_type = critical) then -- critical
       	destination_id := destination_id_in;
@@ -359,9 +357,6 @@ package body TB_Package is
            valid_dest:= False;
          end if;
 
-         if destination_id = 3 then
-           valid_dest:= False;
-          end if;
 
 			end loop;
 		end if;
