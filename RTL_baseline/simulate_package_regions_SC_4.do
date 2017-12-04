@@ -8,6 +8,7 @@
 vlib work
 
 # Include files and compile them
+vcom "packages/package_regions_SC_4.vhd"
 vcom "arbiter_in.vhd"
 vcom "arbiter_out.vhd"
 vcom "allocator.vhd"
@@ -19,16 +20,16 @@ vcom "network_4x4_credit_based.vhd"
 
 ###################################
 # use for Tallinn Experiments
-vcom "packages/package_regions_SC_4.vhd"
-vcom "packages/TB_Package_32_bit_credit_based_regions_SC_4.vhd"
-vcom "network_4x4_NI_Test_Rand_credit_based_tb.vhd"
+
+#vcom "packages/TB_Package_32_bit_credit_based_regions_SC_4.vhd"
+#vcom "network_4x4_NI_Test_Rand_credit_based_tb.vhd"
 
 ###################################
 # use for Torino Experiments
-# vcom "packages/TB_seeds_packet.vhd"
-# vcom "packages/TB_experiment_settings_packet.vhd"
-# vcom "packages/TB_Package_32_bit_credit_based_sergio.vhd"
-# vcom "network_4x4_NI_Test_Rand_credit_based_tb_sergio.vhd"
+vcom "packages/TB_seeds_packet.vhd"
+vcom "packages/TB_experiment_settings_packet.vhd"
+vcom "packages/TB_Package_32_bit_credit_based_sergio_Sc4.vhd"
+vcom "network_4x4_NI_Test_Rand_credit_based_tb_sergio_Sc4.vhd"
 
 # Start the simulation
 vsim work.tb_network_4x4
@@ -40,9 +41,9 @@ vcd file wave.vcd
 vcd add -r -optcells /*
 
 # use for Tallinn Experiments
-run 12 us
+#run 12 us
 
 # use for Torino Experiments
-# run 11 ms
+run 11 ms
 
 vcd flush

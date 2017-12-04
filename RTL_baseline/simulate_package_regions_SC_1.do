@@ -8,6 +8,7 @@
 vlib work
 
 # Include files and compile them
+vcom "packages/package_regions_SC_1.vhd"
 vcom "arbiter_in.vhd"
 vcom "arbiter_out.vhd"
 vcom "allocator.vhd"
@@ -19,7 +20,7 @@ vcom "network_4x4_credit_based.vhd"
 
 ###################################
 # use for Tallinn Experiments
-# vcom "packages/package_regions_SC_1.vhd"
+#
 # vcom "packages/TB_Package_32_bit_credit_based_regions_SC_1.vhd"
 # vcom "network_4x4_NI_Test_Rand_credit_based_tb.vhd"
 
