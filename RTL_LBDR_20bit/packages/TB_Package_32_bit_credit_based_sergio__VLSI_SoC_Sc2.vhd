@@ -90,7 +90,7 @@ package body TB_Package is
   -- this is the max statistic collector is able to process
   constant MAX_PACKETS_PER_NODE : integer := 10000;
 
-  constant Crit_nodes : t_crit_nodes_array := (0, 15);
+  constant Crit_nodes : t_crit_nodes_array := (0, 14);
 
 
 	--------------------------------------

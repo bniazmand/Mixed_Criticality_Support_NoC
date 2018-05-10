@@ -31,7 +31,7 @@ vcom "packages/TB_seeds_packet.vhd"
 
 
 
-vcom "network_4x4_NI_Test_Rand_credit_based_tb_sergio.vhd"
+vcom "network_4x4_NI_Test_Rand_credit_based_tb_sergio_sc4.vhd"
 
 # Start the simulation
 vsim work.tb_network_4x4
